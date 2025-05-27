@@ -21,9 +21,15 @@ The primary purpose of this minilab is to get you more familiar with some topics
 2. Computing a few additional parameters and adding new history columns using <span style="color:purple">``run_star_extras.f90``</span>
 3. Customizing <span style="color:purple">``pgstar``</span>
 
+### Using this Guide
+
+If you're new to Fortran, here is a short document with [some examples](https://jschwab.github.io/mesa-2021/fortran.html). Don't let yourself get hung up by the Fortran; quickly ask your classmates and the TAs for help! 
+
+Every task comes with a hint and/or an answer. However, if you have prior experience with MESA, do attempt to complete the task on your own. The complete solution is available <span style="color:red">here</span>.
+
 ## Section 2: Getting Started
 
-<span style="color:green">Task 2.1</span>: Create your working directory for this minilab. It could be something like <span style="color:purple">``~/MESASS2025/Day4``</span>.  
+**Task 2.1**: Create your working directory for this minilab. It could be something like <span style="color:purple">``~/MESASS2025/Day4``</span>.  
 Note: you may also choose to place the working directory somewhere other than your home directory. 
 <details>
 <summary>Hint 2.1</summary>
@@ -34,9 +40,9 @@ cd ~/MESASS2025/Day4
 </pre>
 </details>
 
-<span style="color:green">Task 2.2</span>: We have prepared and provided the test case for you. [Download](https://drive.google.com/file/d/1LbT1GKtUfnp3d2RIKQZQhlyYtD-DuP_p/view?usp=sharing) it into the <span style="color:purple">``~/MESASS2025/Day4``</span> directory, unpack, and enter this work directory. 
+**Task 2.2**: We have prepared and provided the test case for you. [Download](https://drive.google.com/file/d/1LbT1GKtUfnp3d2RIKQZQhlyYtD-DuP_p/view?usp=sharing) it into the <span style="color:purple">``~/MESASS2025/Day4``</span> directory, unpack, and enter this work directory. 
 
-<span style="color:green">Answer 2.2</span>
+Answer 2.2
 ```fortran
 unzip Minilab1.zip
 cd Minilab1
@@ -61,15 +67,27 @@ This was a test run to ensure everything works fine for you; you do not need to 
  MESA/star currently has five inlist sections. Each section contains the options for a different aspect of MESA.
 
 **star_job**
-    options for the program that evolves the star
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;options for the program that evolves the star
+
 **eos**
-    options for the MESA eos module
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;options for the MESA eos module
+
 **kap**
-    options for the MESA kap module
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;options for the MESA kap module
+
 **controls**
-    options for the MESA star module
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;options for the MESA star module
+
 **pgstar**
-    options for on-screen plotting 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;options for on-screen plotting 
+
+---
 
 <span style="color:green">Task 2.4</span>: List the contents of your working directory and identity the number of inlists you see.
 <details>
