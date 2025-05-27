@@ -5,11 +5,13 @@ Authors: Saskia Hekker, Susmita Das, Zhao Guo, Arthur Le Saux and Noi Shitrit fo
 ## Section 1: Overview
 ### Science Goal
 
-As low-mass stars evolve into red-giant stars, there comes a brief phase during their post-main-sequence evolution where two interesting phenomena are observed. First, there is the simultaneous contraction of the core and the expansion of the envelope, known as the *mirror phenomenon*. Next, there occurs a zig-zag in the evolutionary track called the *Red Giant Branch Bump (RGB bump)* where the trend for increasing luminosity is reversed, see Fig.\ref{Fig.1} below:
+As low-mass stars evolve into red-giant stars, there comes a brief phase during their post-main-sequence evolution where two interesting phenomena are observed. First, there is the simultaneous contraction of the core and the expansion of the envelope, known as the *mirror phenomenon*. Next, there occurs a zig-zag in the evolutionary track called the *Red Giant Branch Bump (RGB bump)* where the trend for increasing luminosity is reversed, see Fig.1:
 
-![Herzsprung–Russell (H–R) diagram of a 1 $$ M_{sun} $$ track with solar composition computed with MESA. The inset shows a zoom of the red giant branch bump (RGBB). Figure from [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract). \label{Fig.1}]([/url/of/image.png](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/staa176fig1.jpeg))
+![Fig.1](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/staa176fig1.jpeg)
 
-In this minilab, you will investigate the underlying microphysics that drives these phenomena  using [MESA](https://docs.mesastar.org/en/latest/) and thereby reproduce the work of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract). 
+*Fig.1: Herzsprung–Russell (H–R) diagram of a 1 $M_{\odot}$ track with solar composition computed with MESA. The inset shows a zoom of the red giant branch bump (RGBB). Figure from Hekker et al. (2020).*
+
+In this minilab, you will investigate the underlying microphysics that drives these phenomena  using MESA and thereby reproduce the work of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract). 
 
 ### What you'll learn
 
