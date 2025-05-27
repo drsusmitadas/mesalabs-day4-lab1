@@ -49,11 +49,11 @@ cd Minilab1
 ```
 You are now ready to start the run!
 
-<span style="color:green">Task 2.3</span>: Compile and run the provided work directory.
+**Task 2.3**: Compile and run the provided work directory.
 
 This directory evolves a solar mass star from the start of the RGB bump upto the end of the RGB bump. Confirm that you can compile and run it. Two default PGPLOT windows (Hertzsprung-Russell Diagram and temparature-density profille) should appear. 
 
-<span style="color:green">Answer 2.3</span>
+Answer 2.3
 ```fortran
 ./clean
 ./mk
@@ -89,13 +89,13 @@ This was a test run to ensure everything works fine for you; you do not need to 
 
 ---
 
-<span style="color:green">Task 2.4</span>: List the contents of your working directory and identity the number of inlists you see.
+**Task 2.4**: List the contents of your working directory and identity the number of inlists you see.
 <details>
 <summary>Hint 2.4</summary>
 There are three inlists- inlist, inlist_project and inlist_pgstar. The main inlist points to the inlist_project for the inlist sections: star_job, eos, kap and controls while it points to the inlist_pgstar for plotting options only.
 </details>
 
-<span style="color:green">Task 2.5</span>: Open the prepared ``inlist_project`` and answer the following questions: (i) where does the model start its run from? (ii) what is the terminating condition used? (iii) what is the metallicity of the model computed? 
+**Task 2.5**: Open the prepared ``inlist_project`` and answer the following questions: (i) where does the model start its run from? (ii) what is the terminating condition used? (iii) what is the metallicity of the model computed? 
 ``` fortran 
 ! inlist to evolve a 1 solar mass star
 ! For the sake of future readers of this file (yourself included),
@@ -163,7 +163,7 @@ include 'standard_run_star_extras.inc'
 ```
 The routines defined in the included file are the ones we will want to customize. Because we want these modifications to apply only to this working copy of MESA, and not to MESA as a whole, we want to replace this include statement with the contents of the included file. 
 
-<span style="color:green">Task 3.1</span>: Delete the aforementioned include line and insert the contents of 
+**Task 3.1**: Delete the aforementioned include line and insert the contents of 
 ```fortran
 $MESA_DIR/include/standard_run_star_extras.inc
 ``` 
@@ -191,27 +191,27 @@ One of our primary goals is to study the evolution around the RGB bump of (i) th
 
 #### The base of the convection zone
 
-<span style="color:green">Task 3.3</span>: Output the mass coordinate at the base of the convection zone in your <span style="color:purple">``history.data``</span>.
+**Task 3.3**: Output the mass coordinate at the base of the convection zone in your <span style="color:purple">``history.data``</span>.
 
 <details>
-<summary>Hint 3.3.1</summary>
+<summary>Hint 3.3a</summary>
 Open the <span style="color:purple">``history_columns.list``</span> in your working directory and search for the phrase "conditions at base of largest convection zone".
 </details>
 
 <details>
-<summary>Hint 3.3.2</summary>
+<summary>Hint 3.3b</summary>
 Identify what is the right parameter (cz_bot_mass) and uncomment (that is, remove the "!" at the front of cz_bot_mass) to include it in the output file.
 </details>
 
-<span style="color:green">Task 3.4</span>: Output the radius coordinate at the base of the convection zone in your <span style="color:purple">``history.data``</span>.
+**Task 3.4**: Output the radius coordinate at the base of the convection zone in your <span style="color:purple">``history.data``</span>.
 <details>
 <summary>Hint 3.4</summary>
 Identify what is the right parameter (cz_bot_radius) and uncomment to include it in the output file.
 </details>
 
-<span style="color:green">Task 3.5</span>: While you're at it, check if there exists default history columns for peak of the burning or the mean molecular weight in <span style="color:purple">``history_columns.list``</span>.
+**Task 3.5**: While you're at it, check if there exists default history columns for peak of the burning or the mean molecular weight in <span style="color:purple">``history_columns.list``</span>.
 
-<span style="color:green">Answer 3.5</span>: They don't! Thankfully, we can customise our <span style="color:purple">``run_star_extras.f90``</span> to compute additional parameters and add them as new history columns in the <span style="color:purple">``history.data``</span> file.
+Answer 3.5: They don't! Thankfully, we can customise our <span style="color:purple">``run_star_extras.f90``</span> to compute additional parameters and add them as new history columns in the <span style="color:purple">``history.data``</span> file.
 
 #### The peak of the burning
 
@@ -247,33 +247,37 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
 
     end subroutine data_for_extra_history_columns
 ```
+---
+
 > 💡 **Important Fortran Tips:**
  >1. Declare all new variables BEFORE the ```ierr = 0``` statement in the ```data_for_extra_history_columns``` subroutine.
 >2. Add the new parameters to be computed and the new history columns AFTER the ```if (ierr /= 0) return``` statement in the ```data_for_extra_history_columns``` subroutine.
 >3. Remember to update the right number in ```how_many_extra_history_columns = 0``` as and when you add additional history columns in the ```how_many_extra_history_columns``` function.
 
-<span style="color:green">Task 3.6</span>: Compute the mass of the zone where the nuclear burning is at its peak and add it as a new column in your <span style="color:purple">``history.data``</span>.
+---
+
+**Task 3.6**: Compute the mass of the zone where the nuclear burning is at its peak and add it as a new column in your <span style="color:purple">``history.data``</span>.
 
 <details>
-<summary>Hint 3.6.1</summary>
+<summary>Hint 3.6a</summary>
 You can use maxloc to identify the zone (k) with maximum nuclear burning (eps_nuc):  
 k=maxloc(s% eps_nuc, dim=1)
 </details>
 
 <details>
-<summary>Hint 3.6.2</summary>
+<summary>Hint 3.6b</summary>
 The mass corresponding to that particular zone is then s% m(k)/Msun; assign it to a new variable mass_max_eps_nuc
 </details>
 
 <details>
-<summary>Hint 3.6.3</summary>
+<summary>Hint 3.6c</summary>
 The new history column can be added as:
 names(1) = "mass_max_eps_nuc"
 vals(1) = mass_max_eps_nuc
 </details>
 
 <details>
-<summary>Hint 3.6.4</summary>
+<summary>Hint 3.6d</summary>
 Remember to set how_many_extra_history_columns = 1 at this point.
 </details>
 
@@ -320,7 +324,7 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
 ```
 </details>
 
-<span style="color:green">Task 3.7</span>: Compute the radius of the zone where the nuclear burning is at its peak and add it as a new column in your <span style="color:purple">``history.data``</span>.
+**Task 3.7**: Compute the radius of the zone where the nuclear burning is at its peak and add it as a new column in your <span style="color:purple">``history.data``</span>.
 
 <details>
 <summary>Hint 3.7</summary>
@@ -374,9 +378,9 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
 ```
 </details>
 
-<span style="color:green">Task 3.8</span>: After making changes to the <span style="color:purple">``run_star_extras.f90``</span>, always check that the code compiles.
+**Task 3.8**: After making changes to the <span style="color:purple">``run_star_extras.f90``</span>, always check that the code compiles.
 
-<span style="color:green">Answer 3.8</span>
+Answer 3.8
 ```fortran
 cd ..
 ./mk
@@ -386,9 +390,9 @@ cd ..
 
 We will now include a new Fortran subroutine ```locdiscontinuity``` in the <span style="color:purple">``run_star_extras.f90``</span> to identify the location of discontinuities in the mean molecular weight profile (with respect to the hydrogen abundance, *X*) of a stellar model. These discontinuities are important indicators of nuclear burning shells, convective boundaries, or mixing events in stellar evolution.
 
-<span style="color:green">Task 3.9</span>: Compute the mass and the radius at the location of the mean molecular weight discontinuity.
+**Task 3.9**: Compute the mass and the radius at the location of the mean molecular weight discontinuity.
 
-<span style="color:green">Answer 3.9</span>: If you'd like to attempt on your own, please do so. However, since this is a little advanced, we have added the answer directly for your ease. Here is the snippet of how your <span style="color:purple">``run_star_extras.f90``</span> should look like:
+Answer 3.9: If you'd like to attempt on your own, please do so. However, since this is a little advanced, we have added the answer directly for your ease. Here is the snippet of how your <span style="color:purple">``run_star_extras.f90``</span> should look like:
 ```fortran
 ...
 !calculate location of mean molecular weight discontinuity
@@ -562,15 +566,15 @@ $MESA_DIR/star/private/history.f90
 ``` 
 and search for <span style="color:purple">``cz_bot_mass``</span> or <span style="color:purple">``cz_bot_radius``</span>.
 
-<span style="color:green">Task 3.11</span>: Compute \( \epsilon_g \) at the base of the convection zone (cz_eps_grav) and add it as a new column in your <span style="color:purple">``history.data``</span>.
+**Task 3.11**: Compute \( \epsilon_g \) at the base of the convection zone (cz_eps_grav) and add it as a new column in your <span style="color:purple">``history.data``</span>.
 
 <details>
-<summary>Hint 3.11.1</summary>
+<summary>Hint 3.11a</summary>
 The eps_grav parameter can be accessed as s% eps_grav_ad(k)% val in <span style="color:purple">``run_star_extras.f90``</span>.
 </details>
 
 <details>
-<summary>Hint 3.11.2</summary>
+<summary>Hint 3.11b</summary>
 Here is the snippet of code that can be used in the <span style="color:purple">``run_star_extras.f90``</span>:
 <pre>
 if (s% largest_conv_mixing_region /= 0) then
@@ -580,7 +584,7 @@ if (s% largest_conv_mixing_region /= 0) then
 </pre>
 </details>
 
-<span style="color:green">Answer 3.11</span>: Here is the snippet of how your <span style="color:purple">``run_star_extras.f90``</span> should look like:
+Answer 3.11: Here is the snippet of how your <span style="color:purple">``run_star_extras.f90``</span> should look like:
 ``` fortran
 ...
 integer function how_many_extra_history_columns(id)
@@ -677,15 +681,17 @@ Most often, you'll deal with a grid or dashboard that contains many individual s
 
 **Goal:** In this section, in addition to the default Hertzsprung-Russell Diagram and temperature-density profile, we will also visualise the variation of the specific entropy, mean molecular weight, density, pressure, temperature and \( \epsilon_g \) in the stellar interiors as a function of mass fraction.
 
-<span style="color:green">Task 4.1</span>: Open the <span style="color:purple">``inlist_pgstar``</span> in your favourite editor and turn the `HR_win_flag` and `TRho_Profile_win_flag` to `false` to prevent their individual PGPLOT windows.
-<span style="color:green">Answer 4.1</span>
+**Task 4.1**: Open the <span style="color:purple">``inlist_pgstar``</span> in your favourite editor and turn the `HR_win_flag` and `TRho_Profile_win_flag` to `false` to prevent their individual PGPLOT windows.
+
+Answer 4.1
 ```fortran
  HR_win_flag = .false.
  TRho_Profile_win_flag = .false.
 ``` 
 
-<span style="color:green">Task 4.2</span>: Include the first profile panel in the <span style="color:purple">``inlist_pgstar``</span> to display specific entropy, mean molecular weight, density as a function of mass fraction.
-<span style="color:green">Answer 4.2</span>
+**Task 4.2**: Include the first profile panel in the <span style="color:purple">``inlist_pgstar``</span> to display specific entropy, mean molecular weight, density as a function of mass fraction.
+
+Answer 4.2
 ```fortran
  ! Profile Panels 1
 
@@ -705,15 +711,16 @@ Most often, you'll deal with a grid or dashboard that contains many individual s
   Profile_Panels1_num_panels = 3
 ``` 
 
-<span style="color:green">Task 4.3</span>: Include the second profile panel in the <span style="color:purple">``inlist_pgstar``</span> to display \( \epsilon_g \), temperature and pressure as a function of mass fraction.
+**Task 4.3**: Include the second profile panel in the <span style="color:purple">``inlist_pgstar``</span> to display \( \epsilon_g \), temperature and pressure as a function of mass fraction.
+
 <details>
 <summary>Hint 4.3</summary>
 The respective profile column names are `eps_grav`, `logT` and `logP`.
 </details>
 
-<span style="color:green">Task 4.4</span>: Include a few important parameters as part of the text block in the <span style="color:purple">``pgstar``</span>. 
+**Task 4.4**: Include a few important parameters as part of the text block in the <span style="color:purple">``pgstar``</span>. 
 
-<span style="color:green">Answer 4.4</span>
+Answer 4.4
 ```fortran
  ! Text Summary 1
 
@@ -754,9 +761,9 @@ The respective profile column names are `eps_grav`, `logT` and `logP`.
   Text_Summary1_name(8,4) = ''
 ``` 
 
-<span style="color:green">Task 4.4</span>: Now combine all the grid information to activate the customised <span style="color:purple">``pgstar``</span> dashboard. The parameters are mostly self-explanatory and are adopted from <span style="color:purple">``$MESA_DIR/star/defaults/pgstar.defaults``</span>.
+**Task 4.4**: Now combine all the grid information to activate the customised <span style="color:purple">``pgstar``</span> dashboard. The parameters are mostly self-explanatory and are adopted from <span style="color:purple">``$MESA_DIR/star/defaults/pgstar.defaults``</span>.
 
-<span style="color:green">Answer 4.4</span>
+Answer 4.4
 ```fortran
  ! Grid1,information to combine all plots into Grid1
 
@@ -842,9 +849,9 @@ Your final `inlist_pgstar` should look like this:
 
 You're now finally ready to start the run!
 
-<span style="color:green">Task 5.1</span>: Start the run
+**Task 5.1**: Start the run
 
-<span style="color:green">Answer 5.1</span>
+Answer 5.1
 ```fortran
 ./mk
 ./rn
@@ -855,12 +862,12 @@ add pgplot screenshot here
 
 After the run terminates, you're ready to plot and reproduce the figures of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
 
-<span style="color:green">Task 5.2</span>: Use this Google Colab [notebook](https://colab.research.google.com/drive/1bc6Wkne8K6Abciy7aYEnBawy9eir7XZW?usp=sharing) to upload your <span style="color:purple">``history.data``</span> and plot (i) the evolution around the RGB bump of the location of the base of the convection zone, the peak of the burning, and the mean molecular weight discontinuity as a function of mass ordinate and radius ordinate and compare your output plot with [![Fig. 4](https://academic.oup.com/view-large/figure/198891802/staa176fig4.jpg)](https://academic.oup.com/view-large/figure/198891802/staa176fig4.jpg) of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
+**Task 5.2**: Use this Google Colab [notebook](https://colab.research.google.com/drive/1bc6Wkne8K6Abciy7aYEnBawy9eir7XZW?usp=sharing) to upload your <span style="color:purple">``history.data``</span> and plot (i) the evolution around the RGB bump of the location of the base of the convection zone, the peak of the burning, and the mean molecular weight discontinuity as a function of mass ordinate and radius ordinate and compare your output plot with [![Fig. 4](https://academic.oup.com/view-large/figure/198891802/staa176fig4.jpg)](https://academic.oup.com/view-large/figure/198891802/staa176fig4.jpg) of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
 
-<span style="color:green">Answer 5.2</span>
+Answer 5.2
 Include figure here.
 
-<span style="color:green">Task 5.3</span>: Using the same Google Colab notebook, plot the variation of \( \epsilon_g \) at the base of the convection zone as a function of age and compare your output plot with [![Fig. 6](https://academic.oup.com/view-large/figure/198891806/staa176fig6.jpg)](https://academic.oup.com/view-large/figure/198891806/staa176fig6.jpg) of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
+**Task 5.3**: Using the same Google Colab notebook, plot the variation of \( \epsilon_g \) at the base of the convection zone as a function of age and compare your output plot with [![Fig. 6](https://academic.oup.com/view-large/figure/198891806/staa176fig6.jpg)](https://academic.oup.com/view-large/figure/198891806/staa176fig6.jpg) of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
 
-<span style="color:green">Answer 5.3</span>
+Answer 5.3
 Include figure here.
