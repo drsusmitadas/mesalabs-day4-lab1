@@ -5,7 +5,9 @@ Authors: Saskia Hekker, Susmita Das, Zhao Guo, Arthur Le Saux and Noi Shitrit fo
 ## Section 1: Overview
 ### Science Goal
 
-As low-mass stars evolve into red-giant stars, there comes a brief phase during their post-main-sequence evolution where two interesting phenomena are observed. First, there is the simultaneous contraction of the core and the expansion of the envelope, known as the *mirror phenomenon*. Next, there occurs a zig-zag in the evolutionary track called the *Red Giant Branch Bump (RGB bump)* where the trend for increasing luminosity is reversed, see [![Fig. 1](https://academic.oup.com/view-large/figure/198891779/staa176fig1.jpg)](https://academic.oup.com/view-large/figure/198891779/staa176fig1.jpg). In this minilab, you will investigate the underlying microphysics that drives these phenomena  using [MESA](https://docs.mesastar.org/en/latest/) and thereby reproduce the work of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract). 
+As low-mass stars evolve into red-giant stars, there comes a brief phase during their post-main-sequence evolution where two interesting phenomena are observed. First, there is the simultaneous contraction of the core and the expansion of the envelope, known as the *mirror phenomenon*. Next, there occurs a zig-zag in the evolutionary track called the *Red Giant Branch Bump (RGB bump)* where the trend for increasing luminosity is reversed, see [![Fig. 1]([https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/staa176fig1.jpeg])](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/staa176fig1.jpeg). 
+
+In this minilab, you will investigate the underlying microphysics that drives these phenomena  using [MESA](https://docs.mesastar.org/en/latest/) and thereby reproduce the work of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract). 
 
 ### What you'll learn
 
