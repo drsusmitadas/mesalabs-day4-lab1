@@ -174,9 +174,9 @@ in its entirety into <span style="color:purple">``run_star_extras.f90``</span>.
 A simple copy and paste works here.
 </details>
 
-<span style="color:green">Task 3.2</span>: Check that the code compiles.
+**Task 3.2**: Check that the code compiles.
 
-<span style="color:green">Answer 3.2</span>
+Answer 3.2
 ```fortran
 cd ..
 ./mk
@@ -546,9 +546,9 @@ vals(8) = disc2
 </pre>
 </details>
 
-<span style="color:green">Task 3.10</span>: Once again, after making changes to the <span style="color:purple">``run_star_extras.f90``</span>, check that the code compiles.
+**Task 3.10**: Once again, after making changes to the <span style="color:purple">``run_star_extras.f90``</span>, check that the code compiles.
 
-<span style="color:green">Answer 3.10</span>
+Answer 3.10
 ```fortran
 cd ..
 ./mk
@@ -761,9 +761,9 @@ Answer 4.4
   Text_Summary1_name(8,4) = ''
 ``` 
 
-**Task 4.4**: Now combine all the grid information to activate the customised <span style="color:purple">``pgstar``</span> dashboard. The parameters are mostly self-explanatory and are adopted from <span style="color:purple">``$MESA_DIR/star/defaults/pgstar.defaults``</span>.
+**Task 4.5**: Now combine all the grid information to activate the customised <span style="color:purple">``pgstar``</span> dashboard. The parameters are mostly self-explanatory and are adopted from <span style="color:purple">``$MESA_DIR/star/defaults/pgstar.defaults``</span>.
 
-Answer 4.4
+Answer 4.5
 ```fortran
  ! Grid1,information to combine all plots into Grid1
 
