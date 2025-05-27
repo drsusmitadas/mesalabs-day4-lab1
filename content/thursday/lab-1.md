@@ -187,7 +187,11 @@ Since <span style="color:purple">``run_star_extras.f90``</span> was already intr
 
 ### Section 3.1: Studying the evolution of the RGB bump feature
 
-One of our primary goals is to study the evolution around the RGB bump of (i) the location of the base of the convection zone, (ii) the peak of the burning, and (iii) the mean molecular weight discontinuity as a function of mass ordinate and radius ordinate and thereby, reproduce [![Fig. 4](https://academic.oup.com/view-large/figure/198891802/staa176fig4.jpg)](https://academic.oup.com/view-large/figure/198891802/staa176fig4.jpg) of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
+One of our primary goals is to study the evolution around the RGB bump of (i) the location of the base of the convection zone, (ii) the peak of the burning, and (iii) the mean molecular weight discontinuity as a function of mass ordinate and radius ordinate and thereby, reproduce Fig. 4 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract) as shown below:
+
+![Fig.2](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/staa176fig4.jpeg)
+
+*Fig.2: Top: the evolution around the bump of the location of the base of the convection zone, the peak of the burning, and the mean molecular weight discontinuity as a function of mass ordinate (left), and radius ordinate (right). Bottom: effective temperature (left) and luminosity (right) as a function of age. The vertical grey-dashed and dash–dotted lines indicate the age of the maximum luminosity and minimum luminosity of the bump feature, respectively. Figure from Hekker et al. (2020).*
 
 #### The base of the convection zone
 
@@ -554,11 +558,15 @@ cd ..
 ./mk
 ``` 
 
-Great work! You have now included most of the parameters that are required to reproduce [![Fig. 4](https://academic.oup.com/view-large/figure/198891802/staa176fig4.jpg)](https://academic.oup.com/view-large/figure/198891802/staa176fig4.jpg) of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
+Great work! You have now included most of the parameters that are required to reproduce Fig. 4 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
 
 ### Section 3.2: The variation of the 'gravothermal' energy generation rate with age
 
-We also want to study the variation of the 'gravothermal' energy generation rate  \( \epsilon_g \) at the base of the convection zone as a function of age around the evolution of the RGB bump and thereby reproduce [![Fig. 6](https://academic.oup.com/view-large/figure/198891806/staa176fig6.jpg)](https://academic.oup.com/view-large/figure/198891806/staa176fig6.jpg) of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
+We also want to study the variation of the 'gravothermal' energy generation rate  $`\epsilon_g`$ at the base of the convection zone as a function of age around the evolution of the RGB bump and thereby reproduce Fig. 6 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract) as shown below:
+
+![Fig.3](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/staa176fig6.jpeg)
+
+*Fig.3: The value of $`\epsilon_g`$ at the base of the convection zone as a function of age. The vertical dashed and dash–dotted lines indicate the stellar ages of the luminosity maximum and luminosity minimum of the bump, respectively. The horizontal dotted line indicates zero. Figure from Hekker et al. (2020).*
 
 In Section 3.1, we had already seen how to include the mass and the radius ordinates at the base of the convection zone. We only had to uncomment the history column names in the <span style="color:purple">``history_columns.list``</span> since they are computed as default history columns. However, this holds clue to how one many compute new additional parameters at the base of the conevction zone. To look at how the mass and the radius ordinates were computed at the base of the convection zone, open the file:
 ```fortran
