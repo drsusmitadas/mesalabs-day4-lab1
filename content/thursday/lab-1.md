@@ -906,6 +906,8 @@ Answer 5.3:
 
 *Fig.6: The variation of $`\epsilon_g`$ at the base of the convection zone as a function of age.*
 
+**Task 5.4**: Using the same Google Colab notebook, obtain the $\log(L)$ and $\log(T)$ columns of your `history.data` in a new output file called `HR.dat`, upload the two columns in the excel sheet [here](https://docs.google.com/spreadsheets/d/1upyIGVzw4kU3YUe4aU03ZZqMWvgblQHmp2gIhZKgEJ8/edit?usp=sharing) and we will compare the difference in the evolution of the RGB bumps for different stellar masses across the room!
+
 ---
 
 *Acknowledgements:* This guide includes some material from previous MESA Summer Schools, in particular, from https://jschwab.github.io/mesa-2021/ and https://billwolf.space/projects/mesa-ss-2022/.
