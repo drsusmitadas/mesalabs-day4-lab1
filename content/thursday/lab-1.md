@@ -891,13 +891,20 @@ After the run terminates, you're ready to plot and reproduce the figures of [Hek
 
 **Task 5.2**: Use this Google Colab [notebook](https://colab.research.google.com/drive/1bc6Wkne8K6Abciy7aYEnBawy9eir7XZW?usp=sharing) to upload your <span style="color:purple">``history.data``</span> and plot (i) the evolution around the RGB bump of the location of the base of the convection zone, the peak of the burning, and the mean molecular weight discontinuity as a function of mass ordinate and radius ordinate and compare your output plot with Fig. 4 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
 
-Answer 5.2
-Include figure here.
+Answer 5.2:
 
-**Task 5.3**: Using the same Google Colab notebook, plot the variation of \( \epsilon_g \) at the base of the convection zone as a function of age and compare your output plot with Fig. 6 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
+![Fig.5](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/output1.png)
 
-Answer 5.3
-Include figure here.
+*Fig.5: The evolution around the bump of the location of the base of the convection zone, the peak of burning and the mean molecular weight discontinuity as a function of mass and radius ordinate.*
+
+
+**Task 5.3**: Using the same Google Colab notebook, plot the variation of $\epsilon_g$  at the base of the convection zone as a function of age and compare your output plot with Fig. 6 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
+
+Answer 5.3:
+
+![Fig.6](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/output2.png)
+
+*Fig.6: The variation of $`\epsilon_g`$ at the base of the convection zone as a function of age.*
 
 ---
 
