@@ -40,22 +40,21 @@ cd ~/MESASS2025/Day4
 </pre>
 </details>
 
-**Task 2.2**: We have prepared and provided the test case for you. [Download](https://drive.google.com/file/d/1LbT1GKtUfnp3d2RIKQZQhlyYtD-DuP_p/view?usp=sharing) it into the <span style="color:purple">``~/MESASS2025/Day4``</span> directory, unpack, and enter this work directory. 
+**Task 2.2**: We have prepared and provided the test case for you. Choose a particular stellar mass to work with from [here](https://docs.google.com/spreadsheets/d/1upyIGVzw4kU3YUe4aU03ZZqMWvgblQHmp2gIhZKgEJ8/edit?usp=sharing), download the corresponding `Minilab1_xpxx.zip` into the <span style="color:purple">``~/MESASS2025/Day4``</span> directory, unpack, and enter this work directory. 
 
 Answer 2.2
-```fortran
-unzip Minilab1.zip
-cd Minilab1
 ```
-You are now ready to start the run!
+unzip Minilab1_xpxx.zip
+cd Minilab1_xpxx
+```
+You are now ready to start the run! Note that the rest of the guide demonstrates the particular case of a solar mass star; expect slight differences in numbers and plots depending on the stellar mass you're working with.
 
 **Task 2.3**: Compile and run the provided work directory.
 
-This directory evolves a solar mass star from the start of the RGB bump upto the end of the RGB bump. Confirm that you can compile and run it. Two default PGPLOT windows (Hertzsprung-Russell Diagram and temparature-density profille) should appear. 
+This directory evolves a star from the start of the RGB bump upto the end of the RGB bump. Confirm that you can compile and run it. Two default PGPLOT windows (Hertzsprung-Russell Diagram and temparature-density profille) should appear. 
 
 Answer 2.3
-```fortran
-./clean
+```
 ./mk
 ./rn
 ```
@@ -71,7 +70,6 @@ This was a test run to ensure everything works fine for you; you do not need to 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;options for the program that evolves the star
 
 **eos**
-
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;options for the MESA eos module
 
@@ -157,7 +155,7 @@ There are three inlists- inlist, inlist_project and inlist_pgstar. The main inli
 
 ## Section 3: Using Run Star Extras
 
-To activate <span style="color:purple">``run_star_extras.f90``</span>, navigate to the <span style="color:purple">``Minilab1/src``</span> directory and open <span style="color:purple">``run_star_extras.f90``</span> in your text editor of choice. The stock version of <span style="color:purple">``run_star_extras.f90``</span> is quite boring. It "includes" another file which holds the default set of routines. 
+To activate <span style="color:purple">``run_star_extras.f90``</span>, navigate to the <span style="color:purple">``src``</span> directory that resides within your working directory and open <span style="color:purple">``run_star_extras.f90``</span> in your text editor of choice. The stock version of <span style="color:purple">``run_star_extras.f90``</span> is quite boring. It "includes" another file which holds the default set of routines. 
 ```fortran
 include 'standard_run_star_extras.inc'
 ```
@@ -173,6 +171,8 @@ in its entirety into <span style="color:purple">``run_star_extras.f90``</span>.
 <summary>Hint 3.1</summary>
 A simple copy and paste works here.
 </details>
+
+Answer 3.1: The partial `run_star_extras.f90` solution is available [here](https://drive.google.com/file/d/1rofsfBFIr96HJ7GuuQq98qhj9Djm_Gs1/view?usp=sharing).
 
 **Task 3.2**: Check that the code compiles.
 
@@ -212,6 +212,8 @@ Identify what is the right parameter (cz_bot_mass) and uncomment (that is, remov
 <summary>Hint 3.4</summary>
 Identify what is the right parameter (cz_bot_radius) and uncomment to include it in the output file.
 </details>
+
+Answer 3.4: At this point, your `history_columns.list` should look like [this](https://drive.google.com/file/d/1Vgw_HoR-RxlRDOVYnTg2WPbh-ZC7L1t4/view?usp=sharing).
 
 **Task 3.5**: While you're at it, check if there exists default history columns for peak of the burning or the mean molecular weight in <span style="color:purple">``history_columns.list``</span>.
 
@@ -382,6 +384,8 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
 ```
 </details>
 
+Answer 3.7: The partial `run_star_extras.f90` solution is available [here](https://drive.google.com/file/d/11ebUYXx0u6CzDqbkhs7258Q3VKpskswe/view?usp=sharing).
+
 **Task 3.8**: After making changes to the <span style="color:purple">``run_star_extras.f90``</span>, always check that the code compiles.
 
 Answer 3.8
@@ -550,6 +554,8 @@ vals(8) = disc2
 </pre>
 </details>
 
+Answer 3.9: The partial `run_star_extras.f90` solution is available [here](https://drive.google.com/file/d/1Jaa438bwLGL0Xhq9hmzQW-1pINd5gKeU/view?usp=sharing).
+
 **Task 3.10**: Once again, after making changes to the <span style="color:purple">``run_star_extras.f90``</span>, check that the code compiles.
 
 Answer 3.10
@@ -562,7 +568,7 @@ Great work! You have now included most of the parameters that are required to re
 
 ### Section 3.2: The variation of the 'gravothermal' energy generation rate with age
 
-We also want to study the variation of the 'gravothermal' energy generation rate  $`\epsilon_g`$ at the base of the convection zone as a function of age around the evolution of the RGB bump and thereby reproduce Fig. 6 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract) as shown below:
+We also want to study the variation of the 'gravothermal' energy generation rate  $\epsilon_g$ at the base of the convection zone as a function of age around the evolution of the RGB bump and thereby reproduce Fig. 6 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract) as shown below:
 
 ![Fig.3](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/staa176fig6.jpeg)
 
@@ -574,7 +580,7 @@ $MESA_DIR/star/private/history.f90
 ``` 
 and search for <span style="color:purple">``cz_bot_mass``</span> or <span style="color:purple">``cz_bot_radius``</span>.
 
-**Task 3.11**: Compute \( \epsilon_g \) at the base of the convection zone (cz_eps_grav) and add it as a new column in your <span style="color:purple">``history.data``</span>.
+**Task 3.11**: Compute $\epsilon_g$ at the base of the convection zone `cz_eps_grav` and add it as a new column in your <span style="color:purple">``history.data``</span>.
 
 <details>
 <summary>Hint 3.11a</summary>
@@ -659,7 +665,10 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
     end subroutine data_for_extra_history_columns
 ...
 ```
-<span style="color:green">Task 3.12</span>: As always, after making changes to the <span style="color:purple">``run_star_extras.f90``</span>, check that the code compiles.
+Answer 3.11: The final `run_star_extras.f90` solution is available [here](https://drive.google.com/file/d/1iGmME_rh0vOYCKGvAxvoGUOPGeE8UXlL/view?usp=sharing).
+
+**Task 3.12**: As always, after making changes to the <span style="color:purple">``run_star_extras.f90``</span>, check that the code compiles.
+
 <span style="color:green">Answer 3.12</span>
 ```fortran
 cd ..
@@ -677,17 +686,24 @@ Now that you have all the parameters, you are essentially ready to start the run
  <span style="color:purple">``pgstar``</span> is comprised of several building blocks that we can sort into several [slightly-overlapping] categories.
 
 **History Plots**
-    Plots that show one or two quantities from the history output plotted against a monotonically-increasing quantity, like `star_age` or `model_number`. These quantities must all be saved in <span style="color:purple">``history.data``</span>, and the resolution will depend on how often data is written to  <span style="color:purple">``history.data``</span>. 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plots that show one or two quantities from the history output plotted against a monotonically-increasing quantity, like `star_age` or `model_number`. These quantities must all be saved in <span style="color:purple">``history.data``</span>, and the resolution will depend on how often data is written to  <span style="color:purple">``history.data``</span>. 
+
 **Profile Plots**
-    Plots that show one or two quantities that could be output in profiles against another profile quantity, often pressure, mass coordinate, or radius. Note that these do not need to be in <span style="color:purple">``profile.columns``</span> since they do not need to persist over multiple steps. 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plots that show one or two quantities that could be output in profiles against another profile quantity, often pressure, mass coordinate, or radius. Note that these do not need to be in <span style="color:purple">``profile.columns``</span> since they do not need to persist over multiple steps. 
+
 **Special Plots**
-    A collection of "one-off" plots with special capabilities. Examples include Kippenhahn diagrams, echelle diagrams, a nuclear network diagram, and a temperature-density profile. These can often be customized to a degree, but they are not as flexible as profile and history plots. 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A collection of "one-off" plots with special capabilities. Examples include Kippenhahn diagrams, echelle diagrams, a nuclear network diagram, and a temperature-density profile. These can often be customized to a degree, but they are not as flexible as profile and history plots. 
+
 **Text Summaries**
-    Grids of name/value pairs that show scalar values associated with the current timestep. Examples include model number luminosity, and helium core mass. No graphics here; just text. 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Grids of name/value pairs that show scalar values associated with the current timestep. Examples include model number luminosity, and helium core mass. No graphics here; just text. 
 
 Most often, you'll deal with a grid or dashboard that contains many individual single- or multi-panel plots and/or text summaries arranged into a single window. We'll explore this next. 
 
-**Goal:** In this section, in addition to the default Hertzsprung-Russell Diagram and temperature-density profile, we will also visualise the variation of the specific entropy, mean molecular weight, density, pressure, temperature and \( \epsilon_g \) in the stellar interiors as a function of mass fraction.
+**Goal:** In this section, in addition to the default Hertzsprung-Russell Diagram and temperature-density profile, we will also visualise the variation of the specific entropy, mean molecular weight, density, pressure, temperature and $\epsilon_g$ in the stellar interiors as a function of mass fraction.
 
 **Task 4.1**: Open the <span style="color:purple">``inlist_pgstar``</span> in your favourite editor and turn the `HR_win_flag` and `TRho_Profile_win_flag` to `false` to prevent their individual PGPLOT windows.
 
@@ -866,7 +882,10 @@ Answer 5.1
 ``` 
 
 The customised PGPLOT window should look something like this:
-add pgplot screenshot here
+
+![Fig.4](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/staa176fig1.jpeg)
+
+*Fig.4: *
 
 After the run terminates, you're ready to plot and reproduce the figures of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
 
