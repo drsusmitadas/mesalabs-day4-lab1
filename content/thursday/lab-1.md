@@ -150,7 +150,7 @@ There are three inlists- inlist, inlist_project and inlist_pgstar. The main inli
 
 <details>
 <summary>Answer 2.5</summary>
-(i) The inlist_project loads a saved model called ``start_RGBB.mod`` that was pre-computed to save on computation time and start its run from that particular stage of evolution. (ii) The run stops when the terminating condition of the upper limit of logL reaches 1.54. (iii) The metallicity is Z=0.02. Note that initial_z and Zbase must be kept the same in almost all cases.
+(i) The inlist_project loads a saved model called start_RGBB.mod that was pre-computed to save on computation time and start its run from that particular stage of evolution. (ii) The run stops when the terminating condition of the upper limit of logL reaches 1.54. (iii) The metallicity is Z=0.02. Note that initial_z and Zbase must be kept the same in almost all cases.
 </details>
 
 ## Section 3: Using Run Star Extras
@@ -199,7 +199,7 @@ One of our primary goals is to study the evolution around the RGB bump of (i) th
 
 <details>
 <summary>Hint 3.3a</summary>
-Open the <span style="color:purple">``history_columns.list``</span> in your working directory and search for the phrase "conditions at base of largest convection zone".
+Open the history_columns.list in your working directory and search for the phrase "conditions at base of largest convection zone".
 </details>
 
 <details>
@@ -255,7 +255,7 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
 ```
 ---
 
-> 💡 **Important Fortran Tips:**
+> :bulb: **Important Fortran Tips:**
  >1. Declare all new variables BEFORE the ```ierr = 0``` statement in the ```data_for_extra_history_columns``` subroutine.
 >2. Add the new parameters to be computed and the new history columns AFTER the ```if (ierr /= 0) return``` statement in the ```data_for_extra_history_columns``` subroutine.
 >3. Remember to update the right number in ```how_many_extra_history_columns = 0``` as and when you add additional history columns in the ```how_many_extra_history_columns``` function.
@@ -584,12 +584,12 @@ and search for <span style="color:purple">``cz_bot_mass``</span> or <span style=
 
 <details>
 <summary>Hint 3.11a</summary>
-The eps_grav parameter can be accessed as s% eps_grav_ad(k)% val in <span style="color:purple">``run_star_extras.f90``</span>.
+The eps_grav parameter can be accessed as s% eps_grav_ad(k)% val in run_star_extras.f90.
 </details>
 
 <details>
 <summary>Hint 3.11b</summary>
-Here is the snippet of code that can be used in the <span style="color:purple">``run_star_extras.f90``</span>:
+Here is the snippet of code that can be used in the run_star_extras.f90:
 <pre>
 if (s% largest_conv_mixing_region /= 0) then
         k = s% mixing_region_bottom(s% largest_conv_mixing_region)
