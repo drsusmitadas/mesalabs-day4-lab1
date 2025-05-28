@@ -25,7 +25,7 @@ The primary purpose of this minilab is to get you more familiar with some topics
 
 If you're new to Fortran, here is a short document with [some examples](https://jschwab.github.io/mesa-2021/fortran.html). Don't let yourself get hung up by the Fortran; quickly ask your classmates and the TAs for help! 
 
-Every task comes with a hint and/or an answer. However, if you have prior experience with MESA, do attempt to complete the task on your own. The complete solution is available <span style="color:red">here</span>.
+Every task comes with a hint and/or an answer. However, if you have prior experience with MESA, do attempt to complete the task on your own. The complete solution is available [here](https://drive.google.com/drive/folders/1zehjyoJw8J5ts1O2PLdwiWxskVgbPA2G?usp=sharing).
 
 ## Section 2: Getting Started
 
@@ -213,7 +213,7 @@ Identify what is the right parameter (cz_bot_mass) and uncomment (that is, remov
 Identify what is the right parameter (cz_bot_radius) and uncomment to include it in the output file.
 </details>
 
-Answer 3.4: At this point, your `history_columns.list` should look like [this](https://drive.google.com/file/d/1Vgw_HoR-RxlRDOVYnTg2WPbh-ZC7L1t4/view?usp=sharing).
+Answer 3.4: At this point, your `history_columns.list` should look like [this](https://drive.google.com/file/d/1vz6Ai8chWmETVxcttmp3ev4keEkBns4o/view?usp=sharing).
 
 **Task 3.5**: While you're at it, check if there exists default history columns for peak of the burning or the mean molecular weight in <span style="color:purple">``history_columns.list``</span>.
 
@@ -665,7 +665,7 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
     end subroutine data_for_extra_history_columns
 ...
 ```
-Answer 3.11: The final `run_star_extras.f90` solution is available [here](https://drive.google.com/file/d/1iGmME_rh0vOYCKGvAxvoGUOPGeE8UXlL/view?usp=sharing).
+Answer 3.11: The final `run_star_extras.f90` solution is available [here](https://drive.google.com/file/d/1kmPblLxoV-c1iYybRYNLdWL6YntUyGTS/view?usp=drive_link).
 
 **Task 3.12**: As always, after making changes to the <span style="color:purple">``run_star_extras.f90``</span>, check that the code compiles.
 
@@ -867,7 +867,7 @@ Answer 4.5
   Grid1_file_aspect_ratio = -1
 ``` 
 
-Your final `inlist_pgstar` should look like this: 
+Your final `inlist_pgstar` should look like [this](https://drive.google.com/file/d/1cVRHEraQALU9bPpRVLdXdWOiwzcyrco3/view?usp=sharing).
 
 ## Section 5: Putting it all together
 
