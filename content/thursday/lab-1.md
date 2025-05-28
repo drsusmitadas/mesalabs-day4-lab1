@@ -598,7 +598,7 @@ if (s% largest_conv_mixing_region /= 0) then
 </pre>
 </details>
 
-Hint 3.11: Here is the snippet of how your <span style="color:purple">``run_star_extras.f90``</span> should look like:
+Hint 3.11c: Here is the snippet of how your <span style="color:purple">``run_star_extras.f90``</span> should look like:
 ``` fortran
 ...
 integer function how_many_extra_history_columns(id)
