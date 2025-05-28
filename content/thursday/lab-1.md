@@ -737,7 +737,7 @@ Most often, you'll deal with a grid or dashboard that contains many individual s
 </pre>
 </details>
 
-**Task 4.3**: Include the second profile panel in the <span style="color:purple">``inlist_pgstar``</span> to display \( \epsilon_g \), temperature and pressure as a function of mass fraction.
+**Task 4.3**: Include the second profile panel in the <span style="color:purple">``inlist_pgstar``</span> to display $\epsilon_g$, temperature and pressure as a function of mass fraction.
 
 <details>
 <summary>Hint 4.3</summary>
