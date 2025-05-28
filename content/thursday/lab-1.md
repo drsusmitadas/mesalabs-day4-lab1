@@ -879,3 +879,9 @@ Include figure here.
 
 Answer 5.3
 Include figure here.
+
+---
+
+*Acknowledgements:* This guide includes some material from previous MESA Summer Schools, in particular, from https://jschwab.github.io/mesa-2021/ and https://billwolf.space/projects/mesa-ss-2022/.
+
+---
