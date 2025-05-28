@@ -32,7 +32,7 @@ Every task comes with a hint and/or an answer. However, if you have prior experi
 **Task 2.1**: Create your working directory for this minilab. It could be something like <span style="color:purple">``~/MESASS2025/Day4``</span>.  
 Note: you may also choose to place the working directory somewhere other than your home directory. 
 <details>
-<summary>Hint 2.1</summary>
+<summary>Answer 2.1</summary>
 Much of this should be familiar already; here's how you create your working directory and then change into that directory:
 <pre>
 mkdir -p ~/MESASS2025/Day4
@@ -89,7 +89,7 @@ This was a test run to ensure everything works fine for you; you do not need to 
 
 **Task 2.4**: List the contents of your working directory and identity the number of inlists you see.
 <details>
-<summary>Hint 2.4</summary>
+<summary>Answer 2.4</summary>
 There are three inlists- inlist, inlist_project and inlist_pgstar. The main inlist points to the inlist_project for the inlist sections: star_job, eos, kap and controls while it points to the inlist_pgstar for plotting options only.
 </details>
 
@@ -149,7 +149,7 @@ There are three inlists- inlist, inlist_project and inlist_pgstar. The main inli
 ```
 
 <details>
-<summary>Hint 2.5</summary>
+<summary>Answer 2.5</summary>
 (i) The inlist_project loads a saved model called ``start_RGBB.mod`` that was pre-computed to save on computation time and start its run from that particular stage of evolution. (ii) The run stops when the terminating condition of the upper limit of logL reaches 1.54. (iii) The metallicity is Z=0.02. Note that initial_z and Zbase must be kept the same in almost all cases.
 </details>
 
@@ -213,7 +213,7 @@ Identify what is the right parameter (cz_bot_mass) and uncomment (that is, remov
 Identify what is the right parameter (cz_bot_radius) and uncomment to include it in the output file.
 </details>
 
-Answer 3.4: At this point, your `history_columns.list` should look like [this](https://drive.google.com/file/d/1vz6Ai8chWmETVxcttmp3ev4keEkBns4o/view?usp=sharing).
+Answer 3.3 and 3.4: At this point, your `history_columns.list` should look like [this](https://drive.google.com/file/d/1vz6Ai8chWmETVxcttmp3ev4keEkBns4o/view?usp=sharing).
 
 **Task 3.5**: While you're at it, check if there exists default history columns for peak of the burning or the mean molecular weight in <span style="color:purple">``history_columns.list``</span>.
 
@@ -288,7 +288,7 @@ Remember to set how_many_extra_history_columns = 1 at this point.
 </details>
 
 <details>
-<summary>Answer 3.6</summary>
+<summary>Hint 3.6e</summary>
 At this point, the partial solution to your run_star_extras.f90 file should look like this:
 
 ```fortran
@@ -333,12 +333,12 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
 **Task 3.7**: Compute the radius of the zone where the nuclear burning is at its peak and add it as a new column in your <span style="color:purple">``history.data``</span>.
 
 <details>
-<summary>Hint 3.7</summary>
+<summary>Hint 3.7a</summary>
 You already have the zone (k) where nuclear burning is at its peak. Simply include the radius of that zone using s% r(k)/Rsun following the steps as before.
 </details>
 
 <details>
-<summary>Answer 3.7</summary>
+<summary>Hint 3.7b</summary>
 At this point, the partial solution to your run_star_extras.f90 file should look like this:
 
 ```fortran
@@ -384,7 +384,7 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
 ```
 </details>
 
-Answer 3.7: The partial `run_star_extras.f90` solution is available [here](https://drive.google.com/file/d/11ebUYXx0u6CzDqbkhs7258Q3VKpskswe/view?usp=sharing).
+Answer 3.6 and 3.7: The partial `run_star_extras.f90` solution is available [here](https://drive.google.com/file/d/11ebUYXx0u6CzDqbkhs7258Q3VKpskswe/view?usp=sharing).
 
 **Task 3.8**: After making changes to the <span style="color:purple">``run_star_extras.f90``</span>, always check that the code compiles.
 
@@ -400,7 +400,7 @@ We will now include a new Fortran subroutine ```locdiscontinuity``` in the <span
 
 **Task 3.9**: Compute the mass and the radius at the location of the mean molecular weight discontinuity.
 
-Answer 3.9: If you'd like to attempt on your own, please do so. However, since this is a little advanced, we have added the answer directly for your ease. Here is the snippet of how your <span style="color:purple">``run_star_extras.f90``</span> should look like:
+Hint 3.9: If you'd like to attempt on your own, please do so. However, since this is a little advanced, we have added the answer directly for your ease. Here is the snippet of how your <span style="color:purple">``run_star_extras.f90``</span> should look like:
 ```fortran
 ...
 !calculate location of mean molecular weight discontinuity
@@ -598,7 +598,7 @@ if (s% largest_conv_mixing_region /= 0) then
 </pre>
 </details>
 
-Answer 3.11: Here is the snippet of how your <span style="color:purple">``run_star_extras.f90``</span> should look like:
+Hint 3.11: Here is the snippet of how your <span style="color:purple">``run_star_extras.f90``</span> should look like:
 ``` fortran
 ...
 integer function how_many_extra_history_columns(id)
@@ -675,9 +675,7 @@ cd ..
 ./mk
 ``` 
 
-This is what your final <span style="color:purple">``run_star_extras.f90``</span>  should look like.
-
-Now that you have all the parameters, you are essentially ready to start the run! If you're short on time, you may grab the final <span style="color:purple">``inlist_pgstar``</span> <span style="color:red">``here``</span> and jump straight to Section 5. However, if you're interested and have time, let's customise the <span style="color:purple">``inlist_pgstar``</span> in the next section for a better understanding of how the stellar structure/interiors change as the star evolves around the RGB bump.
+Now that you have all the parameters, you are essentially ready to start the run! If you're short on time, you may grab the final <span style="color:purple">``inlist_pgstar``</span> [here](https://drive.google.com/file/d/1cVRHEraQALU9bPpRVLdXdWOiwzcyrco3/view?usp=sharing). and jump straight to Section 5. However, if you're interested and have time, let's customise the <span style="color:purple">``inlist_pgstar``</span> in the next section for a better understanding of how the stellar structure/interiors change as the star evolves around the RGB bump.
 
 ## Section 4: Customizing pgstar 
 
@@ -707,16 +705,19 @@ Most often, you'll deal with a grid or dashboard that contains many individual s
 
 **Task 4.1**: Open the <span style="color:purple">``inlist_pgstar``</span> in your favourite editor and turn the `HR_win_flag` and `TRho_Profile_win_flag` to `false` to prevent their individual PGPLOT windows.
 
-Answer 4.1
-```fortran
+<details>
+<summary>Answer 4.1</summary>
+<pre>
  HR_win_flag = .false.
  TRho_Profile_win_flag = .false.
-``` 
+</pre>
+</details>
 
 **Task 4.2**: Include the first profile panel in the <span style="color:purple">``inlist_pgstar``</span> to display specific entropy, mean molecular weight, density as a function of mass fraction.
 
-Answer 4.2
-```fortran
+<details>
+<summary>Answer 4.2</summary>
+<pre>
  ! Profile Panels 1
 
   Profile_Panels1_title = 'Profile Panels'
@@ -733,7 +734,8 @@ Answer 4.2
   Profile_Panels1_other_yaxis_name(2) = ''
 
   Profile_Panels1_num_panels = 3
-``` 
+</pre>
+</details>
 
 **Task 4.3**: Include the second profile panel in the <span style="color:purple">``inlist_pgstar``</span> to display \( \epsilon_g \), temperature and pressure as a function of mass fraction.
 
@@ -744,8 +746,9 @@ The respective profile column names are `eps_grav`, `logT` and `logP`.
 
 **Task 4.4**: Include a few important parameters as part of the text block in the <span style="color:purple">``pgstar``</span>. 
 
-Answer 4.4
-```fortran
+<details>
+<summary>Answer 4.4</summary>
+<pre>
  ! Text Summary 1
 
   Text_Summary1_name(1,1) = 'model_number'
@@ -783,12 +786,14 @@ Answer 4.4
   Text_Summary1_name(6,4) = 'num_zones'
   Text_Summary1_name(7,4) = 'num_retries'
   Text_Summary1_name(8,4) = ''
-``` 
+</pre>
+</details>
 
 **Task 4.5**: Now combine all the grid information to activate the customised <span style="color:purple">``pgstar``</span> dashboard. The parameters are mostly self-explanatory and are adopted from <span style="color:purple">``$MESA_DIR/star/defaults/pgstar.defaults``</span>.
 
-Answer 4.5
-```fortran
+<details>
+<summary>Answer 4.5</summary>
+<pre>
  ! Grid1,information to combine all plots into Grid1
 
   Grid1_win_flag = .true.
@@ -865,7 +870,8 @@ Answer 4.5
   Grid1_file_interval = 1
   Grid1_file_width = -1
   Grid1_file_aspect_ratio = -1
-``` 
+</pre>
+</details>
 
 Your final `inlist_pgstar` should look like [this](https://drive.google.com/file/d/1cVRHEraQALU9bPpRVLdXdWOiwzcyrco3/view?usp=sharing).
 
