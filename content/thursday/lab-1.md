@@ -47,7 +47,7 @@ Answer 2.2
 unzip Minilab1_xpxx.zip
 cd Minilab1_xpxx
 ```
-You are now ready to start the run! Note that the rest of the guide demonstrates the particular case of a solar mass star; expect slight differences in numbers and plots depending on the stellar mass you're working with.
+You are now ready to start the run! Note that the rest of the guide demonstrates the particular case of a solar mass star; expect differences in numbers and plots depending on the stellar mass you're working with (at the end of this lab, we will compare the different evolutionary tracks computed as a function of stellar mass).
 
 **Task 2.3**: Compile and run the provided work directory.
 
