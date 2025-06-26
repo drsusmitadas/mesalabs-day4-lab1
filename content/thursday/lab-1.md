@@ -5,11 +5,11 @@ Authors: Saskia Hekker, Susmita Das, Zhao Guo, Arthur Le Saux and Noi Shitrit fo
 ## Section 1: Overview
 ### Science Goal
 
-As low-mass stars evolve into red-giant stars, there comes a brief phase during their post-main-sequence evolution where two interesting phenomena are observed. First, there is the simultaneous contraction of the core and the expansion of the envelope, known as the *mirror phenomenon*. Next, there occurs a zig-zag in the evolutionary track called the *Red Giant Branch Bump (RGB bump)* where the trend for increasing luminosity is reversed, see Fig.1: 
+As low-mass stars evolve into red-giant stars, there comes a brief phase during their post-main-sequence evolution where two interesting phenomena are observed. First, there is the simultaneous contraction of the core and the expansion of the envelope, known as the *mirror principle*. Next, there occurs a zig-zag in the evolutionary track called the *Red Giant Branch Bump (RGB bump)* where the trend for increasing luminosity is reversed, see Fig.1: 
 
 ![Fig.1](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/staa176fig1.jpeg)
 
-*Fig.1: Herzsprung–Russell (H–R) diagram of a $`1M_{\odot}`$ track with solar composition computed with MESA. The inset shows a zoom of the red giant branch bump (RGBB). Figure from Hekker et al. (2020).*
+*Fig.1: Herzsprung–Russell (H–R) diagram of a $`1M_{\odot}`$ track with solar composition computed with MESA. The inset shows a zoom of the red giant branch bump (RGB bump). Figure from Hekker et al. (2020).*
 
 In this minilab, you will investigate the underlying microphysics that drives these phenomena  using MESA and thereby reproduce the work of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract). 
 
@@ -54,6 +54,8 @@ You are now ready to start the run! Note that the rest of the guide demonstrates
 This directory evolves a star from the start of the RGB bump upto the end of the RGB bump. Confirm that you can compile and run it. Two default PGPLOT windows (Hertzsprung-Russell Diagram and temparature-density profille) should appear. 
 
 Answer 2.3
+
+In your main work directory, run
 ```
 ./mk
 ./rn
@@ -106,11 +108,12 @@ There are three inlists- inlist, inlist_project and inlist_pgstar. The main inli
 
 	! begin with saved model
 	load_saved_model = .true.
-	load_model_filename = 'start_RGBB.mod'
+	load_model_filename = 'start_RGBB.mod' ! RGB bump (RGBB)
+
 
 	! save a model at the end of the run
 	save_model_when_terminate = .true.
-	save_model_filename = 'end_RGBB.mod'
+	save_model_filename = 'end_RGBB.mod' ! RGB bump (RGBB)
 	
 	! display on-screen plots
 	pgstar_flag = .true.
@@ -187,11 +190,11 @@ Since <span style="color:purple">``run_star_extras.f90``</span> was already intr
 
 ### Section 3.1: Studying the evolution of the RGB bump feature
 
-One of our primary goals is to study the evolution around the RGB bump of (i) the location of the base of the convection zone, (ii) the peak of the burning, and (iii) the mean molecular weight discontinuity as a function of mass ordinate and radius ordinate and thereby, reproduce Fig. 4 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract) as shown below:
+One of our primary goals is to study the evolution around the RGB bump of (i) the location of the base of the convection zone, (ii) the peak of the burning, and (iii) the mean molecular weight discontinuity as a function of mass coordinate and radius coordinate and thereby, reproduce Fig. 4 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract) as shown below:
 
 ![Fig.2](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/staa176fig4.jpeg)
 
-*Fig.2: Top: the evolution around the bump of the location of the base of the convection zone, the peak of the burning, and the mean molecular weight discontinuity as a function of mass ordinate (left), and radius ordinate (right). Bottom: effective temperature (left) and luminosity (right) as a function of age. The vertical grey-dashed and dash–dotted lines indicate the age of the maximum luminosity and minimum luminosity of the bump feature, respectively. Figure from Hekker et al. (2020).*
+*Fig.2: Top: the evolution around the bump of the location of the base of the convection zone, the peak of the burning, and the mean molecular weight discontinuity as a function of mass coordinate (left), and radius coordinate (right). Bottom: effective temperature (left) and luminosity (right) as a function of age. The vertical grey-dashed and dash–dotted lines indicate the age of the maximum luminosity and minimum luminosity of the bump feature, respectively. Figure from Hekker et al. (2020).*
 
 #### The base of the convection zone
 
@@ -677,7 +680,7 @@ cd ..
 
 Now that you have all the parameters, you are essentially ready to start the run! If you're short on time, you may grab the final <span style="color:purple">``inlist_pgstar``</span> [here](https://drive.google.com/file/d/1cVRHEraQALU9bPpRVLdXdWOiwzcyrco3/view?usp=sharing). and jump straight to Section 5. However, if you're interested and have time, let's customise the <span style="color:purple">``inlist_pgstar``</span> in the next section for a better understanding of how the stellar structure/interiors change as the star evolves around the RGB bump.
 
-## Section 4: Customizing pgstar 
+## Section 4: Customizing pgstar [BONUS EXERCISE] 
 
  <span style="color:purple">``pgstar``</span> is a built-in feature of MESA that allows for real-time graphical insight into how your model is evolving. While the plots it generates are usually not suitable for publication, being able to "see" your model evolve can be an invaluable tool in developing intuition and diagnosing issues. Additionally, you can easily string frames of <span style="color:purple">``pgstar``</span> output into a movie after a simulation, which is great for presentations and group meetings!
 
@@ -789,7 +792,7 @@ The respective profile column names are `eps_grav`, `logT` and `logP`.
 </pre>
 </details>
 
-**Task 4.5**: Now combine all the grid information to activate the customised <span style="color:purple">``pgstar``</span> dashboard. The parameters are mostly self-explanatory and are adopted from <span style="color:purple">``$MESA_DIR/star/defaults/pgstar.defaults``</span>.
+**Task 4.5**: Now combine all the grid information to activate the customised <span style="color:purple">``pgstar``</span> dashboard. The parameters are adopted from <span style="color:purple">``$MESA_DIR/star/defaults/pgstar.defaults``</span>.
 
 <details>
 <summary>Answer 4.5</summary>
@@ -895,13 +898,13 @@ The customised PGPLOT window should look something like this:
 
 After the run terminates, you're ready to plot and reproduce the figures of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
 
-**Task 5.2**: Use this Google Colab [notebook](https://colab.research.google.com/drive/1bc6Wkne8K6Abciy7aYEnBawy9eir7XZW?usp=sharing) to upload your <span style="color:purple">``history.data``</span> and plot (i) the evolution around the RGB bump of the location of the base of the convection zone, the peak of the burning, and the mean molecular weight discontinuity as a function of mass ordinate and radius ordinate and compare your output plot with Fig. 4 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
+**Task 5.2**: Use this Google Colab [notebook](https://colab.research.google.com/drive/1bc6Wkne8K6Abciy7aYEnBawy9eir7XZW?usp=sharing) to upload your <span style="color:purple">``history.data``</span> and plot (i) the evolution around the RGB bump of the location of the base of the convection zone, the peak of the burning, and the mean molecular weight discontinuity as a function of mass coordinate and radius coordinate and compare your output plot with Fig. 4 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
 
 Answer 5.2:
 
 ![Fig.5](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/output1.png)
 
-*Fig.5: The evolution around the bump of the location of the base of the convection zone, the peak of burning and the mean molecular weight discontinuity as a function of mass and radius ordinate.*
+*Fig.5: The evolution around the bump of the location of the base of the convection zone, the peak of burning and the mean molecular weight discontinuity as a function of mass and radius coordinate.*
 
 
 **Task 5.3**: Using the same Google Colab notebook, plot the variation of $\epsilon_g$  at the base of the convection zone as a function of age and compare your output plot with Fig. 6 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
