@@ -176,7 +176,7 @@ in its entirety into <span style="color:purple">``run_star_extras.f90``</span>.
 
 <details>
 <summary>Hint 3.1</summary>
-A simple copy and paste works here.
+The command to insert the contents of a file in emacs is C-x i <filename>, in vim is :r <filename>, or you can just copy and paste.
 </details>
 
 Answer 3.1: The partial `run_star_extras.f90` solution is available [here](https://drive.google.com/file/d/1rofsfBFIr96HJ7GuuQq98qhj9Djm_Gs1/view?usp=sharing).
