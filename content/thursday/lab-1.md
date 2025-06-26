@@ -40,17 +40,6 @@ cd ~/MESASS2025/Day4
 </pre>
 </details>
 
-<details class="hx-border hx-border-green-200 dark:hx-border-green-200 hx-rounded-md hx-my-2">
-<summary class="hx-bg-green-100 dark:hx-bg-neutral-800 hx-text-green-900 dark:hx-text-green-200 hx-p-2 hx-m-0 hx-cursor-pointer">
-<em>Show answer</em>
-</summary>
-Much of this should be familiar already; here's how you create your working directory and then change into that directory:
-<pre>
-mkdir -p ~/MESASS2025/Day4
-cd ~/MESASS2025/Day4
-</pre>
-</details>
-
 **Task 2.2**: We have prepared and provided the test case for you. Choose a particular stellar mass to work with from [here](https://docs.google.com/spreadsheets/d/1upyIGVzw4kU3YUe4aU03ZZqMWvgblQHmp2gIhZKgEJ8/edit?usp=sharing), download the corresponding `Minilab1_xpxx.zip` into the <span style="color:purple">``~/MESASS2025/Day4``</span> directory, unpack, and enter this work directory. 
 
 Answer 2.2
@@ -164,7 +153,11 @@ There are three inlists- inlist, inlist_project and inlist_pgstar. The main inli
 
 <details>
 <summary>Answer 2.5</summary>
-(i) The inlist_project loads a saved model called start_RGBB.mod that was pre-computed to save on computation time and start its run from that particular stage of evolution. (ii) The run stops when the terminating condition of the upper limit of logL reaches 1.54. (iii) The metallicity is Z=0.02. Note that initial_z and Zbase must be kept the same in almost all cases.
+(i) The inlist_project loads a saved model called start_RGBB.mod that was pre-computed to save on computation time and start its run from that particular stage of evolution. 
+	
+(ii) The run stops when the terminating condition of the upper limit of logL reaches 1.54. Different stopping conditions are provided under "! when to stop" in <span style="color:purple">``$MESA_DIR/star/defaults/controls.defaults``</span>.
+
+(iii) The metallicity is Z=0.02. Note that Zbase is the base metallicity for the opacity tables, typically set to the same initial metallicity of the model, initial_z.
 </details>
 
 ## Section 3: Using Run Star Extras
