@@ -63,6 +63,9 @@ In your main work directory, run
 
 This was a test run to ensure everything works fine for you; you do not need to complete the run at this point. When the two windows with plots appear, you may terminate the run using <span style="background-color:black"><span style="color:white">`Ctrl + C`</span></span>.
 
+[!TIP]
+It might take some time for the plots to appear, especially if OMP_NUM_THREADS has been set to 2; don't kill the run before the plots appear.
+
 ### Using inlists
 
  MESA/star currently has five inlist sections. Each section contains the options for a different aspect of MESA.
