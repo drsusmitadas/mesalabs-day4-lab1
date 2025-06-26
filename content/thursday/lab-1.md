@@ -153,8 +153,8 @@ There are three inlists- inlist, inlist_project and inlist_pgstar. The main inli
 
 <details>
 <summary>Answer 2.5</summary>
-(i) The inlist_project loads a saved model called start_RGBB.mod that was pre-computed to save on computation time and start its run from that particular stage of evolution. 
-	
+(i) The inlist_project loads a saved model called start_RGBB.mod that was pre-computed to save on computation time and start its run from that particular stage of evolution.
+
 (ii) The run stops when the terminating condition of the upper limit of logL reaches 1.54. Different stopping conditions are provided under "! when to stop" in <span style="color:purple">``$MESA_DIR/star/defaults/controls.defaults``</span>.
 
 (iii) The metallicity is Z=0.02. Note that Zbase is the base metallicity for the opacity tables, typically set to the same initial metallicity of the model, initial_z.
