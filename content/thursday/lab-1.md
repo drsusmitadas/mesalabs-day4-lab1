@@ -682,7 +682,7 @@ cd ..
 ./mk
 ``` 
 
-Now that you have all the parameters, you are essentially ready to start the run! If you're short on time, you may grab the final <span style="color:purple">``inlist_pgstar``</span> [here](https://drive.google.com/file/d/1cVRHEraQALU9bPpRVLdXdWOiwzcyrco3/view?usp=sharing). and jump straight to Section 5. However, if you're interested and have time, let's customise the <span style="color:purple">``inlist_pgstar``</span> in the next section for a better understanding of how the stellar structure/interiors change as the star evolves around the RGB bump.
+Now that you have all the parameters, you are essentially ready to start the run! If you're short on time, you may grab the final <span style="color:purple">``inlist_pgstar``</span> [here](https://drive.google.com/file/d/1cVRHEraQALU9bPpRVLdXdWOiwzcyrco3/view?usp=sharing) and jump straight to Section 5. However, if you're interested and have time, let's customise the <span style="color:purple">``inlist_pgstar``</span> in the next section for a better understanding of how the stellar structure/interiors change as the star evolves around the RGB bump.
 
 ## Section 4: Customizing pgstar [BONUS EXERCISE] 
 
@@ -748,7 +748,21 @@ Most often, you'll deal with a grid or dashboard that contains many individual s
 
 <details>
 <summary>Hint 4.3</summary>
-The respective profile column names are `eps_grav`, `logT` and `logP`.
+<pre>
+ ! Profile Panels 2
+
+    Profile_Panels2_title = 'Profile Panels'
+    Profile_Panels2_xaxis_name = 'mass'
+    Profile_Panels2_xaxis_reversed = .false.
+    Profile_Panels2_xmin = 0
+    Profile_Panels2_xmax = 1
+
+    Profile_Panels2_show_mix_regions_on_xaxis = .false.
+    Profile_Panels2_yaxis_name(1) = 'eps_grav'
+    Profile_Panels2_yaxis_name(2) = 'logT'
+    Profile_Panels2_yaxis_name(3) = 'logP'
+    Profile_Panels2_num_panels = 3
+</pre>
 </details>
 
 **Task 4.4**: Include a few important parameters as part of the text block in the <span style="color:purple">``pgstar``</span>. 
