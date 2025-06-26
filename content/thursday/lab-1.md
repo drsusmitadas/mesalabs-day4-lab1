@@ -40,6 +40,17 @@ cd ~/MESASS2025/Day4
 </pre>
 </details>
 
+<details class="hx-border hx-border-green-200 dark:hx-border-green-200 hx-rounded-md hx-my-2">
+<summary class="hx-bg-green-100 dark:hx-bg-neutral-800 hx-text-green-900 dark:hx-text-green-200 hx-p-2 hx-m-0 hx-cursor-pointer">
+<em>Show answer</em>
+</summary>
+Much of this should be familiar already; here's how you create your working directory and then change into that directory:
+<pre>
+mkdir -p ~/MESASS2025/Day4
+cd ~/MESASS2025/Day4
+</pre>
+</details>
+
 **Task 2.2**: We have prepared and provided the test case for you. Choose a particular stellar mass to work with from [here](https://docs.google.com/spreadsheets/d/1upyIGVzw4kU3YUe4aU03ZZqMWvgblQHmp2gIhZKgEJ8/edit?usp=sharing), download the corresponding `Minilab1_xpxx.zip` into the <span style="color:purple">``~/MESASS2025/Day4``</span> directory, unpack, and enter this work directory. 
 
 Answer 2.2
