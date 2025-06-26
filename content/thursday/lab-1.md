@@ -63,8 +63,8 @@ In your main work directory, run
 
 This was a test run to ensure everything works fine for you; you do not need to complete the run at this point. When the two windows with plots appear, you may terminate the run using <span style="background-color:black"><span style="color:white">`Ctrl + C`</span></span>.
 
-[!TIP]
-It might take some time for the plots to appear, especially if OMP_NUM_THREADS has been set to 2; don't kill the run before the plots appear.
+>[!WARNING]
+>It might take some time for the plots to appear, especially if OMP_NUM_THREADS has been set to 2; don't kill the run before the plots appear.
 
 ### Using inlists
 
@@ -76,11 +76,11 @@ It might take some time for the plots to appear, especially if OMP_NUM_THREADS h
 
 **eos**
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;options for the MESA eos module
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;options for the MESA eos (equation of state) module
 
 **kap**
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;options for the MESA kap module
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;options for the MESA kap (opacity) module
 
 **controls**
 
@@ -184,14 +184,18 @@ The command to insert the contents of a file in emacs is C-x i <filename>, in vi
 
 Answer 3.1: The partial `run_star_extras.f90` solution is available [here](https://drive.google.com/file/d/1rofsfBFIr96HJ7GuuQq98qhj9Djm_Gs1/view?usp=sharing).
 
-**Task 3.2**: Check that the code compiles.
+**Task 3.2**: Check that the code compiles and execute a test run to ensure everything works fine for you. Once the plots appear, you may terminate the run using <span style="background-color:black"><span style="color:white">`Ctrl + C`</span></span>.
 
 Answer 3.2
 ```fortran
 cd ..
 ./mk
+./rn
 ``` 
 If it doesn't compile, double check that you cleanly inserted the file and removed the include line.
+
+> [!NOTE]
+> Every time you make a change to `run_star_extras.f90`, remember to re-compile, otherwise the changes won't be incorporated in your run.
 
 Since <span style="color:purple">``run_star_extras.f90``</span> was already introduced in the Day 2 Morning Session in considerable depth, we will now go straight to modifying it for our science test case.
 
@@ -344,7 +348,7 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
 
 <details>
 <summary>Hint 3.7a</summary>
-You already have the zone (k) where nuclear burning is at its peak. Simply include the radius of that zone using s% r(k)/Rsun following the steps as before.
+You already have the zone (k) where nuclear burning is at its peak. Simply include the radius of that zone using s% r(k)/Rsun following the steps as before. Remember to set how_many_extra_history_columns = 2 at this point.
 </details>
 
 <details>
@@ -584,7 +588,7 @@ We also want to study the variation of the 'gravothermal' energy generation rate
 
 *Fig.3: The value of $`\epsilon_g`$ at the base of the convection zone as a function of age. The vertical dashed and dash–dotted lines indicate the stellar ages of the luminosity maximum and luminosity minimum of the bump, respectively. The horizontal dotted line indicates zero. Figure from Hekker et al. (2020).*
 
-In Section 3.1, we had already seen how to include the mass and the radius ordinates at the base of the convection zone. We only had to uncomment the history column names in the <span style="color:purple">``history_columns.list``</span> since they are computed as default history columns. However, this holds clue to how one many compute new additional parameters at the base of the conevction zone. To look at how the mass and the radius ordinates were computed at the base of the convection zone, open the file:
+In Section 3.1, we had already seen how to include the mass and the radius coordinates at the base of the convection zone. We only had to uncomment the history column names in the <span style="color:purple">``history_columns.list``</span> since they are computed as default history columns. However, this holds clue to how one may compute new additional parameters at the base of the conevction zone. To look at how the mass and the radius ordinates were computed at the base of the convection zone, open the file:
 ```fortran
 $MESA_DIR/star/private/history.f90
 ``` 
@@ -907,7 +911,6 @@ You're now finally ready to start the run!
 
 Answer 5.1
 ```fortran
-./mk
 ./rn
 ``` 
 
@@ -918,6 +921,9 @@ The customised PGPLOT window should look something like this:
 *Fig.4: The PGPLOT dashboard exhibiting the HR diagram, temperature-density plot and additional profile panels for a $`1M_{\odot}`$ track with solar composition.*
 
 After the run terminates, you're ready to plot and reproduce the figures of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
+
+> [!TIP]
+> At the end of the run, take a look at the HR diagram. Was the stopping condition actually applied?
 
 **Task 5.2**: Use this Google Colab [notebook](https://colab.research.google.com/drive/1bc6Wkne8K6Abciy7aYEnBawy9eir7XZW?usp=sharing) to upload your <span style="color:purple">``history.data``</span> and plot (i) the evolution around the RGB bump of the location of the base of the convection zone, the peak of the burning, and the mean molecular weight discontinuity as a function of mass coordinate and radius coordinate and compare your output plot with Fig. 4 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
 
