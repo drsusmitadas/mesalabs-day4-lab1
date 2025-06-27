@@ -5,13 +5,15 @@ Authors: Saskia Hekker, Susmita Das, Zhao Guo, Arthur Le Saux and Noi Shitrit fo
 ## Section 1: Overview
 ### Science Goal
 
-As low-mass stars evolve into red-giant stars, there comes a brief phase during their post-main-sequence evolution where two interesting phenomena are observed. First, there is the simultaneous contraction of the core and the expansion of the envelope, known as the *mirror principle*. Next, there occurs a zig-zag in the evolutionary track called the *Red Giant Branch Bump (RGB bump)* where the trend for increasing luminosity is reversed, see Fig.1: 
+As low-mass stars evolve into red-giant stars, there comes a brief phase during their post-main-sequence evolution where two interesting phenomena are observed. First, there is the simultaneous contraction of the core and the expansion of the envelope (with the shell burning source in between the core and the envelope), known as the *mirror principle*. Next, there occurs a zig-zag in the evolutionary track called the *Red Giant Branch Bump (RGB bump)* where the trend for increasing luminosity is reversed, see inset of Fig.1: 
 
 ![Fig.1](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/staa176fig1.jpeg)
 
 *Fig.1: Herzsprung–Russell (H–R) diagram of a $`1M_{\odot}`$ track with solar composition computed with MESA. The inset shows a zoom of the red giant branch bump (RGB bump). Figure from Hekker et al. (2020).*
 
-In this minilab, you will investigate the underlying microphysics that drives these phenomena  using MESA and thereby reproduce the work of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract). 
+As summarised by [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract), the RGB bump is believed to appear when the hydrogen shell burns through the mean molecular weight discontinuity left behind by the deepest extent of the convection zone. At this discontinuity, the amount of hydrogen available for burning increases and consequently there is a re-adjustment of the internal structure. This re-adjustment phase could explain the bump. However, [Christensen-Dalsgaard (2015)](https://ui.adsabs.harvard.edu/abs/2015MNRAS.453..666C/abstract) showed that the burning shell only reaches the mean molecular weight discontinuity at the minimum luminosity. Hence, this picture cannot explain the luminosity maximum of the bump completely. Furthermore, it is known that the exact shape of the bump depends on the constituents of the models such as the hydrogen profile, as shown by, e.g. [Cassisi,Salaris & Bono (2002)](https://ui.adsabs.harvard.edu/abs/2002ApJ...565.1231C/abstract).
+
+In this minilab, you will therefore investigate the underlying microphysics (in particular, the entropy profiles and the changes in entropy based on physical principles) that drives these phenomena using MESA and thereby reproduce the work of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract). 
 
 ### What you'll learn
 
@@ -584,7 +586,7 @@ Great work! You have now included most of the parameters that are required to re
 
 ### Section 3.2: The variation of the 'gravothermal' energy generation rate with age
 
-We also want to study the variation of the 'gravothermal' energy generation rate  $\epsilon_g$ at the base of the convection zone as a function of age around the evolution of the RGB bump and thereby reproduce Fig. 6 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract) as shown below:
+As mentioned earlier, this lab aims to probe the importance of entropy in RGB evolution. In stars, the rate of change of specific entropy is proportional to $\epsilon_g$, the ‘gravothermal’ energy generation rate. Therefore, we also want to study the variation of $\epsilon_g$ at the base of the convection zone as a function of age around the evolution of the RGB bump and thereby reproduce Fig. 6 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract) as shown below:
 
 ![Fig.3](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/staa176fig6.jpeg)
 
@@ -918,6 +920,8 @@ The customised PGPLOT window should look something like this:
 ![Fig.4](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/rgbb_001048.png)
 
 *Fig.4: The PGPLOT dashboard exhibiting the HR diagram, temperature-density plot and additional profile panels for a $`1M_{\odot}`$ track with solar composition.*
+
+
 
 After the run terminates, you're ready to plot and reproduce the figures of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
 
