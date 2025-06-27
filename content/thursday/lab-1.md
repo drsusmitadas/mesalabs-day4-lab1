@@ -38,6 +38,7 @@ Much of this should be familiar already; here's how you create your working dire
 mkdir -p ~/MESASS2025/Day4
 cd ~/MESASS2025/Day4
 </pre>
+The mkdir -p command is used to create a directory, including any necessary parent directories. This means that if the parent directory does not exist, mkdir -p will create it automatically.
 </details>
 
 **Task 2.2**: We have prepared and provided the test case for you. Choose a particular stellar mass to work with from [here](https://docs.google.com/spreadsheets/d/1upyIGVzw4kU3YUe4aU03ZZqMWvgblQHmp2gIhZKgEJ8/edit?usp=sharing), download the corresponding `Minilab1_xpxx.zip` into the <span style="color:purple">``~/MESASS2025/Day4``</span> directory, unpack, and enter this work directory. 
@@ -165,7 +166,7 @@ There are three inlists- inlist, inlist_project and inlist_pgstar. The main inli
 
 ## Section 3: Using Run Star Extras
 
-To activate <span style="color:purple">``run_star_extras.f90``</span>, navigate to the <span style="color:purple">``src``</span> directory that resides within your working directory and open <span style="color:purple">``run_star_extras.f90``</span> in your text editor of choice. The stock version of <span style="color:purple">``run_star_extras.f90``</span> is quite boring. It "includes" another file which holds the default set of routines. 
+To customize <span style="color:purple">``run_star_extras.f90``</span>, navigate to the <span style="color:purple">``src``</span> directory that resides within your working directory and open <span style="color:purple">``run_star_extras.f90``</span> in your text editor of choice. The stock version of <span style="color:purple">``run_star_extras.f90``</span> is quite boring. It "includes" another file which holds the default set of routines. 
 ```fortran
 include 'standard_run_star_extras.inc'
 ```
@@ -201,7 +202,7 @@ Since <span style="color:purple">``run_star_extras.f90``</span> was already intr
 
 ### Section 3.1: Studying the evolution of the RGB bump feature
 
-One of our primary goals is to study the evolution around the RGB bump of (i) the location of the base of the convection zone, (ii) the peak of the burning, and (iii) the mean molecular weight discontinuity as a function of mass coordinate and radius coordinate and thereby, reproduce Fig. 4 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract) as shown below:
+One of our primary goals is to study the evolution of (i) the location of the base of the convection zone, (ii) the peak of the burning, and (iii) the mean molecular weight discontinuity around the RGB bump. Plotting these with mass coordinate and radius coordinate will reproduce Fig. 4 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract) as shown below:
 
 ![Fig.2](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/staa176fig4.jpeg)
 
@@ -209,7 +210,7 @@ One of our primary goals is to study the evolution around the RGB bump of (i) th
 
 #### The base of the convection zone
 
-**Task 3.3**: Output the mass coordinate at the base of the convection zone in your <span style="color:purple">``history.data``</span>.
+**Task 3.3**: Output the mass coordinate at the base of the convection zone in your <span style="color:purple">``history.data``</span> by uncommenting the appropriate parameter in the `history_columns.list`.
 
 <details>
 <summary>Hint 3.3a</summary>
@@ -221,7 +222,8 @@ Open the history_columns.list in your working directory and search for the phras
 Identify what is the right parameter (cz_bot_mass) and uncomment (that is, remove the "!" at the front of cz_bot_mass) to include it in the output file.
 </details>
 
-**Task 3.4**: Output the radius coordinate at the base of the convection zone in your <span style="color:purple">``history.data``</span>.
+**Task 3.4**: Output the radius coordinate at the base of the convection zone in your <span style="color:purple">``history.data``</span> by uncommenting the appropriate parameter in the `history_columns.list`.
+
 <details>
 <summary>Hint 3.4</summary>
 Identify what is the right parameter (cz_bot_radius) and uncomment to include it in the output file.
@@ -269,14 +271,14 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
 ```
 ---
 
-> :bulb: **Important Fortran Tips:**
+> [!TIP]
  >1. Declare all new variables BEFORE the ```ierr = 0``` statement in the ```data_for_extra_history_columns``` subroutine.
 >2. Add the new parameters to be computed and the new history columns AFTER the ```if (ierr /= 0) return``` statement in the ```data_for_extra_history_columns``` subroutine.
 >3. Remember to update the right number in ```how_many_extra_history_columns = 0``` as and when you add additional history columns in the ```how_many_extra_history_columns``` function.
 
 ---
 
-**Task 3.6**: Compute the mass of the zone where the nuclear burning is at its peak and add it as a new column in your <span style="color:purple">``history.data``</span>.
+**Task 3.6**: Compute the mass of the zone (in solar units) where the nuclear burning is at its peak and add it as a new column in your <span style="color:purple">``history.data``</span>.
 
 <details>
 <summary>Hint 3.6a</summary>
@@ -286,7 +288,7 @@ k=maxloc(s% eps_nuc, dim=1)
 
 <details>
 <summary>Hint 3.6b</summary>
-The mass corresponding to that particular zone is then s% m(k)/Msun; assign it to a new variable mass_max_eps_nuc
+The mass coordinate corresponding to that particular zone is then s% m(k)/Msun; assign it to a new variable mass_max_eps_nuc.
 </details>
 
 <details>
@@ -344,11 +346,11 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
 ```
 </details>
 
-**Task 3.7**: Compute the radius of the zone where the nuclear burning is at its peak and add it as a new column in your <span style="color:purple">``history.data``</span>.
+**Task 3.7**: Compute the radius of the zone (in solar units) where the nuclear burning is at its peak and add it as a new column in your <span style="color:purple">``history.data``</span>.
 
 <details>
 <summary>Hint 3.7a</summary>
-You already have the zone (k) where nuclear burning is at its peak. Simply include the radius of that zone using s% r(k)/Rsun following the steps as before. Remember to set how_many_extra_history_columns = 2 at this point.
+You already have the zone (k) where nuclear burning is at its peak. Simply include the radius coordinate of that zone using s% r(k)/Rsun following the steps as before. Remember to set how_many_extra_history_columns = 2 at this point.
 </details>
 
 <details>
@@ -588,11 +590,14 @@ We also want to study the variation of the 'gravothermal' energy generation rate
 
 *Fig.3: The value of $`\epsilon_g`$ at the base of the convection zone as a function of age. The vertical dashed and dash–dotted lines indicate the stellar ages of the luminosity maximum and luminosity minimum of the bump, respectively. The horizontal dotted line indicates zero. Figure from Hekker et al. (2020).*
 
-In Section 3.1, we had already seen how to include the mass and the radius coordinates at the base of the convection zone. We only had to uncomment the history column names in the <span style="color:purple">``history_columns.list``</span> since they are computed as default history columns. However, this holds clue to how one may compute new additional parameters at the base of the conevction zone. To look at how the mass and the radius ordinates were computed at the base of the convection zone, open the file:
+In Section 3.1, we had already seen how to include the mass and the radius coordinates at the base of the convection zone. We only had to uncomment the history column names in the <span style="color:purple">``history_columns.list``</span> since they are computed as default history columns. However, this holds clue to how one may compute new additional parameters at the base of the convection zone. To look at how the mass and the radius ordinates were computed at the base of the convection zone, open the file:
 ```fortran
 $MESA_DIR/star/private/history.f90
 ``` 
 and search for <span style="color:purple">``cz_bot_mass``</span> or <span style="color:purple">``cz_bot_radius``</span>.
+
+>[!TIP]
+> The default history columns are deﬁned in the `$MESA_DIR/star/private/history.f90 file`. If you inspect that ﬁle, you can use their deﬁnitions as templates for writing your own new history columns.
 
 **Task 3.11**: Compute $\epsilon_g$ at the base of the convection zone `cz_eps_grav` and add it as a new column in your <span style="color:purple">``history.data``</span>.
 
