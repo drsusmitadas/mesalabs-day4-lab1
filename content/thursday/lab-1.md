@@ -13,7 +13,7 @@ As low-mass stars evolve into red-giant stars, there comes a brief phase during 
 
 As summarised by [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract), the RGB bump is believed to appear when the hydrogen shell burns through the mean molecular weight discontinuity left behind by the deepest extent of the convection zone. At this discontinuity, the amount of hydrogen available for burning increases and consequently there is a re-adjustment of the internal structure. This re-adjustment phase could explain the bump. However, [Christensen-Dalsgaard (2015)](https://ui.adsabs.harvard.edu/abs/2015MNRAS.453..666C/abstract) showed that the burning shell only reaches the mean molecular weight discontinuity at the minimum luminosity. Hence, this picture cannot explain the luminosity maximum of the bump completely. Furthermore, it is known that the exact shape of the bump depends on the constituents of the models such as the hydrogen profile, as shown by, e.g. [Cassisi,Salaris & Bono (2002)](https://ui.adsabs.harvard.edu/abs/2002ApJ...565.1231C/abstract).
 
-In this minilab, you will therefore investigate the underlying microphysics (in particular, the entropy profiles and the changes in entropy based on physical principles) that drives these phenomena using MESA and thereby reproduce the work of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract). 
+In this minilab, you will therefore investigate the underlying microphysics (in particular, the specific entropy and its temporal gradient) that drives these phenomena using MESA and thereby reproduce the work of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract). 
 
 ### What you'll learn
 
