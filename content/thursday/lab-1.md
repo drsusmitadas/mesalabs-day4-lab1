@@ -420,26 +420,26 @@ Hint 3.9: If you'd like to attempt on your own, please do so. However, since thi
 ```fortran
 ...
 !calculate location of mean molecular weight discontinuity
-subroutine locdiscontinuity(id,nz,sdisc1,sdisc2,sdiscdif1,sdiscdif2) 
-      integer, intent(in) :: id, nz
-      integer, intent(out) :: sdisc1, sdisc2
-      real(dp), intent(out) :: sdiscdif1, sdiscdif2
-      real(dp) :: x(nz), dif(nz-1)
-      integer :: ierr, xs, xsb,k
-      type (star_info), pointer :: s
-      ierr = 0
-      call star_ptr(id, s, ierr)
-      if (ierr /= 0) return
- 
-       x = s% X(:nz) 
-       dif = x(:size(x)-1)-x(2:)
-       k = maxloc(s% eps_nuc(:nz), dim=1)
-       xsb = k
-       sdisc1=maxloc(dif, dim=1)
-       sdiscdif1=maxval(dif)
-       sdisc2=maxloc(dif(:xsb-1), dim=1)
-       sdiscdif2=maxval(dif(:xsb-1))
-    end subroutine locdiscontinuity
+      subroutine locdiscontinuity(id,nz,sdisc,sdiscdif)
+          integer, intent(in) :: id, nz
+          integer, intent(out) :: sdisc
+          real(dp), intent(out) :: sdiscdif
+          real(dp) :: x(nz), dif(nz-1)
+          integer :: ierr, xs, xsb,k
+          type (star_info), pointer :: s
+          ierr = 0
+          call star_ptr(id, s, ierr)
+          if (ierr /= 0) return
+          
+          x = s% X(:nz) 
+          dif = x(:size(x)-1)-x(2:)
+          k = maxloc(s% eps_nuc(:nz), dim=1)
+          xsb = k
+          sdisc=maxloc(dif, dim=1)
+          sdiscdif=maxval(dif)
+          
+          end subroutine locdiscontinuity
+
 
 integer function how_many_extra_history_columns(id)
          integer, intent(in) :: id
@@ -448,7 +448,7 @@ integer function how_many_extra_history_columns(id)
          ierr = 0
          call star_ptr(id, s, ierr)
          if (ierr /= 0) return
-         how_many_extra_history_columns = 8
+         how_many_extra_history_columns = 4
     end function how_many_extra_history_columns
       
 subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
@@ -457,43 +457,33 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
          real(dp) :: vals(n)
          integer, intent(out) :: ierr
          type (star_info), pointer :: s
-         integer :: k, nz, sdisc1,sdisc2
-	 real(dp) ::mass_max_eps_nuc, radius_max_eps_nuc, disc1, disc2
+         integer :: k, z, nz, sdisc
+         real(dp) ::mass_max_eps_nuc, radius_max_eps_nuc, disc
 	
          ierr = 0
          call star_ptr(id, s, ierr)
          if (ierr /= 0) return
          
           k=maxloc(s% eps_nuc, dim=1)       
-	 mass_max_eps_nuc = s% m(k)/Msun
-	 radius_max_eps_nuc = s% r(k)/Rsun	
+          mass_max_eps_nuc = s% m(k)/Msun
+          radius_max_eps_nuc = s% r(k)/Rsun
          
          ! note: do NOT add the extras names to history_columns.list
          ! the history_columns.list is only for the built-in history column options.
          ! it must not include the new column names you are adding here.
          
           names(1) = 'mass_max_eps_nuc'
-	 vals(1) = mass_max_eps_nuc
-	
-	 names(2) = 'radius_max_eps_nuc'
-	 vals(2) = radius_max_eps_nuc
-	
-	 nz = s% nz
-         
-         names(3) = 'mdisc1'
-         names(4) = 'rdisc1'
-         names(5) = 'mdisc2'
-         names(6) = 'rdisc2'
-         names(7) = 'disc1'
-         names(8) = 'disc2'
+          vals(1) = mass_max_eps_nuc
+          names(2) = 'radius_max_eps_nuc'
+          vals(2) = radius_max_eps_nuc
+          
+          nz = s% nz
+          names(3) = 'mdisc'
+          names(4) = 'rdisc'
      
-         call locdiscontinuity(id,nz,sdisc1,sdisc2,disc1,disc2)
-         vals(3) = s% m(sdisc1)/(Msun)
-         vals(4) = s% r(sdisc1)/(Rsun)
-         vals(5) = s% m(sdisc2)/(Msun)
-         vals(6) = s% r(sdisc2)/(Rsun)
-         vals(7) = disc1
-         vals(8) = disc2
+         call locdiscontinuity(id,nz,sdisc,disc)
+         vals(3) = s% m(sdisc)/(Msun)
+         vals(4) = s% r(sdisc)/(Rsun)
     end subroutine data_for_extra_history_columns
 ...
 ``` 
@@ -508,17 +498,15 @@ An explanation of the Fortran subroutine ```locdiscontinuity``` is included here
 ! Purpose: Identify locations and magnitudes of composition discontinuities
 !          in a stellar model, often associated with hydrogen abundance (X).
 !=======================================================================
-subroutine locdiscontinuity(id, nz, sdisc1, sdisc2, sdiscdif1, sdiscdif2)
+subroutine locdiscontinuity(id, nz, sdisc, sdiscdif)
 
   ! Input arguments
   integer, intent(in) :: id         ! Model identifier
   integer, intent(in) :: nz         ! Number of zones
 
   ! Output arguments
-  integer, intent(out) :: sdisc1    ! Index of strongest overall discontinuity
-  integer, intent(out) :: sdisc2    ! Index of strongest outer-layer discontinuity
-  real(dp), intent(out) :: sdiscdif1 ! Magnitude of strongest overall discontinuity
-  real(dp), intent(out) :: sdiscdif2 ! Magnitude of strongest outer-layer discontinuity
+  integer, intent(out) :: sdisc   ! Index of strongest outer-layer discontinuity
+  real(dp), intent(out) :: sdiscdif ! Magnitude of strongest outer-layer discontinuity
 
   ! Local variables
   real(dp) :: x(nz)                 ! Composition profile (e.g. hydrogen abundance)
@@ -537,36 +525,21 @@ subroutine locdiscontinuity(id, nz, sdisc1, sdisc2, sdiscdif1, sdiscdif2)
   k = maxloc(s% eps_nuc(:nz), dim=1) ! Find zone of peak nuclear energy generation
   xsb = k                            ! (used as proxy for peak H burning)
 
-  sdisc1 = maxloc(dif, dim=1)       ! Global maximum discontinuity location
-  sdiscdif1 = maxval(dif)           ! Its magnitude
-
-  sdisc2 = maxloc(dif(:xsb-1), dim=1) ! Max discontinuity above burning zone
-  sdiscdif2 = maxval(dif(:xsb-1))     ! Its magnitude
+  sdisc = maxloc(dif(:xsb-1), dim=1) ! Max discontinuity above burning zone
+  sdiscdif = maxval(dif(:xsb-1))     ! Its magnitude
 
 end subroutine locdiscontinuity
 
 !=======================================================================
 ! Extracting physical information from discontinuities
 !=======================================================================
-call locdiscontinuity(id, nz, sdisc1, sdisc2, disc1, disc2)
+call locdiscontinuity(id, nz, sdisc, disc)
 
-vals(3) = s% m(sdisc1) / (Msun)
-! Mass (in solar units) of the strongest discontinuity
-
-vals(4) = s% r(sdisc1) / (Rsun)
-! Radius (in solar units) of the strongest discontinuity
-
-vals(5) = s% m(sdisc2) / (Msun)
+vals(3) = s% m(sdisc) / (Msun)
 ! Mass (in solar units) of the outer-layer discontinuity
 
-vals(6) = s% r(sdisc2) / (Rsun)
+vals(4) = s% r(sdisc) / (Rsun)
 ! Radius (in solar units) of the outer-layer discontinuity
-
-vals(7) = disc1
-! Magnitude of the strongest overall discontinuity
-
-vals(8) = disc2
-! Magnitude of the strongest discontinuity above the burning core
 </pre>
 </details>
 
@@ -610,10 +583,10 @@ The eps_grav parameter can be accessed as s% eps_grav_ad(k)% val in run_star_ext
 <summary>Hint 3.11b</summary>
 Here is the snippet of code that can be used in the run_star_extras.f90:
 <pre>
-if (s% largest_conv_mixing_region /= 0) then
-        k = s% mixing_region_bottom(s% largest_conv_mixing_region)
-        cz_eps_grav = s% eps_grav_ad(k)% val
-    end if
+ if (s% largest_conv_mixing_region /= 0) then
+                z = s% mixing_region_bottom(s% largest_conv_mixing_region)
+                cz_eps_grav = s% eps_grav_ad(z)% val
+             end if
 </pre>
 </details>
 
@@ -627,7 +600,7 @@ integer function how_many_extra_history_columns(id)
          ierr = 0
          call star_ptr(id, s, ierr)
          if (ierr /= 0) return
-         how_many_extra_history_columns = 9
+         how_many_extra_history_columns = 5
     end function how_many_extra_history_columns
       
 subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
@@ -636,20 +609,20 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
          real(dp) :: vals(n)
          integer, intent(out) :: ierr
          type (star_info), pointer :: s
-         integer :: k, nz, sdisc1,sdisc2
-	real(dp) ::mass_max_eps_nuc, radius_max_eps_nuc, disc1, disc2, cz_eps_grav
+         integer :: k, z, nz, sdisc
+         real(dp) ::mass_max_eps_nuc, radius_max_eps_nuc, disc, cz_eps_grav
 	
          ierr = 0
          call star_ptr(id, s, ierr)
          if (ierr /= 0) return
          
           k=maxloc(s% eps_nuc, dim=1)       
-	mass_max_eps_nuc = s% m(k)/Msun
-	radius_max_eps_nuc = s% r(k)/Rsun	
+          mass_max_eps_nuc = s% m(k)/Msun
+          radius_max_eps_nuc = s% r(k)/Rsun
 
         if (s% largest_conv_mixing_region /= 0) then
-                k = s% mixing_region_bottom(s% largest_conv_mixing_region)
-                cz_eps_grav = s% eps_grav_ad(k)% val
+                z = s% mixing_region_bottom(s% largest_conv_mixing_region)
+                cz_eps_grav = s% eps_grav_ad(z)% val
              end if
          
          ! note: do NOT add the extras names to history_columns.list
@@ -657,30 +630,20 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
          ! it must not include the new column names you are adding here.
          
           names(1) = 'mass_max_eps_nuc'
-	vals(1) = mass_max_eps_nuc
-	
-	names(2) = 'radius_max_eps_nuc'
-	vals(2) = radius_max_eps_nuc
-	
-	nz = s% nz
-         
-         names(3) = 'mdisc1'
-         names(4) = 'rdisc1'
-         names(5) = 'mdisc2'
-         names(6) = 'rdisc2'
-         names(7) = 'disc1'
-         names(8) = 'disc2'
+          vals(1) = mass_max_eps_nuc
+          names(2) = 'radius_max_eps_nuc'
+          vals(2) = radius_max_eps_nuc
+          
+          nz = s% nz
+          names(3) = 'mdisc'
+          names(4) = 'rdisc'
      
-         call locdiscontinuity(id,nz,sdisc1,sdisc2,disc1,disc2)
-         vals(3) = s% m(sdisc1)/(Msun)
-         vals(4) = s% r(sdisc1)/(Rsun)
-         vals(5) = s% m(sdisc2)/(Msun)
-         vals(6) = s% r(sdisc2)/(Rsun)
-         vals(7) = disc1
-         vals(8) = disc2
+         call locdiscontinuity(id,nz,sdisc,disc)
+         vals(3) = s% m(sdisc)/(Msun)
+         vals(4) = s% r(sdisc)/(Rsun)
 
-         names(9) = 'cz_eps_grav'
-	vals(9) = cz_eps_grav
+         names(5) = 'cz_eps_grav'
+         vals(5) = cz_eps_grav
     end subroutine data_for_extra_history_columns
 ...
 ```
