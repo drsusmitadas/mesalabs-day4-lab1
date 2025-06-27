@@ -188,9 +188,10 @@ Answer 3.1: The partial `run_star_extras.f90` solution is available [here](https
 **Task 3.2**: Check that the code compiles and execute a test run to ensure everything works fine for you. Once the plots appear, you may terminate the run using <span style="background-color:black"><span style="color:white">`Ctrl + C`</span></span>.
 
 Answer 3.2
+Navigate back to your main work directory and run:
 ```fortran
 cd ..
-./mk
+./clean && ./mk
 ./rn
 ``` 
 If it doesn't compile, double check that you cleanly inserted the file and removed the include line.
@@ -346,15 +347,22 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
 ```
 </details>
 
-**Task 3.7**: Compute the radius of the zone (in solar units) where the nuclear burning is at its peak and add it as a new column in your <span style="color:purple">``history.data``</span>.
+**Task 3.7**: After making changes to the <span style="color:purple">``run_star_extras.f90``</span>, always check that the code compiles.
+
+Answer 3.7
+```fortran
+./clean && ./mk
+``` 
+
+**Task 3.8**: Compute the radius of the zone (in solar units) where the nuclear burning is at its peak and add it as a new column in your <span style="color:purple">``history.data``</span>.
 
 <details>
-<summary>Hint 3.7a</summary>
+<summary>Hint 3.8a</summary>
 You already have the zone (k) where nuclear burning is at its peak. Simply include the radius coordinate of that zone using s% r(k)/Rsun following the steps as before. Remember to set how_many_extra_history_columns = 2 at this point.
 </details>
 
 <details>
-<summary>Hint 3.7b</summary>
+<summary>Hint 3.8b</summary>
 At this point, the partial solution to your run_star_extras.f90 file should look like this:
 
 ```fortran
@@ -400,23 +408,22 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
 ```
 </details>
 
-Answer 3.6 and 3.7: The partial `run_star_extras.f90` solution is available [here](https://drive.google.com/file/d/11ebUYXx0u6CzDqbkhs7258Q3VKpskswe/view?usp=sharing).
+Answer 3.6 and 3.8: The partial `run_star_extras.f90` solution is available [here](https://drive.google.com/file/d/11ebUYXx0u6CzDqbkhs7258Q3VKpskswe/view?usp=sharing).
 
-**Task 3.8**: After making changes to the <span style="color:purple">``run_star_extras.f90``</span>, always check that the code compiles.
+**Task 3.9**: After making changes to the <span style="color:purple">``run_star_extras.f90``</span>, always check that the code compiles.
 
-Answer 3.8
+Answer 3.9
 ```fortran
-cd ..
-./mk
+./clean && ./mk
 ``` 
 
 #### The mean molecular weight discontinuity
 
 We will now include a new Fortran subroutine ```locdiscontinuity``` in the <span style="color:purple">``run_star_extras.f90``</span> to identify the location of discontinuities in the mean molecular weight profile (with respect to the hydrogen abundance, *X*) of a stellar model. These discontinuities are important indicators of nuclear burning shells, convective boundaries, or mixing events in stellar evolution.
 
-**Task 3.9**: Compute the mass and the radius at the location of the mean molecular weight discontinuity.
+**Task 3.10**: Compute the mass and the radius at the location of the mean molecular weight discontinuity.
 
-Hint 3.9: If you'd like to attempt on your own, please do so. However, since this is a little advanced, we have added the answer directly for your ease. Here is the snippet of how your <span style="color:purple">``run_star_extras.f90``</span> should look like:
+Hint 3.10: If you'd like to attempt on your own, please do so. However, since this is a little advanced, we have added the answer directly for your ease. Here is the snippet of how your <span style="color:purple">``run_star_extras.f90``</span> should look like:
 ```fortran
 ...
 !calculate location of mean molecular weight discontinuity
@@ -489,7 +496,7 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
 ``` 
 
 <details>
-<summary>Explanation 3.9</summary>
+<summary>Explanation 3.10</summary>
 An explanation of the Fortran subroutine ```locdiscontinuity``` is included here:  
 <pre>
 
@@ -543,14 +550,13 @@ vals(4) = s% r(sdisc) / (Rsun)
 </pre>
 </details>
 
-Answer 3.9: The partial `run_star_extras.f90` solution is available [here](https://drive.google.com/file/d/1Jaa438bwLGL0Xhq9hmzQW-1pINd5gKeU/view?usp=sharing).
+Answer 3.10: The partial `run_star_extras.f90` solution is available [here](https://drive.google.com/file/d/1Jaa438bwLGL0Xhq9hmzQW-1pINd5gKeU/view?usp=sharing).
 
-**Task 3.10**: Once again, after making changes to the <span style="color:purple">``run_star_extras.f90``</span>, check that the code compiles.
+**Task 3.11**: Once again, after making changes to the <span style="color:purple">``run_star_extras.f90``</span>, check that the code compiles.
 
-Answer 3.10
+Answer 3.11
 ```fortran
-cd ..
-./mk
+./clean && ./mk
 ``` 
 
 Great work! You have now included most of the parameters that are required to reproduce Fig. 4 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
@@ -572,15 +578,15 @@ and search for <span style="color:purple">``cz_bot_mass``</span> or <span style=
 >[!TIP]
 > The default history columns are deﬁned in the `$MESA_DIR/star/private/history.f90 file`. If you inspect that ﬁle, you can use their deﬁnitions as templates for writing your own new history columns.
 
-**Task 3.11**: Compute $\epsilon_g$ at the base of the convection zone `cz_eps_grav` and add it as a new column in your <span style="color:purple">``history.data``</span>.
+**Task 3.12**: Compute $\epsilon_g$ at the base of the convection zone `cz_eps_grav` and add it as a new column in your <span style="color:purple">``history.data``</span>.
 
 <details>
-<summary>Hint 3.11a</summary>
+<summary>Hint 3.12a</summary>
 The eps_grav parameter can be accessed as s% eps_grav_ad(k)% val in run_star_extras.f90.
 </details>
 
 <details>
-<summary>Hint 3.11b</summary>
+<summary>Hint 3.12b</summary>
 Here is the snippet of code that can be used in the run_star_extras.f90:
 <pre>
  if (s% largest_conv_mixing_region /= 0) then
@@ -590,7 +596,7 @@ Here is the snippet of code that can be used in the run_star_extras.f90:
 </pre>
 </details>
 
-Hint 3.11c: Here is the snippet of how your <span style="color:purple">``run_star_extras.f90``</span> should look like:
+Hint 3.12c: Here is the snippet of how your <span style="color:purple">``run_star_extras.f90``</span> should look like:
 ``` fortran
 ...
 integer function how_many_extra_history_columns(id)
@@ -647,14 +653,13 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
     end subroutine data_for_extra_history_columns
 ...
 ```
-Answer 3.11: The final `run_star_extras.f90` solution is available [here](https://drive.google.com/file/d/1kmPblLxoV-c1iYybRYNLdWL6YntUyGTS/view?usp=drive_link).
+Answer 3.12: The final `run_star_extras.f90` solution is available [here](https://drive.google.com/file/d/1kmPblLxoV-c1iYybRYNLdWL6YntUyGTS/view?usp=drive_link).
 
-**Task 3.12**: As always, after making changes to the <span style="color:purple">``run_star_extras.f90``</span>, check that the code compiles.
+**Task 3.13**: As always, after making changes to the <span style="color:purple">``run_star_extras.f90``</span>, check that the code compiles.
 
-<span style="color:green">Answer 3.12</span>
+<span style="color:green">Answer 3.13</span>
 ```fortran
-cd ..
-./mk
+./clean && ./mk
 ``` 
 
 Now that you have all the parameters, you are essentially ready to start the run! If you're short on time, you may grab the final <span style="color:purple">``inlist_pgstar``</span> [here](https://drive.google.com/file/d/1cVRHEraQALU9bPpRVLdXdWOiwzcyrco3/view?usp=sharing) and jump straight to Section 5. However, if you're interested and have time, let's customise the <span style="color:purple">``inlist_pgstar``</span> in the next section for a better understanding of how the stellar structure/interiors change as the star evolves around the RGB bump.
