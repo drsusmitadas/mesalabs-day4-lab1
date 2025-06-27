@@ -43,24 +43,32 @@ The mkdir -p command is used to create a directory, including any necessary pare
 
 **Task 2.2**: We have prepared and provided the test case for you. Choose a particular stellar mass to work with from [here](https://docs.google.com/spreadsheets/d/1upyIGVzw4kU3YUe4aU03ZZqMWvgblQHmp2gIhZKgEJ8/edit?usp=sharing), download the corresponding `Minilab1_xpxx.zip` into the <span style="color:purple">``~/MESASS2025/Day4``</span> directory, unpack, and enter this work directory. 
 
-Answer 2.2
-```
+<details>
+<summary>Answer 2.2</summary>
+<pre>
 unzip Minilab1_xpxx.zip
 cd Minilab1_xpxx
-```
-You are now ready to start the run! Note that the rest of the guide demonstrates the particular case of a solar mass star; expect differences in numbers and plots depending on the stellar mass you're working with (at the end of this lab, we will compare the different evolutionary tracks computed as a function of stellar mass).
+</pre>
+</details>
+ 
+You are now ready to start the run! 
+
+> [!NOTE]
+> The rest of the guide demonstrates the particular case of a solar mass star; expect differences in numbers and plots depending on the stellar mass you're working with. At the end of this lab, we will compare the different evolutionary tracks computed as a function of stellar mass across the room!
 
 **Task 2.3**: Compile and run the provided work directory.
 
 This directory evolves a star from the start of the RGB bump upto the end of the RGB bump. Confirm that you can compile and run it. Two default PGPLOT windows (Hertzsprung-Russell Diagram and temparature-density profille) should appear. 
 
-Answer 2.3
+<details>
+<summary>Answer 2.3</summary>
 
 In your main work directory, run
-```
+<pre>
 ./mk
 ./rn
-```
+</pre>
+</details>
 
 This was a test run to ensure everything works fine for you; you do not need to complete the run at this point. When the two windows with plots appear, you may terminate the run using <span style="background-color:black"><span style="color:white">`Ctrl + C`</span></span>.
 
@@ -187,13 +195,17 @@ Answer 3.1: The partial `run_star_extras.f90` solution is available [here](https
 
 **Task 3.2**: Check that the code compiles and execute a test run to ensure everything works fine for you. Once the plots appear, you may terminate the run using <span style="background-color:black"><span style="color:white">`Ctrl + C`</span></span>.
 
-Answer 3.2
+<details>
+<summary>Answer 3.2</summary>
+
 Navigate back to your main work directory and run:
-```fortran
+<pre>
 cd ..
 ./clean && ./mk
 ./rn
-``` 
+</pre>
+</details>
+
 If it doesn't compile, double check that you cleanly inserted the file and removed the include line.
 
 > [!NOTE]
@@ -349,10 +361,13 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
 
 **Task 3.7**: After making changes to the <span style="color:purple">``run_star_extras.f90``</span>, always check that the code compiles.
 
-Answer 3.7
-```fortran
+<details>
+<summary>Answer 3.7</summary>
+
+<pre>
 ./clean && ./mk
-``` 
+</pre>
+</details>
 
 **Task 3.8**: Compute the radius of the zone (in solar units) where the nuclear burning is at its peak and add it as a new column in your <span style="color:purple">``history.data``</span>.
 
@@ -412,10 +427,13 @@ Answer 3.6 and 3.8: The partial `run_star_extras.f90` solution is available [her
 
 **Task 3.9**: After making changes to the <span style="color:purple">``run_star_extras.f90``</span>, always check that the code compiles.
 
-Answer 3.9
-```fortran
+<details>
+<summary>Answer 3.9</summary>
+
+<pre>
 ./clean && ./mk
-``` 
+</pre>
+</details>
 
 #### The mean molecular weight discontinuity
 
@@ -554,10 +572,13 @@ Answer 3.10: The partial `run_star_extras.f90` solution is available [here](http
 
 **Task 3.11**: Once again, after making changes to the <span style="color:purple">``run_star_extras.f90``</span>, check that the code compiles.
 
-Answer 3.11
-```fortran
+<details>
+<summary>Answer 3.11</summary>
+
+<pre>
 ./clean && ./mk
-``` 
+</pre>
+</details>
 
 Great work! You have now included most of the parameters that are required to reproduce Fig. 4 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
 
@@ -657,10 +678,13 @@ Answer 3.12: The final `run_star_extras.f90` solution is available [here](https:
 
 **Task 3.13**: As always, after making changes to the <span style="color:purple">``run_star_extras.f90``</span>, check that the code compiles.
 
-<span style="color:green">Answer 3.13</span>
-```fortran
+<details>
+<summary>Answer 3.13</summary>
+
+<pre>
 ./clean && ./mk
-``` 
+</pre>
+</details>
 
 Now that you have all the parameters, you are essentially ready to start the run! If you're short on time, you may grab the final <span style="color:purple">``inlist_pgstar``</span> [here](https://drive.google.com/file/d/1cVRHEraQALU9bPpRVLdXdWOiwzcyrco3/view?usp=sharing) and jump straight to Section 5. However, if you're interested and have time, let's customise the <span style="color:purple">``inlist_pgstar``</span> in the next section for a better understanding of how the stellar structure/interiors change as the star evolves around the RGB bump.
 
@@ -882,10 +906,12 @@ You're now finally ready to start the run!
 
 **Task 5.1**: Start the run
 
-Answer 5.1
-```fortran
+<details>
+<summary>Answer 5.1</summary>
+<pre>
 ./rn
-``` 
+</pre>
+</details>
 
 The customised PGPLOT window should look something like this:
 
@@ -900,20 +926,23 @@ After the run terminates, you're ready to plot and reproduce the figures of [Hek
 
 **Task 5.2**: Use this Google Colab [notebook](https://colab.research.google.com/drive/1bc6Wkne8K6Abciy7aYEnBawy9eir7XZW?usp=sharing) to upload your <span style="color:purple">``history.data``</span> and plot (i) the evolution around the RGB bump of the location of the base of the convection zone, the peak of the burning, and the mean molecular weight discontinuity as a function of mass coordinate and radius coordinate and compare your output plot with Fig. 4 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
 
-Answer 5.2:
+<details>
+<summary>Answer 5.2</summary>
 
 ![Fig.5](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/output1.png)
 
 *Fig.5: The evolution around the bump of the location of the base of the convection zone, the peak of burning and the mean molecular weight discontinuity as a function of mass and radius coordinate.*
-
+</details>
 
 **Task 5.3**: Using the same Google Colab notebook, plot the variation of $\epsilon_g$  at the base of the convection zone as a function of age and compare your output plot with Fig. 6 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
 
-Answer 5.3:
+<details>
+<summary>Answer 5.3</summary>
 
 ![Fig.6](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/output2.png)
 
 *Fig.6: The variation of $`\epsilon_g`$ at the base of the convection zone as a function of age.*
+</details>
 
 **Task 5.4**: Using the same Google Colab notebook, obtain the $\log(L)$ and $\log(T)$ columns of your `history.data` in a new output file called `HR.dat`, upload the two columns in the excel sheet [here](https://docs.google.com/spreadsheets/d/1upyIGVzw4kU3YUe4aU03ZZqMWvgblQHmp2gIhZKgEJ8/edit?gid=1458172644#gid=1458172644) and we will compare the difference in the evolution of the RGB bumps for different stellar masses across the room!
 
