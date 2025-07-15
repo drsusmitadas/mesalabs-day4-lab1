@@ -81,5 +81,5 @@ jobs:
         shell: bash
         env:
           SSH_KEY: ${{secrets.MESA_LABS_KEY}}
-      - run: 'echo "4d-star.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID8XAj3myqtRiGt/MwBFWvwCeBWEXMqDAwS+lLo+Km0R" > ~/.ssh/known_hosts'
+      - run: 'mkdir -p ~/.ssh/ && echo "4d-star.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID8XAj3myqtRiGt/MwBFWvwCeBWEXMqDAwS+lLo+Km0R" > ~/.ssh/known_hosts'
       - run: 'ssh -i key mesa-school-leuven@4d-star.org'
