@@ -58,9 +58,9 @@ model. Make a new empty directory called lab1, go into
 the empty directory and copy over the default MESA work directory:
 
 ```bash
-    mkdir lab1
-    cd lab1
-    cp -r $MESA_DIR/star/work/* .
+mkdir lab1
+cd lab1
+cp -r $MESA_DIR/star/work/* .
 ```
 
 Do a quick ``ls`` to check what is included in this default work directory.

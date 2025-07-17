@@ -59,7 +59,7 @@ in the *star_job* section. Since we do not need to start with
 a pre-main-sequence model anymore, we need to delete or comment
 out (by putting an "!" in front of the text) the following lines:
 
-```
+```fortran
   ! begin with a pre-main sequence model
     create_pre_main_sequence_model = .true.
   ! reducing the number of relaxation steps to decrease computation time
@@ -71,7 +71,7 @@ Instead, you need to comment out these lines by yourself!
 We also no longer need to save the model at the end of the run, 
 meaning that we can also delete or comment out the following lines:
 
-```
+```fortran
   ! save a model and photo at the end of the run
     save_model_when_terminate = .true.
     save_photo_when_terminate = .true.
@@ -82,7 +82,7 @@ Furthermore, since we do want to start from a previously saved
 model, we do not want to fix the initial timesteps and thus 
 remove or comment out the lines: 
 
-```
+```fortran
   ! Set the initial time step to 1 year
     set_initial_dt = .true.
     years_for_initial_dt = 1d0
@@ -109,7 +109,7 @@ Can you find on the website any content that is related to **load** something?
 {{< details title="Show answer" closed="true" >}}
 
 Add to your *star_job* section in the *inlist_project* the following lines:
-```
+```fortran
 ! loading the pre-saved 5 Msun model
     load_saved_model = .true.
     load_model_filename = 'M5_Z0014_fov030_f0ov0005_TAMS.mod'
@@ -127,7 +127,7 @@ issues when loading and running the model.
 The first controls that can be removed or commented out are, the ones defining 
 the initial conditions at the beginning of the evolution:
 	
-```
+```fortran
   ! starting specifications
 
     initial_mass = 5 ! in Msun units
@@ -151,7 +151,7 @@ Look in the *controls* panel under *References and Defaults* in the
 {{< details title="Show answer" closed="true" >}}
 
 Replace the lines:
-```
+```fortran
 ! stop when the center mass fraction of h1 drops below this limit
     xa_central_lower_limit_species(1) = 'h1'
     xa_central_lower_limit(1) = 1d-6
@@ -159,7 +159,7 @@ Replace the lines:
 
 with 
 
-```
+```fortran
 ! stop when the center mass fraction of he4 drops below this limit
     xa_central_lower_limit_species(1) = 'he4'
     xa_central_lower_limit(1) = 1d-5
@@ -194,7 +194,7 @@ in which we only have the controls that we want to edit for
 both files. To do that, we can modify the *inlist* file. In 
 the *controls* section, add the following lines:
 
-```
+```fortran
   ! adding an external file where we can add additional controls
     read_extra_controls_inlist(2) = .true.
     extra_controls_inlist_name(2) = 'inlist_extra'
@@ -204,7 +204,7 @@ This allows MESA to read *inlist_project* first, and then *inlist_extra*. Note t
     
 Similarly, in the *pgstar* section in *inlist*, add:
 
-```
+```fortran
   ! adding an external file where we can add additional controls
     read_extra_pgstar_inlist(2) = .true.
     extra_pgstar_inlist_name(2) = 'inlist_extra'
@@ -221,7 +221,7 @@ terminal:
 To tell MESA where to read the new controls, we need to add 
 in *inlist_extra* a controls and a pgstar section:
 
-```
+```fortran
 	&controls
 	  ! Here we can add our controls
 	   
@@ -255,14 +255,14 @@ let us create for each run a separate output folder for the
 LOGS and the png files. To change the default storage folders
 we can add in the *controls* section in the *inlist_extra*:
 
-```
+```fortran
   ! change the LOGS directory
     log_directory = 'output_no_overshoot/LOGS'
 ```
 
 and in the *pgstar* section in the *inlist_extra*:
 
-```
+```fortran
   ! change the png directory
     Grid1_file_dir = 'output_no_overshoot/png' 
 ```
@@ -295,7 +295,7 @@ namely $f_\text{ov} = 0.1$ and $f_{0,\,\text{ov}} = 0.005$. In lab1, we added
 overshooting on top of the hydrogen burning core by 
 using the following lines:
 
-```
+```fortran
   ! mixing
      overshoot_scheme(1) = 'step'
      overshoot_zone_type(1) = 'burn_H'
@@ -329,7 +329,7 @@ Check the controls for overshooting on [here](https://docs.mesastar.org/en/24.08
 {{< details title="Show answer" closed="true" >}}
 
 In the end, you should have in the *controls* section of your *inlist_extra* lines that are similar to:
-```
+```fortran
 ! mixing
      overshoot_scheme(2) = 'step'
      overshoot_zone_type(2) = 'burn_He'
@@ -346,7 +346,7 @@ such that we are not overwriting the outputs from the last run.
 We can do that in the *inlist_extra* by overwriting the directory
 commands with:
 
-```
+```fortran
   ! change the LOGS directory
     log_directory = 'output_overshoot/LOGS'
     
@@ -413,7 +413,7 @@ By limiting the Brunt, one imposes that overshooting shouldn’t be present in r
 
 To turn on the frequency in MESA use the following lines in your *controls* section of your *inlist_extra*:
 
-```
+```fortran
    calculate_Brunt_B = .true.
    calculate_Brunt_N2 = .true.
 ```
@@ -423,20 +423,20 @@ set this threshold to a higher value to prevent overshooting in regions
 with a strong chemical gradient. In your *controls* section in your 
 *inlist_extra* add:
 
-```
+```fortran
     overshoot_brunt_B_max = 1d-1   
 ```
     
 and change the output directories to:
 
-```
+```fortran
   ! change the LOGS directory
     log_directory = 'output_overshoot_brunt/LOGS'
 ```
     
 and:
 
-```
+```fortran
   ! change the png directory
     Grid1_file_dir = 'output_overshoot_brunt/png'
 ```
@@ -476,7 +476,7 @@ So let's modify our *inlist_pgstar* such that we can see how the gradients evolv
 
 At first, we need to make more space for an additional plot. In the *inlist_pgstar* 
 You can see that the grids the plots are shown on have 3 columns and 2 rows:
-```
+```fortran
 	Grid1_num_cols = 3 ! divide plotting region into this many equal width cols
 	Grid1_num_rows = 2 ! divide plotting region into this many equal height rows
 ```
@@ -508,7 +508,7 @@ size is determined by "Grid1_plot_rowspan" and "Grid1_plot_colspan".
 
 {{< details title="Show answer" closed="true" >}}
 
-```
+```fortran
 	Grid1_plot_name(5) = 'History_Panels1'
 	Grid1_plot_row(5) = 1          ! number from 1 at top
 	Grid1_plot_rowspan(5) = 1       ! plot spans this number of rows
@@ -529,7 +529,7 @@ To investigate how the adiabatic and radiative temperature gradients change in t
 star, we need to add a profile panel. This can be done by adding the following code
 in the upper part of your *inlist_pgstar*:
 
-```
+```fortran
 	! Profile Panel
 	Profile_Panels1_win_flag = .false. ! we do not want an extra window to open up.
 
@@ -553,7 +553,7 @@ The adiabatic temperature gradient in MESA is called "grada", and the radiative 
 {{< /details >}}
 
 Now that these are saved, pgstar can access them. So let's include them using
-```
+```fortran
 	Profile_Panels1_yaxis_name(1) = 'grada'
 	Profile_Panels1_other_yaxis_name(1) = 'gradr'
 ```
@@ -561,11 +561,11 @@ Now that these are saved, pgstar can access them. So let's include them using
 And lastly, before we can investigate how these gradients evolve in our models,
 we need to tell the grid, that we now want to plot a 6th plot and where to put it.
 To add another plot, we need to change
-```
+```fortran
 	Grid1_num_plots = 5 ! <= 10
 ```
 to 
-```
+```fortran
 	Grid1_num_plots = 6 ! <= 10
 ```
 
@@ -586,7 +586,7 @@ This is the 6th plot we add, so make sure that you also use it as (6).
 
 {{< details title="Show answer" closed="true" >}}
 
-```
+```fortran
 	Grid1_plot_name(6) = 'Profile_Panels1'
 	Grid1_plot_row(6) = 1          ! number from 1 at top
 	Grid1_plot_rowspan(6) = 1       ! plot spans this number of rows
@@ -601,7 +601,7 @@ You can now start your model and check if the plot shows up.
 ./rn
 ```
 As you might see, the history panels and the profile panels are overlapping. For a better representation, you can adjust their paddings at the top, left, right, and bottom via 
-```
+```fortran
 	Grid1_plot_pad_top(6) = x     
 	Grid1_plot_pad_bot(6) = x     
 	Grid1_plot_pad_left(6) = x    
@@ -613,7 +613,7 @@ until you find a good fit on your computer.
 {{< details title="Show answer" closed="true" >}}
 
 In our case, a good plot was found using:
-```
+```fortran
 	Grid1_plot_pad_top(5) = 0.03     
 	Grid1_plot_pad_bot(5) = 0.03     
 	Grid1_plot_pad_right(5) = 0.03     
@@ -626,7 +626,7 @@ In our case, a good plot was found using:
 {{< /details >}}
 
 Maybe some of you already noted, but the gradients scale differently, which makes identifying regions where convection should occur ($\nabla_\text{rad} > \nabla_\text{ad}$) very hard. This can be quickly fixed by adding the same minima and maxima for both axes, like this:
-```	
+```fortran
 	Profile_Panels1_ymin(1) = 0 
 	Profile_Panels1_ymax(1) = 0.5
 	Profile_Panels1_other_ymin(1) = 0 
