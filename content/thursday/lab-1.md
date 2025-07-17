@@ -953,6 +953,14 @@ After the run terminates, you're ready to plot and reproduce the figures of [Hek
 
 **Task 5.4**: Using the same Google Colab notebook, obtain the $\log(L)$ and $\log(T)$ columns of your `history.data` in a new output file called `HR.dat`, upload the two columns in the excel sheet [here](https://docs.google.com/spreadsheets/d/1upyIGVzw4kU3YUe4aU03ZZqMWvgblQHmp2gIhZKgEJ8/edit?gid=1458172644#gid=1458172644) and we will compare the difference in the evolution of the RGB bumps for different stellar masses across the room!
 
+<details>
+<summary>Answer 5.4</summary>
+
+![Fig.7](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/Computed_History_Files/HRD_RGBB.png)
+
+*Fig.7: The evolution of the RGB bumps for different stellar masses.*
+</details>
+
 ---
 
 *Acknowledgements:* This guide includes some material from previous MESA Summer Schools, in particular, from https://jschwab.github.io/mesa-2021/ and https://billwolf.space/projects/mesa-ss-2022/.
