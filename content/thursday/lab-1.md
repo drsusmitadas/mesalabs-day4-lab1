@@ -928,7 +928,8 @@ After the run terminates, you're ready to plot and reproduce the figures of [Hek
 > [!TIP]
 > At the end of the run, take a look at the HR diagram. Was the stopping condition actually applied?
 
-If you were unable to complete the run or would like to verify your history.data output file, you may grab the pre-computed output history files corrspondingto your chosen mass from [here](https://github.com/drsusmitadas/mesalabs-day4-lab1/tree/main/static/thursday/Computed_History_Files).
+> [!NOTE]
+> If you were unable to complete the run or would like to verify your <span style="color:purple">``history.data``</span> output file, you may grab the pre-computed output history files corrsponding to your chosen mass from [here](https://github.com/drsusmitadas/mesalabs-day4-lab1/tree/main/static/thursday/Computed_History_Files).
 
 **Task 5.2**: Use this Google Colab [notebook](https://colab.research.google.com/drive/1bc6Wkne8K6Abciy7aYEnBawy9eir7XZW?usp=sharing) to upload your <span style="color:purple">``history.data``</span> and plot (i) the evolution around the RGB bump of the location of the base of the convection zone, the peak of the burning, and the mean molecular weight discontinuity as a function of mass coordinate and radius coordinate and compare your output plot with Fig. 4 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
 
