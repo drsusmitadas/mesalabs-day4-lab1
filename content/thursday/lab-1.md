@@ -27,7 +27,7 @@ The primary purpose of this minilab is to get you more familiar with some topics
 
 If you're new to Fortran, here is a short document with [some examples](https://jschwab.github.io/mesa-2021/fortran.html). Don't let yourself get hung up by the Fortran; quickly ask your classmates and the TAs for help! 
 
-Every task comes with a hint and/or an answer. However, if you have prior experience with MESA, do attempt to complete the task on your own. The complete solution is available [here](https://drive.google.com/drive/folders/1zehjyoJw8J5ts1O2PLdwiWxskVgbPA2G?usp=sharing).
+Every task comes with a hint and/or an answer. However, if you have prior experience with MESA, do attempt to complete the task on your own. The complete solution is available [here](https://github.com/drsusmitadas/mesalabs-day4-lab1/tree/main/static/thursday/CompleteSolution)).
 
 ## Section 2: Getting Started
 
