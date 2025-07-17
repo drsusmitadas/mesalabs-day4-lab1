@@ -1,5 +1,4 @@
 ---
-weight: 1
 author: Tryston Raecke (Lead TA), Beatriz Bordadágua, Joey Mombarg, Philip Mocz
 math: true
 ---

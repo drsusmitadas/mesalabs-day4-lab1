@@ -1,5 +1,4 @@
 ---
-weight: 1
 author: Beatriz Bordadágua (Lead TA), Joey Mombarg, Philip Mocz, Tryston Raecke
 ---
 
