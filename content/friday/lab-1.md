@@ -144,8 +144,7 @@ We can easily add these estimators to the MESA output as a history file. We will
 |:--|
 | 1. Edit the `how_many_extra_history_columns` section of your `src/run_star_extras.f90` file to tell it we are going to add two new columns. |
 
-<details>
-<summary>ℹ️ SOLUTION</summary>
+{{< details title="ℹ️ SOLUTION" closed="true" >}}
 
 First, edit the function `how_many_extra_history_columns` to tell it we are going to add two new columns.
 
@@ -160,7 +159,7 @@ First, edit the function `how_many_extra_history_columns` to tell it we are goin
         how_many_extra_history_columns = 2 !! change this line
       end function how_many_extra_history_columns
 ```
-</details>
+{{< /details >}}
 
 
 ##### delta_omega_p
@@ -197,8 +196,7 @@ When you pass arrays to the `integrate_r_` fortran function, you will need to sp
 
 {{< /details >}}
 
-<details>
-<summary>ℹ️ SOLUTION</summary>
+{{< details title="ℹ️ SOLUTION" closed="true" >}}
 
 Within `data_for_extra_history_columns`:
 
@@ -226,7 +224,7 @@ Within `data_for_extra_history_columns`:
       end subroutine data_for_extra_history_columns
 ```
 
-</details>
+{{< /details >}}
 
 ##### delta_omega_g
 
@@ -236,15 +234,13 @@ Now lets implement $\delta \Omega_g$. To calculate this term, we will need to in
 logical, allocatable :: mask(:)
 ```
 
-<details>
-<summary>❓ Q:What is a mask array?</summary>
+{{< details title="❓ Q:What is a mask array?" closed="true" >}}
 In our case, mask arrays are a type of array filled with booleans (`True`s and `False`s) that one can use to "slice" specific indices of an array. For example, if your mask array was [True,False,True,False], then you could use this mask to select the 1st and 3rd element of another array with a length of 4.
-</details>
+{{< /details >}}
 
-<details>
-<summary>❓ Q:Why don't we know how big the mask will be?</summary>
+{{< details title="❓ Q:Why don't we know how big the mask will be?" closed="true" >}}
 Since MESA doesn't use a static number of zones across the evolution of a model, the total size of this array will change at different timesteps.
-</details>
+{{< /details >}}
 
 Now, before we define $\delta \Omega_g$ directly, we will need to start by allocating and deallocating memory to this mask array that we just made. We will instruct it to make the array a length equivalent to the number of zones in the model. Add the following lines to the `data_for_extra_history_columns` subroutine:
 
@@ -262,13 +258,11 @@ Now we can define the elements of the mask array itself using a logical expressi
 mask = (s% brunt_N2(1:nz) > 1d-10) .and. (s% q(1:nz) < .95d0)
 ```
 
-<details>
-<summary>❓ Q:What's the deal with the $q < 0.95$ condition?</summary>
+{{< details title="❓ Q:What's the deal with the $q < 0.95$ condition?" closed="true" >}}
 As you'll see near the end of the lab when you look at something called a propagation diagram, there is a small region on the surface of red giant stars where the Brunt-Väisälä frequency increases again. However, this region is not really part of the g-mode cavity in nature (which is what we're really isolating with $N^2>0$), so we avoid it directly here by avoiding the outer 5 percent of the star's mass (the surface).
-</details>
+{{< /details >}}
 
-<details>
-<summary>❓ Q:Shouldn't $N^2$ always be positive?</summary>
+{{< details title="❓ Q:Shouldn't $N^2$ always be positive?" closed="true" >}}
 Not necessarily. 
 <!--, given how it is defined. One can show that these two definitions for the Brunt-Väisälä frequency are equivalent:
 $$N^2 = g \left({1 \over \Gamma_1 P}{\mathrm d P \over d r} - {1 \over \rho} {\mathrm d \rho \over \mathrm d r}\right) = -{g \delta \over H_P}\left(\nabla - \nabla_\mathrm{ad} - {\varphi \over \delta}\nabla_\mu\right).$$
@@ -276,14 +270,13 @@ Here $g$ is the surface gravity, $H_P = |{\mathrm d \log P} / {\mathrm d r}|^{-1
 Roughly speaking, as a matter of definition, $N^2$ is proportional to the Ledoux discriminant: i.e. the quantity whose sign is used in the Ledoux criterion for deciding where convection is occurring in the star. As such, $N^2$ is positive only in parts of the star that are radiatively stratified (i.e. where convection isn't happening), allowing $N$ to be treated as an oscillation frequency. There, it is the natural frequency of buoyancy oscillations --- the same kind as you would see in a cork bobbing up and down on the surface of a pond!
 
 Suppose now we were to describe such oscillations locally with a complex phasor, $A e^{\pm i N t}$. What happens when $N$ is purely imaginary (as it would be in convection zones, where $N^2$ is negative)? This oscillatory behaviour becomes exponential divergence or decay, with a characteristic timescale $\tau_\text{conv} = 1/\sqrt{|N^2|}$. This is, in fact, how MESA internally defines the convective timescale.
-</details>
+{{< /details >}}
 
 Now with this mask defined, you should have all the pieces you need in order to code up the JWKB estimator for $\delta \Omega_g$. Note that for $N$ you will need to take the square root of `brunt_N2`.
 
-<details>
-<summary>❓ Q:Can I use `brunt_N` instead of `sqrt(brunt_N2)`?</summary>
+{{< details title="❓ Q:Can I use `brunt_N` instead of `sqrt(brunt_N2)`?" closed="true" >}}
 The short answer is yes, but that's only because we've already masked out the $N^2 > 0$ region. `brunt_N` in MESA is defined as `sqrt(abs(brunt_N2))`, so it would give you an incorrect value of $N$ in regions where $N^2 < 0$.
-</details>
+{{< /details >}}
 
 |📋 TASK |
 |:--|
@@ -295,12 +288,7 @@ Is your mask allocation and deallocation in the proper order around using the va
 
 {{< /details >}}
 
-|ℹ️ SOLUTION BELOW |
-|:--|
-
-
-<details>
-<summary>ℹ️ SOLUTION</summary>
+{{< details title="ℹ️ SOLUTION" closed="true" >}}
 
 Within `data_for_extra_history_columns`:
 
@@ -337,7 +325,7 @@ Within `data_for_extra_history_columns`:
       end subroutine data_for_extra_history_columns
 ```
 
-</details>
+{{< /details >}}
 
 |ℹ️ INFO |
 |:--|
@@ -404,10 +392,9 @@ After your run is completed, open up your history file and find the model closes
 |:--|
 | As everyone finishes running their models and inputting their values, what do you notice about the values you've input into the google sheet? Compare both to the different `nu_max` values but also to the different initial rotation rates. |
 
-<details>
-<summary>ℹ️ ANSWER</summary>
+{{< details title="ℹ️ ANSWER" closed="true" >}}
 You should notice at least these things: 1) The `delta_nu` of each model should decrease with decreasing `nu_max`. 2) The surface rotation rates should decrease as `nu_max` decreases (age increases, radius increases). 3) The core and surface rotation rates should be different from each other.
-</details>
+{{< /details >}}
 
 ## Optional Bonus: Output GYRE files at a specific numax
 
@@ -433,11 +420,10 @@ Some controls parameters that might be helpful to you are `write_profiles_flag` 
 
 Counterintuitively, you will need to change your profile_interval to 1.
 
+This is because the `profile_interval` will still matter even if you tell MESA to output a file in run_star_extras. So, for example if the profile closest to your $\nu_\text{max}$ is model number 21, and your `profile_interval` is 5, then MESA will still skip the output of model number 21 regardless of what you tell it in `run_star_extras`.
 {{< /details >}}
-| This is because the `profile_interval` will still matter even if you tell MESA to output a file in run_star_extras. So, for example if the profile closest to your $\nu_\text{max}$ is model number 21, and your `profile_interval` is 5, then MESA will still skip the output of model number 21 regardless of what you tell it in `run_star_extras`. |
 
-<details>
-<summary>ℹ️ SOLUTION</summary>
+{{< details title="ℹ️ SOLUTION" closed="true" >}}
 
 In the `&controls` section of `inlist_1M_star`:
 
@@ -488,7 +474,7 @@ Note that this hard-codes a tolerance of 2.5 muHz to the numax that is output. Y
 
 As always there are many methods to doing this, so your code may not look exactly like this.
 
-</details>
+{{< /details >}}
 
 ## Full Solutions
 
