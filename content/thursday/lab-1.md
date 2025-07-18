@@ -925,7 +925,7 @@ After the run terminates, you're ready to plot and reproduce the figures of [Hek
 **Task 5.2**: Use this Google Colab [notebook](https://colab.research.google.com/drive/1bc6Wkne8K6Abciy7aYEnBawy9eir7XZW?usp=sharing) to upload your <span style="color:purple">``history.data``</span> and plot (i) the evolution around the RGB bump of the location of the base of the convection zone, the peak of the burning, and the mean molecular weight discontinuity as a function of mass coordinate and radius coordinate and compare your output plot with Fig. 4 of [Hekker et al. (2020)](https://ui.adsabs.harvard.edu/abs/2020MNRAS.492.5940H/abstract).
 
 > [!WARNING]
-> The axes limits in the Google Colab notebook are customised for the case of $1M_{\odot}$; please change axes limits according to your chosen stellar mass to ``zoom in'' for better visualisation. There may be numerical artefacts in certain cases which result in a horizontal line at $y=0$; you may safely ignore that.
+> The axes limits in the Google Colab notebook are customised for the case of $1M_{\odot}$; please change axes limits according to your chosen stellar mass to "zoom in" for better visualisation. There may be numerical artefacts in certain cases which result in a horizontal line at $y=0$; you may safely ignore that.
 
 <details>
 <summary>Answer 5.2</summary>
