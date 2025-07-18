@@ -111,28 +111,19 @@ There are three inlists- inlist, inlist_project and inlist_pgstar. The main inli
 
 **Task 2.5**: Open the prepared ``inlist_project`` and answer the following questions: (i) where does the model start its run from? (ii) what is the terminating condition used? (iii) what is the metallicity of the model computed? 
 ``` fortran 
-! inlist to evolve a 1 solar mass star
-! For the sake of future readers of this file (yourself included),
-! ONLY include the controls you are actually using. DO NOT include
-! all of the other controls that simply have their default values.
-
 &star_job
-	! begin with a pre-main sequence model
-	create_pre_main_sequence_model = .false.
-
 	! begin with saved model
 	load_saved_model = .true.
-	load_model_filename = 'start_RGBB.mod' ! RGB bump (RGBB)
-
+	load_model_filename = 'start_RGBB.mod'
 
 	! save a model at the end of the run
 	save_model_when_terminate = .true.
-	save_model_filename = 'end_RGBB.mod' ! RGB bump (RGBB)
+	save_model_filename = 'end_RGBB.mod'
 	
 	! display on-screen plots
 	pgstar_flag = .true.
 	
-	!pause_before_terminate=.true.
+	pause_before_terminate=.true.
 	
 / !end of star_job namelist
 
