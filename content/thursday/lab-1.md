@@ -43,7 +43,7 @@ cd ~/MESASS2025/Day4
 The mkdir -p command is used to create a directory, including any necessary parent directories. This means that if the parent directory does not exist, mkdir -p will create it automatically.
 </details>
 
-**Task 2.2**: We have prepared and provided the test case for you. Choose a particular stellar mass to work with from [here](https://docs.google.com/spreadsheets/d/1upyIGVzw4kU3YUe4aU03ZZqMWvgblQHmp2gIhZKgEJ8/edit?usp=sharing), download the corresponding `Minilab1_xpxx.zip` into the <span style="color:purple">``~/MESASS2025/Day4``</span> directory, unpack, and enter this work directory. 
+**Task 2.2**: We have prepared and provided the test case for you. Discuss with your team members and choose a particular stellar mass to work with from [here](https://docs.google.com/spreadsheets/d/1upyIGVzw4kU3YUe4aU03ZZqMWvgblQHmp2gIhZKgEJ8/edit?usp=sharing), download the corresponding `Minilab1_xpxx.zip` into the <span style="color:purple">``~/MESASS2025/Day4``</span> directory, unpack, and enter this work directory. 
 
 <details>
 <summary>Answer 2.2</summary>
