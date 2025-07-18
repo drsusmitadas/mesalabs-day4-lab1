@@ -165,6 +165,9 @@ There are three inlists- inlist, inlist_project and inlist_pgstar. The main inli
 (iii) The metallicity is Z=0.02. Note that Zbase is the base metallicity for the opacity tables, typically set to the same initial metallicity of the model, initial_z.
 </details>
 
+> [!TIP]
+> If you're working on a slower machine, consider setting <span style="color:purple">``mesh_delta_coeff = 2.0d0``</span> and <span style="color:purple">``time_delta_coeff = 2d0``</span> in the <span style="color:purple">``&controls``</span> section of the <span style="color:purple">``inlist_project``</span>. A larger value in both increases the max allowed deltas and decreases the number of grid points, thereby reducing the run time.
+
 ## Section 3: Using Run Star Extras
 
 To customize <span style="color:purple">``run_star_extras.f90``</span>, navigate to the <span style="color:purple">``src``</span> directory that resides within your working directory and open <span style="color:purple">``run_star_extras.f90``</span> in your text editor of choice. The stock version of <span style="color:purple">``run_star_extras.f90``</span> is quite boring. It "includes" another file which holds the default set of routines. 
