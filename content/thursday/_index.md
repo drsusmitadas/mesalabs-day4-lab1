@@ -5,10 +5,10 @@ toc: false
 ---
 
 {{< cards >}}
- {{< card link="morning-session" title="Introducing MESA" >}}
+ {{< card link="morning-session" title="Best practices" >}}
 {{< /cards >}}
 
-# Day 4 topic
+# Red giant evolution
 {{< cards >}}
  {{< card link="lab-1" title="Lab 1" >}}
  {{< card link="lab-2" title="Lab 2" >}}

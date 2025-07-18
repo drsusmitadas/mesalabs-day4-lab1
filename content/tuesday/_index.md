@@ -8,7 +8,7 @@ toc: false
  {{< card link="morning-session" title="Extending MESA with run_star_extras" >}}
 {{< /cards >}}
 
-# Day 2 topic
+# Rotating stellar structure and evolution models: 1D vs 2D
 {{< cards >}}
  {{< card link="lab-1" title="Lab 1" >}}
  {{< card link="lab-2" title="Lab 2" >}}

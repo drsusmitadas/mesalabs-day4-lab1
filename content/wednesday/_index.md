@@ -8,7 +8,7 @@ toc: false
  {{< card link="morning-session" title="Introducing the binary module" >}}
 {{< /cards >}}
 
-# Day 3 topic
+# Massive stars in binaries
 {{< cards >}}
 {{< card link="lab-1" title="Lab 1" >}}
 {{< card link="lab-2" title="Lab 2" >}}
