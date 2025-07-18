@@ -293,7 +293,7 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
 
 ---
 
-**Task 3.6**: Compute the mass of the zone (in solar units) where the nuclear burning is at its peak and add it as a new column in your <span style="color:purple">``history.data``</span>.
+**Task 3.6**: Compute the mass of the zone (in solar units) where the nuclear burning is at its maximum value and add it as a new column in your <span style="color:purple">``history.data``</span>.
 
 <details>
 <summary>Hint 3.6a</summary>
@@ -371,7 +371,7 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
 </pre>
 </details>
 
-**Task 3.8**: Compute the radius of the zone (in solar units) where the nuclear burning is at its peak and add it as a new column in your <span style="color:purple">``history.data``</span>.
+**Task 3.8**: Compute the radius of the zone (in solar units) where the nuclear burning is at its maximum value and add it as a new column in your <span style="color:purple">``history.data``</span>.
 
 <details>
 <summary>Hint 3.8a</summary>
