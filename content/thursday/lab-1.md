@@ -187,7 +187,7 @@ in its entirety into <span style="color:purple">``run_star_extras.f90``</span>.
 The command to insert the contents of a file in emacs is C-x i <filename>, in vim is :r <filename>, or you can just copy and paste.
 </details>
 
-Answer 3.1: The partial `run_star_extras.f90` solution is available [here](https://drive.google.com/file/d/1rofsfBFIr96HJ7GuuQq98qhj9Djm_Gs1/view?usp=sharing).
+Answer 3.1: The partial `run_star_extras.f90` solution is available [here](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/PartialSolutions/run_star_extras_answer3p1.f90).
 
 **Task 3.2**: Check that the code compiles and execute a test run to ensure everything works fine for you. Once the plots appear, you may terminate the run using <span style="background-color:black"><span style="color:white">`Ctrl + C`</span></span>.
 
@@ -238,7 +238,7 @@ Identify what is the right parameter (cz_bot_mass) and uncomment (that is, remov
 Identify what is the right parameter (cz_bot_radius) and uncomment to include it in the output file.
 </details>
 
-Answer 3.3 and 3.4: At this point, your `history_columns.list` should look like [this](https://drive.google.com/file/d/1vz6Ai8chWmETVxcttmp3ev4keEkBns4o/view?usp=sharing).
+Answer 3.3 and 3.4: At this point, your `history_columns.list` should look like [this](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/PartialSolutions/history_columns_answer3p4.list).
 
 **Task 3.5**: While you're at it, check if there exists default history columns for peak of the burning or the mean molecular weight in <span style="color:purple">``history_columns.list``</span>.
 
@@ -419,7 +419,7 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
 ```
 </details>
 
-Answer 3.6 and 3.8: The partial `run_star_extras.f90` solution is available [here](https://drive.google.com/file/d/11ebUYXx0u6CzDqbkhs7258Q3VKpskswe/view?usp=sharing).
+Answer 3.6 and 3.8: The partial `run_star_extras.f90` solution is available [here](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/PartialSolutions/run_star_extras_answer3p8.f90).
 
 **Task 3.9**: After making changes to the <span style="color:purple">``run_star_extras.f90``</span>, always check that the code compiles.
 
@@ -564,7 +564,7 @@ vals(4) = s% r(sdisc) / (Rsun)
 </pre>
 </details>
 
-Answer 3.10: The partial `run_star_extras.f90` solution is available [here](https://drive.google.com/file/d/1Jaa438bwLGL0Xhq9hmzQW-1pINd5gKeU/view?usp=sharing).
+Answer 3.10: The partial `run_star_extras.f90` solution is available [here](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/PartialSolutions/run_star_extras_answer3p10.f90).
 
 **Task 3.11**: Once again, after making changes to the <span style="color:purple">``run_star_extras.f90``</span>, check that the code compiles.
 
@@ -670,7 +670,7 @@ subroutine data_for_extra_history_columns(id, n, names, vals, ierr)
     end subroutine data_for_extra_history_columns
 ...
 ```
-Answer 3.12: The final `run_star_extras.f90` solution is available [here](https://drive.google.com/file/d/1kmPblLxoV-c1iYybRYNLdWL6YntUyGTS/view?usp=drive_link).
+Answer 3.12: The final `run_star_extras.f90` solution is available [here](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/CompleteSolution/run_star_extras.f90).
 
 **Task 3.13**: As always, after making changes to the <span style="color:purple">``run_star_extras.f90``</span>, check that the code compiles.
 
@@ -682,7 +682,7 @@ Answer 3.12: The final `run_star_extras.f90` solution is available [here](https:
 </pre>
 </details>
 
-Now that you have all the parameters, you are essentially ready to start the run! If you're short on time, you may grab the final <span style="color:purple">``inlist_pgstar``</span> [here](https://drive.google.com/file/d/1cVRHEraQALU9bPpRVLdXdWOiwzcyrco3/view?usp=sharing) and jump straight to Section 5. However, if you're interested and have time, let's customise the <span style="color:purple">``inlist_pgstar``</span> in the next section for a better understanding of how the stellar structure/interiors change as the star evolves around the RGB bump.
+Now that you have all the parameters, you are essentially ready to start the run! If you're short on time, you may grab the final <span style="color:purple">``inlist_pgstar``</span> [here](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/CompleteSolution/inlist_pgstar) and jump straight to Section 5. However, if you're interested and have time, let's customise the <span style="color:purple">``inlist_pgstar``</span> in the next section for a better understanding of how the stellar structure/interiors change as the star evolves around the RGB bump.
 
 ## Section 4: Customizing pgstar [BONUS EXERCISE] 
 
@@ -894,7 +894,7 @@ Most often, you'll deal with a grid or dashboard that contains many individual s
 </pre>
 </details>
 
-Your final `inlist_pgstar` should look like [this](https://drive.google.com/file/d/1cVRHEraQALU9bPpRVLdXdWOiwzcyrco3/view?usp=sharing).
+Your final `inlist_pgstar` should look like [this](https://github.com/drsusmitadas/mesalabs-day4-lab1/blob/main/static/thursday/CompleteSolution/inlist_pgstar).
 
 ## Section 5: Putting it all together
 
