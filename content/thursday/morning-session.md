@@ -1,3 +1,7 @@
+---
+weight: 1
+---
+
 # Late massive star evolution: physics challenges to numerics
 
 [Mathieu Renzo](mailto:mrenzo@arizona.edu)

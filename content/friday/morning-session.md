@@ -1,3 +1,7 @@
+---
+weight: 1
+---
+
 # MESA@Leuven Best Practices Lab — Convergence Testing
 
 In this brief morning lab session, we will go over best practices for solving partial differential equations numerically, specifically in the context of the MESA Stellar Evolution Code.
