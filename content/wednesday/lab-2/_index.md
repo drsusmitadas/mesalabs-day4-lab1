@@ -352,7 +352,7 @@ Here is the solution to the bonus task.
 
 ### Task 1.2. Gravitational wave radiation and merger time
 
-![GravitationalWave](/wednesday/GravitationalWave.jpg.webp)
+![GravitationalWave](../GravitationalWave.jpg.webp)
 
 **Fig. 2**: An artist’s impression of gravitational waves in an inspiralling binary system (Credit: Caltech-JPL. R. Hurt). 
 
