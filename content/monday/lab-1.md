@@ -112,6 +112,8 @@ Zbase = 0.014d0
 
 #### 3 : Adding overshooting
 
+![pgplot](/monday/overshoot_explanation.png)
+
 Next, to add the core overshooting, we need to add in some new fields, shown below. **As you plug this into your inlist, have a look at the questions below.**
 
 ```fortran
@@ -380,9 +382,8 @@ If you got stuck and cannot get your inlist to run, you can find
 
 ### C :  Customising output  [~30 min.]
 
-<p align="center">
-  <img src="lab1/bonus_tasks/python_analysis/plots/pgstar_example.png" alt="pgstar" height="300">
-</p>
+![pgplot](/monday/pgstar_example.png)
+
 
 #### 11 : Upgrading the pgstar plots
 
