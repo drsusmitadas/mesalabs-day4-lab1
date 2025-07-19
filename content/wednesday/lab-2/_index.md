@@ -33,7 +33,7 @@ The following exercises will focus on reconstructing the evolutionary history of
 
 ## Task 1. Simulating the Evolution of Cygnus X-1
 
-To simulate the evolution of Cygnus X-1, we would ideally start off by creating a fresh copy of the `work/` directory (`cp -r $MESA_DIR/binary/work .`) and modifying the `inlist` files to capture all relevant physical effects leading the initial system to the current form. However, to save time, we will use an already prepared *MESA work directory* that can be downloaded from here: **[⬇ Download](/mesa-school-labs-2025/wednesday/BinaryEvolution_Lab2_part1_working_copy.zip)**
+To simulate the evolution of Cygnus X-1, we would ideally start off by creating a fresh copy of the `work/` directory (`cp -r $MESA_DIR/binary/work .`) and modifying the `inlist` files to capture all relevant physical effects leading the initial system to the current form. However, to save time, we will use an already prepared *MESA work directory* that can be downloaded from here: **[⬇ Download](../BinaryEvolution_Lab2_part1_working_copy.zip)**
 
 Following [Ramachandran et al. (2025)](https://arxiv.org/pdf/2504.05885), lets start off with setting the initial masses of the components, $M_\mathrm{1}~=~34 \rm\ M_\odot,\ M_\mathrm{2}~=~17.4 \rm\ M_\odot$ and orbital period $P~=~5.5 \rm\ d$ in the `inlist_project` file, designed to contain all information about the system-related quantities. To find the controls used by MESA, look into the MESA docs, under the [specifications for starting model](https://docs.mesastar.org/en/latest/reference/binary_controls.html#specifications-for-starting-model) section.
 
@@ -340,7 +340,7 @@ Here is the solution to the bonus task.
 
 > [!Important]
 > **Extra bonus task!:**
-> We have an extra bonus task for you that explores stopping criteria and fitting a model for yet another observed system! You can find it **[here](/mesa-school-labs-2025/wednesday/bonus-2/)** .
+> We have an extra bonus task for you that explores stopping criteria and fitting a model for yet another observed system! You can find it **[here](bonus-2/)** .
 >
 > > [!WARNING]
 > > Take a look at this exercise **only** once you have finished all the parts below!
@@ -348,7 +348,7 @@ Here is the solution to the bonus task.
 <br><br><br>
 
 > [!CAUTION]
-> **Got stuck** during the lab? Do not worry! You can always download the solution from here **[⬇ Download](/mesa-school-labs-2025/wednesday/BinaryEvolution_Lab2_solutions.zip)** to catch up!
+> **Got stuck** during the lab? Do not worry! You can always download the solution from here **[⬇ Download](../BinaryEvolution_Lab2_solutions.zip)** to catch up!
 
 ### Task 1.2. Gravitational wave radiation and merger time
 
@@ -571,7 +571,7 @@ To apply all the changes you have made in your `run_binary_extras.f90`, you need
 <br><br><br>
 
 > [!CAUTION]
-> **Got stuck** during the lab? Do not worry! You can always download the solution from here **[⬇ Download](/mesa-school-labs-2025/wednesday/BinaryEvolution_Lab2_solutions.zip)** to catch up!
+> **Got stuck** during the lab? Do not worry! You can always download the solution from here **[⬇ Download](../BinaryEvolution_Lab2_solutions.zip)** to catch up!
 
 
 
@@ -656,11 +656,11 @@ Next, compile (`./clean && ./mk`) and run the models (`./rn`) with a fixed set o
 > Is `mass_transfer_beta` the only way to control the accretor mass outcome? Can we substitute this parameter with another parameter that MESA provides, e.g., lowering the initial mass of the donor component? Why?
 
 > [!CAUTION]
-> **Got stuck** during the lab? Do not worry! You can always download the solution from here **[⬇ Download](/mesa-school-labs-2025/wednesday/BinaryEvolution_Lab2_solutions.zip)** to catch up!
+> **Got stuck** during the lab? Do not worry! You can always download the solution from here **[⬇ Download](../BinaryEvolution_Lab2_solutions.zip)** to catch up!
 
 > [!Important]
 > **Extra bonus task!:**
-> We have an extra bonus task for you that explores stopping criteria and fitting a model for yet another observed system! You can find it **[here](/mesa-school-labs-2025/wednesday/bonus-2/)** .
+> We have an extra bonus task for you that explores stopping criteria and fitting a model for yet another observed system! You can find it **[here](bonus-2/)** .
 <br><br><be>
 
 

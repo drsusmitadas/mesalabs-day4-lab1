@@ -61,7 +61,7 @@ doesn't depend on the core structure, you may get away with small
 nuclear reaction networks.
 
 You can inspect the [pgstar
-movie](./15Msun_problem/early_evolution.mp4) to see your initial
+movie](https://github.com/mathren/mesa25_best_practices/tree/596343a24ed598044e52e2aed763364fd2635e41/15Msun_problem/early_evolution.mp4) to see your initial
 conditions, which can be reproduced re-running `inlist_early_evol`.
 
 Ideally, we want to be able to run this to the onset of core collapse,

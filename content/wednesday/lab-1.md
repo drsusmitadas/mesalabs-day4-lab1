@@ -5,7 +5,7 @@ author: Harim Jin (lead TA), Eva Laplace, Hannah Brinkman, Vincent Bronner, Amad
 ## Introduction
 Over the past decade, it has become clear that most massive stars are born in binary or multiple-star systems that are close enough to one another to interact. One such interaction is **mass transfer**, where stars exchange mass and angular momentum. Mass transfer plays a crucial role in producing various stellar phenomena, such as different types of core-collapse supernovae, magnetic stars, X-ray sources, and gravitational wave sources. The nature of these phenomena depends on **when the mass transfer occurs** and whether it is **stable or unstable**. In this lab, we will explore mass transfer across the initial binary parameter space.
 
-![Binary_MT](/wednesday/Binary_MT.jpg)
+![Binary_MT](../Binary_MT.jpg)
 
 **Fig. 1**: Artist's impression depicting a mass transferring system (Credit: ESO/L. Calçada/M.Kornmesser). 
 
@@ -18,7 +18,7 @@ Mass transfer can be divided into three cases based on the evolutionary phase of
 **Case B**: The primary transfers mass after core hydrogen depletion and before core helium depletion (past core hydrogen burning phase and/or during core helium burning phase).  
 **Case C**: The primary transfers mass after core helium depletion (past core helium burning phase).
 
-Now, let's download the MESA work directory from **[⬇ here](/mesa-school-labs-2025/wednesday/BinaryEvolution_Lab1.tar)**.
+Now, let's download the MESA work directory from **[⬇ here](../BinaryEvolution_Lab1.tar)**.
 
 > [!TIP]
 > To extract the compressed directory (`BinaryEvolution_Lab1.tar`) into the current folder, use the following command:
@@ -235,7 +235,7 @@ Can you print out which mass transfer cases a binary system undergoes throughout
 
 
 > [!TIP]
-> **Got stuck** during the lab? Do not worry! You can always download solution from here **[⬇ Download](/mesa-school-labs-2025/wednesday/solution_run_binary_extras.f90)** to catch up!
+> **Got stuck** during the lab? Do not worry! You can always download solution from here **[⬇ Download](../solution_run_binary_extras.f90)** to catch up!
 
 
 ## Task 2. Determine mass transfer stability
@@ -271,7 +271,7 @@ You can instruct MESA to stop computations by using `extras_binary_finish_step =
 {{< /details >}}
 
 > [!TIP]
-> **Got stuck** during the lab? Do not worry! You can always download solution from here **[⬇ Download](/mesa-school-labs-2025/wednesday/solution_run_binary_extras.f90)** to catch up!
+> **Got stuck** during the lab? Do not worry! You can always download solution from here **[⬇ Download](../solution_run_binary_extras.f90)** to catch up!
 
 ## Task 3. Run a model with random initial binary parameters
 Now, we will explore different mass transfer cases and their stability across the initial binary parameter space. We will fix an initial primary mass to 20 Msun. Choose a random pair of initial mass ratio and an initial orbital period from the "P-q diagram" sheet in the following Google Spreadsheet, and put your name in the corresponding column of [this Google spreadsheet](
