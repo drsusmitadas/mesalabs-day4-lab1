@@ -123,7 +123,7 @@ overshoot_f(1) = 0.30d0
 overshoot_f0(1) = 0.005d0
 ```
 
-**Question**: The first three `overshoot_` fields describe where the overshooting should take place. Go into [the MESA documentation](https://docs.mesastar.org/en/latest/reference/controls.html) and look up what each of these fields means.  
+**Question**: The first three `overshoot_` fields describe where the overshooting should take place. Go into [the MESA documentation](https://docs.mesastar.org/en/24.08.1/reference/controls.html) and look up what each of these fields means.  
 
 {{< details title="Click here to show the answer" closed="true" >}}
 
@@ -257,12 +257,14 @@ your changes to the inlist did what they are supposed to.
 
 If you got stuck and cannot get your inlist to run, you can find
 [a functional inlist with all the changes described above here](https://github.com/Mathijs-Vanrespaille/mesa-school-labs/blob/main/content/monday/lab1/completed_inlists/inlist_project1)
-, so you can continue with limited delay.
+, so you can continue with limited delay. Be sure to rename *inlist_project1* to *inlist_project*!
 
 
 ### B :  Modifying the input physics and saving your final model [~20 min.]
 
-#### 7 : *inlist_project* is currently mostly empty, meaning most
+#### 7 : Mass loss
+
+*inlist_project* is currently mostly empty, meaning most
 settings are using MESA's default values. You should always check
 whether these are appropriate for your models. As an example, massive stars
 can loose a fair amount of mass through winds.
@@ -373,7 +375,7 @@ into your terminal.
 
 If you got stuck and cannot get your inlist to run, you can find
 [a functional inlist with all the changes described above here](https://github.com/Mathijs-Vanrespaille/mesa-school-labs/blob/main/content/monday/lab1/completed_inlists/inlist_project2)
-, so you can continue with limited delay.
+, so you can continue with limited delay. Be sure to rename *inlist_project2* to *inlist_project*!
 
 
 ### C :  Customising output  [~30 min.]
@@ -395,12 +397,11 @@ these and how to edit your *inlist_pgstar* in
 [this documentation page](https://docs.mesastar.org/en/24.08.1/reference/pgstar.html).
 
 For this lab, we have prepared a specialized
-*inlist_pgstar* for you. Download that *inlist_pgstar*
+*inlist_pgstar* for you. **Download that *inlist_pgstar* **
 [here](https://github.com/Mathijs-Vanrespaille/mesa-school-labs/blob/main/content/monday/lab1/completed_inlists/inlist_pgstar_initial)
-and move it into your MESA work directory. Make sure to name the file `inlist_pgstar`!
+**and move it into your MESA work directory**. Make sure to name the file `inlist_pgstar`!
 
 Run your model again to see what the new pgstar plots look like.
-
 
 
 > [!TIP]
@@ -547,7 +548,7 @@ These settings tell MESA to track up to 20 distinct mixing and nuclear burning r
 **Run your model briefly to confirm your pgstar window now displays the updated plot configuration.**
 
 
-#### 15. Bonus Task:  Profile Data
+#### 15. Optional Task:  Profile Data
 
 While history files track global properties over time, profile files capture the star's internal structure at specific moments. These are essential for examining how variables change with radius inside the star. **Copy over the default profile column list.**
 
@@ -586,12 +587,13 @@ While the history output only needs to write one row of values at each history o
 
 If you got stuck and cannot get your inlist to run, you can find
 [a functional inlist with all the changes described above here](https://github.com/Mathijs-Vanrespaille/mesa-school-labs/blob/main/content/monday/lab1/completed_inlists/inlist_project3)
-, so you can continue with limited delay. You can also find the
+, so you can continue with limited delay. Be sure to rename *inlist_project3* to *inlist_project*! You can also find the
 [completed inlist pgstar here](https://github.com/Mathijs-Vanrespaille/mesa-school-labs/blob/main/content/monday/lab1/completed_inlists/inlist_pgstar),
 the [completed history columns list here](https://github.com/Mathijs-Vanrespaille/mesa-school-labs/blob/main/content/monday/lab1/completed_inlists/my_history_columns.list),
 and the [completed profile columns list here](https://github.com/Mathijs-Vanrespaille/mesa-school-labs/blob/main/content/monday/lab1/completed_inlists/my_profile_columns.list).
 
 
+#### Bonus Task -- Movies
 
 {{< details title="**Bonus Task -- Movies**" closed="true" >}}
 
@@ -637,10 +639,7 @@ You already encountered some of these today, namely the
 mixing length parameter $\alpha_{MLT}$ and convective overshooting.
 
 In this session, we'll explore the impact of overshooting in
-your model. Through your experiments and the lecturer's
-discussion of everyone's result, you will learn how you
-can find reasonable values and settings for overshooting
-in your model. The plan is that everyone gets a unique
+your model. The plan is that everyone gets a unique
 set of overshooting parameters, initial mass and initial
 metallicity to try out. You will then compare the results
 of these parameter settings to the model you produced in
@@ -649,7 +648,7 @@ everyone's models and examine the correlations between
 different parameters together.
 
 
-Bonus Question: Overshooting in MESA starts overshoot_f0 scale heights into the convection zone. If you use step overshooting, the overshooting ends overshoot_f scale heights above the start of overshooting, after which the overshoot mixing goes to zero. But how does MESA define where the overshooting stops when you use exponential overshooting, which never goes all the way to zero?
+**Bonus Question**: Overshooting in MESA starts overshoot_f0 scale heights into the convection zone. If you use step overshooting, the overshooting ends overshoot_f scale heights above the start of overshooting, after which the overshoot mixing goes to zero. But how does MESA define where the overshooting stops when you use exponential overshooting, which never goes all the way to zero?
 
 {{< details title="Click here to show the answer" closed="true" >}}
 
@@ -674,6 +673,11 @@ you should leave the overshoot scheme as an empty string, i.e.
 overshoot_scheme(1) = ''
 ```
 
+If you selected the **'exponential'** scheme, you should consider where the overshoot region ends. As the mixing strength decreases exponentially, it approaches zero far away from the core-envelope boundary. As such, past a certain point, the mixing is so small as to become meaningless. Therefore, MESA stops the overshoot mixing when the mixing coefficient drops below 100 cm$^2$/s. This is quite a high lower limit, so reduce it by setting in your `&controls` :
+
+```fortran
+overshoot_D_min = 1d-2
+```
 
 #### 17 : Preserving Your Previous Results
 
@@ -732,7 +736,7 @@ These values will allow us to analyze how different overshooting parameters affe
 
 If you got stuck and cannot get your inlist to run, you can find
 [a functional inlist with all the changes described above here](https://github.com/Mathijs-Vanrespaille/mesa-school-labs/blob/main/content/monday/lab1/completed_inlists/inlist_project4)
-, so you can continue with limited delay. You will still have to update the parameters
+, so you can continue with limited delay. Be sure to rename *inlist_project4* to *inlist_project*! You will still have to update the parameters
 and output filenames and directory according to your parameter set though. Ask your
 TA for assistance with that.
 
