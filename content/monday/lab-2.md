@@ -39,7 +39,7 @@ rm -r LOGS photos png
 ```
 
 Alternatively, or if you want to be sure that everything is working properly,
-you can download a cleaned folder [here](https://github.com/Daniel-Pauli/mesa-school-labs/blob/patch-1/content/monday/lab2.zip).
+you can download a cleaned folder [here](../lab2.zip).
 
 In lab1 we have calculated a $5\,M_\odot$ model with 
 step overshooting having $f_\text{ov}=0.030$ and $f_{0\,\text{ov}}=0.005$ until core-hydrogen
@@ -50,7 +50,7 @@ we will be loading this saved model every time to explore
 different physical settings. 
 
 If you did not finish lab1 or by accident overwrote your model during lab1. 
-You can download the TAMS model [here](https://github.com/Daniel-Pauli/mesa-school-labs/blob/patch-1/content/monday/lab2/M5_Z0014_fov030_f0ov0005_TAMS.zip).
+You can download the TAMS model [here](../M5_Z0014_fov030_f0ov0005_TAMS.zip).
 
 ### inlist_project: star_job
 
@@ -544,7 +544,7 @@ in the upper part of your *inlist_pgstar*:
 	Profile_Panels1_yaxis_name(1) = ''
 	Profile_Panels1_other_yaxis_name(1) = ''
 ```
-as you can see the "Profile_Panels1_yaxis_name" and "Profile_Panels1_yaxis_name" are left blank so far. This is where we want to add the individual gradients. Unfortunately, we do not have an output yet for them. The Profile_Panels access the parameters that are used in the profile_cloumns.list. Open *my_profile_columns.list* and search for the adiabatic and radiative temperature gradients and comment them out.
+as you can see the "Profile_Panels1_yaxis_name" and "Profile_Panels1_yaxis_name" are left blank so far. This is where we want to add the individual gradients. Unfortunately, we do not have an output yet for them. The Profile_Panels access the parameters that are used in the profile_columns.list. Open *my_profile_columns.list* and search for the adiabatic and radiative temperature gradients and comment them out.
 
 {{< details title="Show answer" closed="true" >}}
 
