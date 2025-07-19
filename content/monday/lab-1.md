@@ -112,7 +112,7 @@ Zbase = 0.014d0
 
 #### 3 : Adding overshooting
 
-![pgplot](/monday/overshoot_explanation.png)
+![overshoot](/monday/overshoot_explanation.png)
 
 Next, to add the core overshooting, we need to add in some new fields, shown below. **As you plug this into your inlist, have a look at the questions below.**
 
