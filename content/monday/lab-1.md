@@ -615,8 +615,14 @@ cd png
 
 MESA includes a script that is able to create movies. [More instructions.](http://user.astro.wisc.edu/~townsend/static.php?ref=mesasdk#Making_Movies)
 ```bash
-images_to_movie “*.png” evolution.mp4
+images_to_movie '*.png' evolution.mp4
 ```
+
+If this fails to find the .png files, try replacing the single quotation marks with double quotation marks, i.e.
+```bash
+images_to_movie "*.png" evolution.mp4
+```
+
 {{< /details >}}
 
 
