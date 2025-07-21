@@ -1,0 +1,220 @@
+@import url("Figure Bank/fonts/fonts.css");
+
+p , li, figcaption{
+	font-family: "Latin Modern Roman", "Century", "serif";
+}
+
+ul ul li {
+	font-size: .8em;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+	font-family: "Arno Pro Display", "Century", "serif";
+	text-transform: none;
+	font-weight: 400;
+}
+
+.math {
+	font-variant: normal;
+}
+
+.reveal h1.title {
+	font-size: 3em;
+	line-height: .7em;
+}
+
+.annotate {
+	position:  absolute;
+	font-size: 0.65em;
+}
+
+.annotate p{
+	font-family: "Latin Modern Sans";
+	line-height: inherit;
+	margin:  inherit;
+}
+
+.display .MathJax{
+	margin-top: .6em !important;
+	margin-bottom: .6em !important;
+}
+
+.tiny {
+	font-size: .35em;
+}
+
+.small, figcaption{
+	font-size: .5em;
+}
+
+img.small + figcaption{
+	font-size: .4em;
+}
+
+.medium{
+	font-size: .7em;
+}
+
+.large{
+	font-size: 1.2em;
+}
+
+.huge{
+	font-size: 2em;
+}
+
+h1 .subtitle, h2 .subtitle{
+	display: block;
+	margin-top: 5%;
+	padding-top: 5%;
+	border-top:  1px solid black;
+	font-size: .2em;
+	font-variant: normal;
+}
+
+section img {
+	width:  100%;
+}
+
+div.boxed {
+	border:  3px solid black;
+}
+
+.inline {
+	display:inline;
+	width: 48%;
+	margin: -10px 0px !important;
+}
+
+.bg, .bg2{
+	background-color: rgba(255, 255, 255, .85);
+	backdrop-filter: blur(5px);
+}
+
+.glow {
+	text-shadow: 0px 0px 3px white, 0px 0px 3px white, 0px 0px 3px white, 0px 0px 3px white, 0px 0px 3px white, 0px 0px 3px white;
+}
+
+.tikzpicture{
+	width: 100% !important;
+	height: 100% !important;
+	left: 0px;
+	top: 100px;
+}
+
+.r-stack p {
+	width:  100%;
+}
+
+.reveal img {
+	margin: 10px 0px;
+}
+
+div .column {
+	overflow:  visible;
+}
+
+.fragment.semi-fade-in-then-out, .fragment.semi-fade-in, .fragment.semi-fade-out.visible, .faded{
+	visibility: visible !important;
+	opacity: .15 !important;
+}
+
+.fragment.semi-fade-in.visible, .fragment.semi-fade-in-then-out.current-fragment{
+	visibility: visible !important;
+	opacity: 1 !important;
+}
+
+.reveal blockquote {
+	width: 95%;
+	padding: 20px;
+}
+
+blockquote p {
+	text-indent: 1em;
+	text-align: justify;
+}
+
+.reveal .slides section .fragment.fade-left-inout {
+	transform: translate(40px, 0);
+}
+.reveal .slides section .fragment.fade-left-inout.visible, .reveal .slides section .fragment.fade-left-out.visible{
+	visibility: hidden;
+	opacity: 0;
+	transform: translate(-40px, 0);
+}
+.reveal .slides section .fragment.fade-left-inout.current-fragment, .reveal .slides section .fragment.fade-left-out{
+	visibility: visible;
+	opacity: 1;
+	transform: translate(0, 0);
+}
+
+.reveal .slides .fragment.appear {
+	display:none;
+}
+
+.reveal .slides .fragment.appear.visible, .reveal .slides .fragment.disappear {
+	visibility: visible !important;
+	opacity: 1;
+	display:inline;
+}
+
+.reveal .slides .fragment.disappear.visible {
+	display:none;
+}
+
+.white {
+	color:white;
+}
+
+.black {
+	color:black;
+}
+
+.glow.white {
+	text-shadow: 0px 0px 3px black, 0px 0px 3px black, 0px 0px 3px black;
+}
+
+.annotate.center {
+	transform: translate(-50%, -50%);
+	top: 50%;
+	left: 50%;
+}
+
+.annotate.center-x {
+	transform: translate(-50%, 0);
+	left: 50%;
+}
+
+.annotate.center-y {
+	transform: translate(0, -50%);
+	top: 50%;
+}
+
+.round, .round img {
+	border-radius: 50%;
+}
+
+.round img, img.round {
+	margin: 0px;
+}
+
+.blue {
+	color: rgb(31,119,180);
+}
+
+.red {
+	color: rgb(214,39,40);
+}
+
+.sc {
+	font-variant: small-caps;
+}
+
+.grid {
+	display: grid;
+}
+
+.tight, .tight p, .tight img {
+	margin: 0px;
+	padding: 0px;
+}

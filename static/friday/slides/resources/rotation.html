@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+        <head>
+        	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        	<style type="text/css">
+        		td{
+        			text-align: center;
+        		}
+
+            #l1m, #l2m, #l3m {
+              font-size: .7em;
+            }
+        	</style>
+          <script src='tex-mml-svg.js'></script>
+        	<script src="three.js"></script>
+        </head>
+        <body>
+
+<form>
+	<table style="margin:auto"><tr>
+		<td><input type="range" id="omega" min="0" max="0.37" step="0.01" value="0" oninput="update()"/></td>
+		<td><input type="range" id="inc" min="0" max="1.5708" step="0.0001" value="0.7" oninput="update()"/></td>
+		<td><input type="range" id="ell" min="1" max="3" step="1" value="1" oninput="update_ell()" /></td>
+	</tr>
+	<tr><td><label for="omega">\(\Omega\)</label></td><td><label for="inc">\(i\)</label></td><td><label for="ell">\(\ell = \) <span id="ell_label"></span></label></td></tr>
+</table>
+</form>
+
+<video muted loop width="512" height="512" src="textures/10.webm" id="10" style="display:none"></video>
+<video muted loop width="512" height="512" src="textures/20.webm" id="20" style="display:none"></video>
+<video muted loop width="512" height="512" src="textures/30.webm" id="30" style="display:none"></video>
+
+<div id="l1m" style="display:none">
+  <div style="position:absolute; top: 350px; left: 147px;">\(m=-1\)</div>
+  <div style="position:absolute; top: 350px; left: 347px;">\(m=0\)</div>
+  <div style="position:absolute; top: 350px; left: 537px;">\(m=1\)</div>
+</div>
+
+<div id="l2m" style="display:none">
+  <div style="position:absolute; top: 320px; left: 67px;">\(m=-2\)</div>
+  <div style="position:absolute; top: 320px; left: 202px;">\(m=-1\)</div>
+  <div style="position:absolute; top: 320px; left: 342px;">\(m=0\)</div>
+  <div style="position:absolute; top: 320px; left: 472px;">\(m=1\)</div>
+  <div style="position:absolute; top: 320px; left: 607px;">\(m=2\)</div>
+</div>
+
+<div id="l3m" style="display:block">
+  <div style="position:absolute; top: 300px; left: 27px;">\(m=-3\)</div>
+  <div style="position:absolute; top: 300px; left: 127px;">\(m=-2\)</div>
+  <div style="position:absolute; top: 300px; left: 232px;">\(m=-1\)</div>
+  <div style="position:absolute; top: 300px; left: 344px;">\(m=0\)</div>
+  <div style="position:absolute; top: 300px; left: 442px;">\(m=1\)</div>
+  <div style="position:absolute; top: 300px; left: 542px;">\(m=2\)</div>
+  <div style="position:absolute; top: 300px; left: 647px;">\(m=3\)</div>
+</div>
+
+<script type="text/javascript">
+
+var inclination = 0.7;
+var omega = 0.0;
+var ell = 1;
+
+function update() {
+	inclination = parseFloat(document.getElementById("inc").value);
+	omega = parseFloat(document.getElementById("omega").value);
+}
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera( 20, 2, 0.1, 1000 );
+// scene.background = new THREE.Color( 0xff0000 );
+const renderer = new THREE.WebGLRenderer({
+  antialias: true, devicePixelRatio: 4, alpha: true
+});
+renderer.setSize( 700, 350 );
+document.body.appendChild( renderer.domElement );
+// renderer.domElement.style.filter = "invert(1)"
+
+var textures = [];
+var materials = [];
+var spheres = [];
+
+const geometry = new THREE.SphereGeometry();
+
+for (l = 0; l <= 3; l++) {
+  textures[l] = []
+  materials[l] = []
+  spheres[l] = []
+  for (m = 1; m <= l; m++) {
+    textures[l][m] = new THREE.TextureLoader().load( "textures/" + l + "" + m + ".png" );
+    materials[l][m] = new THREE.MeshBasicMaterial( { map: textures[l][m] } );
+    spheres[l][m] = new THREE.Mesh( geometry, materials[l][m] );
+    spheres[l][-m] = new THREE.Mesh( geometry, materials[l][m] );
+  }
+
+  // m = 0 case handled separately
+
+  if (l > 0){
+    textures[l][0] = new THREE.VideoTexture(document.getElementById(l + '0'));
+    materials[l][0] = new THREE.MeshBasicMaterial( {map: textures[l][0]} );
+    spheres[l][0] = new THREE.Mesh( geometry, materials[l][0] );
+  }
+}
+
+function update_ell() {
+  document.getElementById(ell + "0").pause()
+  ell = parseInt(document.getElementById("ell").value);
+  scene.clear()
+  l = ell
+  for (m = -l; m <= l; m++) {
+    scene.add(spheres[l][m])
+    spheres[l][m].position.x = m * 2.2
+
+    // This is physically unnecessary
+    // but aesthetically more pleasing
+    if (m > 0) {
+      spheres[l][m].rotation.y += 3.14159
+    }
+  }
+
+  for (l = 1; l <= 3; l++) {
+    document.getElementById("l" + l + "m").style.display = (l == ell) ? 'block' : 'none'
+  }
+  document.getElementById(ell + "0").play()
+  document.getElementById("ell_label").innerHTML = ell
+}
+
+update()
+update_ell()
+
+function animate() {
+  requestAnimationFrame( animate );
+
+  camera.position.z = 12 + (ell-1)* 5;
+
+  l = ell
+  for (m = -l; m <= l; m++){
+    spheres[l][m].rotation.x = 1.5708 - inclination;
+    spheres[l][m].rotation.y += 0.062831853 * (m == 0 ? 0 : 1/m) + omega / 20;
+  }
+
+  renderer.render( scene, camera );
+};
+
+animate();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+            <style type="text/css">
+                td{
+                    text-align: center;
+                }
+                @keyframes fadeIn {   0% { opacity: 0; }   100% { opacity: 1; } } 
+                @keyframes fadeOut {   0% { opacity: 1; }   100% { opacity: 0; } }
+            </style>
+            <script src='tex-mml-svg.js'></script>
+        </head>
+        <body>
+
+<form>
+<table style="margin-left:auto;margin-right:auto">
+    <tr>
+        <td><object id="frame" data="tar.svg" onload="init()">
+        </object></td>
+        <td><input type="range" id="ell" min="1" max="3" step="1" value="1" oninput="update()" orient="vertical" style="writing-mode: vertical-lr;direction: rtl;appearance: slider-vertical; width: 16px;vertical-align: middle;"/><br /><label for="ell">\(\ell = \)<span id="ell_text"></span></label></td></tr>
+</table>
+</form>
+
+<script type="text/javascript">
+
+var $_GET=[];
+window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(a,name,value){$_GET[name]=value;});
+
+function init() {
+    res();
+    update();
+}
+
+function res(){
+    document.getElementById('ell').value = 1;
+    doc = document.getElementById('frame').getSVGDocument();
+    update();
+}
+
+function update(){
+    ell = parseInt(document.getElementById('ell').value)
+
+    document.getElementById("ell_text").innerHTML = ell
+
+    // which curves to show?
+
+    IMIN = 16
+    IDMIN = 0 + IMIN
+    IDMAX = 2 * ell + 1 + IMIN
+
+    for (i = IMIN; i < IMIN + 7; i++){
+        doc.getElementById("line2d_" + i).style.opacity = (i >= IDMIN && i < IDMAX) ? 1 : 0
+    }
+
+    IMIN = 16 + 7
+    IDMIN = ell * ell - 1 + IMIN
+    IDMAX = 2 * ell + ell * ell + IMIN
+
+    for (i = IMIN; i < IMIN + 3 + 5 + 7; i++){
+        doc.getElementById("line2d_" + i).style.opacity = (i >= IDMIN && i < IDMAX) ? 1 : 0
+    }
+
+}
+
+</script>
+</body>
+</html>

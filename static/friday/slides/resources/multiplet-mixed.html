@@ -1,0 +1,228 @@
+<!doctype html>
+<html>
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+            <style type="text/css">
+                td{
+                    text-align: center;
+                }
+                @keyframes fadeIn {   0% { opacity: 0; }   100% { opacity: 1; } } 
+                @keyframes fadeOut {   0% { opacity: 1; }   100% { opacity: 0; } } 
+                #zetaplus, #zetaminus {
+                    opacity: 0;
+                }
+            </style>
+            <script src='tex-mml-svg.js'></script>
+        </head>
+        <body>
+
+<form>
+    <table style="margin:auto"><tr>
+        <td id="omega_cell"><input type="range" id="omega" min="0" max="0.3" step="0.001" value="0" oninput="update()"/></td>
+        <td id="i_cell" ><input type="range" id="inc" min="0" max="1.5708" step="0.0001" value="0.7" oninput="update()"/></td>
+        <td style="display:none"><input type="range" id="ell" min="1" max="3" step="1" value="1" oninput="update()" /></td>
+        <td><input type="range" id="t" min="-0.5" max="0.5" step="0.000001" value="-1" oninput="update()" /></td>
+        <td id="α_cell"><input type="range" id="α" min=".1" max="40" step="0.001" value="1" oninput="update()" /></td>
+    </tr>
+    <tr><td id="omega_label"><label for="omega">\(\Omega\)</label></td><td id="i_label"><label for="inc">\(i\)</label></td><td style="display:none"><label for="ell" id="ell_label">l</label></td><td><label for="t">\(t\) (age)</label></td><td id="α_label"><label for="α">\(\alpha\) (mode coupling)</label></td></tr>
+</table>
+</form>
+
+<canvas id="viewport" width="1400" height="700" style="width:700px; height:350px; margin:auto"></canvas>
+<div id="zetaminus" style="position:absolute; top: 200px; left:100px;">\(\zeta_- =\) <span id="zetaminuslabel"></span></div>
+<div id="zetaplus" style="position:absolute; top: 200px; left:500px;">\(\zeta_+ =\) <span id="zetapluslabel"></span></div>
+
+<script type="text/javascript">
+
+var $_GET=[];
+window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(a,name,value){$_GET[name]=value;});
+
+// Basic configuration variables
+var dpi = 91;
+var cm =  dpi / 2.54 ;
+
+var viewport;
+var ctx;
+
+var fills = ['#729fcf', '#f57900', '#4e9a06']
+
+// Math starts here
+var N = 2000;
+var Gamma = 70.;
+
+var x = Array();
+var y = Array();
+
+function E(l, m, i) {
+    // From Messiah 1959; see Gizon & Solanki 2014
+    switch (l){
+        case 0:
+            return 1;
+            break;
+        case 1:
+            switch (m) {
+                case 1: return Math.sin(i)**2 / 2
+                case 0: return Math.cos(i)**2
+            }
+            break;
+        case 2:
+            switch (m) {
+                case 0: return (3 * Math.cos(i)**2 - 1) ** 2 / 4
+                case 1: return 3/8 * Math.sin(2 * i)**2
+                case 2: return 3/8 * Math.sin(i)**4
+            }
+            break;
+        case 3:
+            switch (m){
+                case 0: return (3 * Math.cos(i) + 5 * Math.cos(3*i))**2 / 64
+                case 1: return 3/64 * (3 + 5 * Math.cos(2*i))**2 * Math.sin(i)**2
+                case 2: return 15 / 8 * (Math.cos(i) * Math.sin(i)**2)**2
+                case 3: return 5 / 16 * (Math.sin(i))**6
+            }
+            break;
+        default:
+            return 1
+    }
+}
+
+function Lor(x, gamma=1.) {
+    // Lorentzian function
+    return 1 / (1 + x * x * Gamma * Gamma * gamma)
+}
+
+function mode(x, x0, i, l, m, gamma) {
+    return Lor(x - x0, gamma) * E(l, Math.abs(m), i)
+}
+
+function roots(x1, x2, α=1e-2, D=1e-2) {
+    A = (x1 - 2*D*D*x1 + x2 + 2*D*α) / (2 * (1-D*D))
+    B = Math.sqrt((x1-x2)*(x1-x2) + 4*α*(α - D*(x1-x2))) / (2 * (1-D*D))
+
+    k1 = (x1 - (A+B)) / (α - D * x1 + D * (A+B))
+    k2 = (x1 - (A-B)) / (α - D * x1 + D * (A-B))
+    return [A+B, A-B, 1 / Math.sqrt(1+2*D*k1+k1*k1), Math.abs(k1) / Math.sqrt(1+2*D*k1+k1*k1), 1 / Math.sqrt(1+2*D*k2+k2*k2) , Math.abs(k2) / Math.sqrt(1+2*D*k2+k2*k2)]
+}
+
+function recompute(){
+    I = parseFloat(document.getElementById("inc").value);
+    W = parseFloat(document.getElementById("omega").value);
+    L = parseInt(document.getElementById("ell").value);
+    t = parseFloat(document.getElementById("t").value);
+    α = parseFloat(document.getElementById("α").value);
+
+    ν_p = -t
+    ν_g = t
+
+    for (i = 0; i < N; i++){
+        y[i] = 0
+    }
+
+    for (m = -L; m <= L; m++){
+        x1 = (ν_p + W * m + 100)**2
+        x2 = (ν_g + W * m * 4 + 100)**2
+        out = roots(x1, x2, α)
+        out[0] = Math.sqrt(out[0]) - 100
+        out[1] = Math.sqrt(out[1]) - 100
+
+        if (m == 0){
+            if ($_GET['show_zeta'] == 'true') {
+                if (α > 5) {
+                    document.getElementById('zetaplus').style.animation = "fadeIn 0.4s"
+                    document.getElementById('zetaminus').style.animation = "fadeIn 0.4s"
+                    document.getElementById('zetaplus').style.opacity = 1
+                    document.getElementById('zetaminus').style.opacity = 1
+                    document.getElementById('zetapluslabel').innerHTML = (out[3]**2).toFixed(2)
+                    document.getElementById('zetaminuslabel').innerHTML = (out[2]**2).toFixed(2)
+                } else {
+                    document.getElementById('zetaplus').style.animation = "fadeOut 0.4s"
+                    document.getElementById('zetaminus').style.animation = "fadeOut 0.4s"
+                    document.getElementById('zetaplus').style.opacity = 0
+                    document.getElementById('zetaminus').style.opacity = 0
+                }
+            }
+        }
+
+        // alert(out)
+        for (i = 0; i < N; i++){
+            y[i] += mode(x[i], out[0], I, L, m, .5 + out[3]**2 * 20) * Math.sqrt(out[2]**2 + 0. * out[2] * out[3] + 0.01 * out[3]**2)
+            y[i] += mode(x[i], out[1], I, L, m, .5 + out[5]**2 * 20) * Math.sqrt(out[4]**2 + 0. * out[4] * out[5] + 0.01 * out[5]**2)
+        }
+    }
+}
+
+function plot(){
+    ctx.clearRect(0,0,viewport.width, viewport.height);
+    if ($_GET['show_nu_g'] == 'true') {
+        ctx.beginPath();
+        ctx.setLineDash([10, 5]);
+        t = parseFloat(document.getElementById("t").value);
+        ctx.moveTo((t * 8 + 9) * cm, (12) * cm)
+        ctx.lineTo((t * 8 + 9) * cm, (0) * cm)
+        ctx.strokeStyle = fills[1];
+        ctx.stroke();
+    }
+    if ($_GET['show_nu_p'] == 'true'){
+        ctx.beginPath();
+        ctx.setLineDash([10, 5]);
+        t = parseFloat(document.getElementById("t").value);
+        ctx.moveTo((-t * 8 + 9) * cm, (12) * cm)
+        ctx.lineTo((-t * 8 + 9) * cm, (0) * cm)
+        ctx.strokeStyle = fills[0];
+        ctx.stroke();
+    }
+    ctx.beginPath();
+    ctx.setLineDash([0]);
+    ctx.strokeStyle = 'black';
+
+    ctx.moveTo((x[0] * 8 + 9) * cm, (12) * cm)
+    ctx.lineTo((x[0] * 8 + 9) * cm, (-y[0] * 8 + 8) * cm)
+    for (i = 1; i < N; i++) {
+        ctx.lineTo((x[i] * 8 + 9) * cm, (-y[i] * 8 + 8) * cm)
+    }
+    ctx.lineTo((x[N-1] * 8 + 9) * cm, (12) * cm)
+    ctx.lineTo((x[0] * 8 + 9) * cm, (12) * cm)
+
+    ctx.stroke();
+    L = parseInt(document.getElementById("ell").value);
+    ctx.fillStyle = fills[L-1];
+    ctx.fill();
+}
+
+function init() {
+
+    if ($_GET['hide_rot'] == 'true') {
+        for (var thing of ["i", "omega"]) {
+            for (var thing2 of ['label', 'cell']) {
+                document.getElementById(thing + '_' + thing2).style.display = 'none'
+            }
+        }
+    }
+
+    if ($_GET['hide_coupling'] == 'true') {
+        for (var thing of ["α"]) {
+            for (var thing2 of ['label', 'cell']) {
+                document.getElementById(thing + '_' + thing2).style.display = 'none'
+            }
+        }
+    }
+
+    viewport = document.getElementById('viewport');
+    ctx = viewport.getContext('2d');
+    // Retina display hack
+    ctx.scale(2,2)
+    for(i = 0; i < N; i++) {
+        x[i] = 2 * i / N - 1. + 1/N;
+    }
+    update();
+}
+
+function update(){
+    recompute();
+    plot();
+    document.getElementById("ell_label").innerHTML = "<em>l<\/em> = " + parseInt(document.getElementById("ell").value)
+}
+
+init();
+</script>
+</body>
+</html>

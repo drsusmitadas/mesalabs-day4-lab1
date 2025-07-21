@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+            <style type="text/css">
+                td{
+                    text-align: center;
+                }
+                @keyframes fadeIn {   0% { opacity: 0; }   100% { opacity: 1; } } 
+                @keyframes fadeOut {   0% { opacity: 1; }   100% { opacity: 0; } }
+                #frame {
+                    width: 660px;
+                    height: 300px;
+                    border: 2px solid black;
+                    margin-left: 40px;
+                }
+                .mode {
+                    color: #729fcf;
+                    position: absolute;
+                }
+                .header {
+                    margin:auto;
+                    padding-top: 3px;
+                    text-align: center;
+                }
+                form {
+                    display:grid;
+                    grid-template-columns: 2fr 1fr;
+                }
+
+                .label {
+                    position:absolute;
+                    top: 60px;
+                    right: 20px;
+                }
+            </style>
+            <script src='tex-mml-svg.js'></script>
+        </head>
+        <body>
+
+<form>
+<div class="header" style="font-weight: bold;">\(\ell = 1\) Rotational Multiplets on a<br /><select id="type" oninput="res()"><option value="frequency">Frequency</option><option value="period">Period</option></select>-Échelle Diagram</div>
+<table style="margin:auto"><tr>
+        <td id="omega_cell"><input type="range" id="omega" min="0" max="1" step="0.001" value="0" oninput="update()"/></td>
+        <td><input type="range" id="inc" min="0" max="1.5708" step="0.0001" value="0.7" oninput="update()"/></td>
+    </tr>
+    <tr><td id="omega_label"><label for="omega">\(\Omega\)</label></td>
+        <td><label for="inc">\(i\)</label></td>
+</table>
+</form>
+
+<div id="frame">
+</div>
+
+<div class="header">Phase-folded <span id="type_label">frequency</span>: <span id="frequency_echelle_label">\(\nu \mod \Delta\nu\)</span><span id="period_echelle_label">\(P \mod \Delta\Pi\)</span></div>
+
+<div style="transform:rotate(-0.25turn); position:absolute; top: 200px; left: 0px">Frequency</div>
+
+<div id="period_label" class="label">$$\delta P_{\text{rot}, g, \ell=1} \sim - m{\Omega \over 4\pi \nu^2}$$</div>
+
+<div id="frequency_label" class="label">$$\delta \nu_{\text{rot}, p, \ell=1} \sim  m {\Omega \over 2\pi}$$</div>
+
+<script type="text/javascript">
+
+var $_GET=[];
+window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(a,name,value){$_GET[name]=value;});
+
+contents = ['●', '▲', '▼']
+
+function E(l, m, i) {
+    // From Messiah 1959; see Gizon & Solanki 2014
+    switch (l){
+        case 0:
+            return 1;
+            break;
+        case 1:
+            switch (m) {
+                case 1: return Math.sin(i)**2 / 2
+                case 0: return Math.cos(i)**2
+            }
+            break;
+        case 2:
+            switch (m) {
+                case 0: return (3 * Math.cos(i)**2 - 1) ** 2 / 4
+                case 1: return 3/8 * Math.sin(2 * i)**2
+                case 2: return 3/8 * Math.sin(i)**4
+            }
+            break;
+        case 3:
+            switch (m){
+                case 0: return (3 * Math.cos(i) + 5 * Math.cos(3*i))**2 / 64
+                case 1: return 3/64 * (3 + 5 * Math.cos(2*i))**2 * Math.sin(i)**2
+                case 2: return 15 / 8 * (Math.cos(i) * Math.sin(i)**2)**2
+                case 3: return 5 / 16 * (Math.sin(i))**6
+            }
+            break;
+        default:
+            return 1
+    }
+}
+
+function init() {
+    frame = document.getElementById('frame')
+    for (n = 0; n < 10; n++) {
+        for (m = -1; m <= 1; m++) {
+            var div = document.createElement("div")
+            div.className = "mode"
+            div.id = "n" + n + "m" + m
+            div.innerHTML = contents[(m + 3) % 3]
+            frame.appendChild(div)
+        }
+    }
+    update();
+}
+
+function res(){
+    document.getElementById('omega').value = 0;
+    document.getElementById('inc').value = Math.pi/4;
+    update();
+}
+
+function update(){
+    Ω = parseFloat(document.getElementById('omega').value)
+    inc = parseFloat(document.getElementById('inc').value)
+    type = document.getElementById('type').value
+    document.getElementById('type_label').innerHTML = type
+
+    document.getElementById("period_label").style.opacity = 0
+    document.getElementById("frequency_label").style.opacity = 0
+    document.getElementById("period_echelle_label").style.display = 'none'
+    document.getElementById("frequency_echelle_label").style.display = 'none'
+    document.getElementById(type + "_label").style.opacity = 1
+    document.getElementById(type + "_echelle_label").style.display = 'block'
+    for (n = 0; n < 10; n++) {
+        for (m = -1; m <= 1; m++) {
+            id = "n" + n + "m" + m
+            d = document.getElementById(id)
+            d.style.opacity = .2+1.5*E(1, Math.abs(m), inc)
+            if (type == "frequency"){
+                d.style.top = n * 30 + 70 + "px"
+                d.style.left = (360 + m * Ω * 150) + "px"
+            } else{
+                d.style.top = (9-n) * 30 + 70 + "px"
+                d.style.left = (360 - m * Ω * 30000 / (n + 10) / (n + 10)) + "px"
+            }
+        }
+    }
+}
+
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+        <head>
+        	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        	<style type="text/css">
+        		td{
+        			text-align: center;
+        		}
+        	</style>
+        	<script src='tex-mml-svg.js'></script>
+        </head>
+        <body>
+
+<form>
+	<table style="margin:auto"><tr>
+		<td><input type="range" id="omega" min="0" max="0.3" step="0.001" value="0" oninput="update()"/></td>
+		<td><input type="range" id="inc" min="0" max="1.5708" step="0.0001" value="0.7" oninput="update()"/></td>
+		<td><input type="range" id="ell" min="1" max="3" step="1" value="1" oninput="update()" /></td>
+	</tr>
+	<tr><td><label for="omega">\(\Omega\)</label></td><td><label for="inc">\(i\)</label></td><td><label for="ell">\(\ell = \) <span id="ell_label"></span></label></td></tr>
+</table>
+</form>
+
+<canvas id="viewport" width="1400" height="700" style="width:700px; height:350px; margin:auto"></canvas>
+<script type="text/javascript">
+
+// Basic configuration variables
+var dpi = 91;
+var cm =  dpi / 2.54 ;
+
+var viewport;
+var ctx;
+
+var fills = ['#729fcf', '#f57900', '#4e9a06']
+
+// Math starts here
+var N = 1000;
+var Gamma = 70.;
+
+var x = Array();
+var y = Array();
+
+function E(l, m, i) {
+	// From Messiah 1959; see Gizon & Solanki 2014
+	switch (l){
+		case 0:
+			return 1;
+			break;
+		case 1:
+			switch (m) {
+				case 1: return Math.sin(i)**2 / 2
+				case 0: return Math.cos(i)**2
+			}
+			break;
+		case 2:
+			switch (m) {
+				case 0: return (3 * Math.cos(i)**2 - 1) ** 2 / 4
+				case 1: return 3/8 * Math.sin(2 * i)**2
+				case 2: return 3/8 * Math.sin(i)**4
+			}
+			break;
+		case 3:
+			switch (m){
+				case 0: return (3 * Math.cos(i) + 5 * Math.cos(3*i))**2 / 64
+				case 1: return 3/64 * (3 + 5 * Math.cos(2*i))**2 * Math.sin(i)**2
+				case 2: return 15 / 8 * (Math.cos(i) * Math.sin(i)**2)**2
+				case 3: return 5 / 16 * (Math.sin(i))**6
+			}
+			break;
+		default:
+			return 1
+	}
+}
+
+function Lor(x) {
+	// Lorentzian function
+    return 1 / (1 + x * x * Gamma * Gamma)
+}
+
+function recompute(){
+    I = parseFloat(document.getElementById("inc").value);
+    W = parseFloat(document.getElementById("omega").value);
+    L = parseInt(document.getElementById("ell").value);
+
+    for (i = 0; i < N; i++){
+        y[i] = 0
+        for (m = -L; m <= L; m++){
+        	y[i] += Lor(x[i] + W * m) * E(L, Math.abs(m), I)
+        }
+    }
+}
+
+function plot(){
+    ctx.clearRect(0,0,viewport.width, viewport.height);
+    ctx.beginPath();
+
+    ctx.moveTo((x[0] * 8 + 9) * cm, (12) * cm)
+    ctx.lineTo((x[0] * 8 + 9) * cm, (-y[0] * 8 + 8) * cm)
+    for (i = 1; i < N; i++) {
+        ctx.lineTo((x[i] * 8 + 9) * cm, (-y[i] * 8 + 8) * cm)
+    }
+    ctx.lineTo((x[N-1] * 8 + 9) * cm, (12) * cm)
+    ctx.lineTo((x[0] * 8 + 9) * cm, (12) * cm)
+
+    ctx.stroke();
+    L = parseInt(document.getElementById("ell").value);
+    ctx.fillStyle = fills[L-1];
+    ctx.fill();
+}
+
+function init() {
+	viewport = document.getElementById('viewport');
+	ctx = viewport.getContext('2d');
+	// Retina display hack
+	ctx.scale(2,2)
+    for(i = 0; i < N; i++) {
+        x[i] = 2 * i / N - 1. + 1/N;
+    }
+    update();
+}
+
+function update(){
+	recompute();
+	plot();
+	document.getElementById("ell_label").innerHTML = parseInt(document.getElementById("ell").value)
+}
+
+init();
+</script>
+</body>
+</html>

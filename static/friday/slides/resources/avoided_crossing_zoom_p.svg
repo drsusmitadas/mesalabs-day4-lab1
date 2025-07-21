@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with matplotlib (https://matplotlib.org/) -->
+
+<svg
+   height="213.997566pt"
+   version="1.1"
+   viewBox="0 0 396.729761 213.997566"
+   width="396.729761pt"
+   id="svg922"
+   sodipodi:docname="avoided_crossing_zoom_p.svg"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview922"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="pt"
+     inkscape:zoom="4.9624459"
+     inkscape:cx="264.48651"
+     inkscape:cy="142.67158"
+     inkscape:window-width="3840"
+     inkscape:window-height="2133"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg922" />
+  <defs
+     id="defs1">
+    <style
+       type="text/css"
+       id="style1">
+*{stroke-linecap:butt;stroke-linejoin:round;}
+  </style>
+    <clipPath
+       id="p7b09bf6c5f-3">
+      <rect
+         height="166.32001"
+         width="334.79999"
+         x="45.874054"
+         y="10.659249"
+         id="rect922-5" />
+    </clipPath>
+    <clipPath
+       id="clipPath1">
+      <rect
+         height="166.32001"
+         width="334.79999"
+         x="45.874054"
+         y="10.659249"
+         id="rect1" />
+    </clipPath>
+    <clipPath
+       id="clipPath2">
+      <rect
+         height="166.32001"
+         width="334.79999"
+         x="45.874054"
+         y="10.659249"
+         id="rect2" />
+    </clipPath>
+    <clipPath
+       id="clipPath3">
+      <rect
+         height="166.32001"
+         width="334.79999"
+         x="45.874054"
+         y="10.659249"
+         id="rect3" />
+    </clipPath>
+  </defs>
+  <defs
+     id="defs922">
+    <clipPath
+       id="p7b09bf6c5f">
+      <rect
+         height="166.32"
+         width="334.8"
+         x="45.874054"
+         y="10.659249"
+         id="rect922" />
+    </clipPath>
+  </defs>
+  <g
+     id="line2d_814"
+     style="stroke-linecap:butt;stroke-linejoin:round">
+    <path
+       clip-path="url(#p7b09bf6c5f-3)"
+       d="m -1,147.65734 9.917449,-0.0185 44.944677,-2.0992 15.043763,2.01372 328.823871,-0.54308 v 0"
+       style="fill:none;stroke:#ff7f0e;stroke-width:0.7;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:2.59, 1.12;stroke-dashoffset:0"
+       id="path896" />
+  </g>
+  <g
+     id="line2d_815"
+     style="stroke-linecap:butt;stroke-linejoin:round">
+    <path
+       clip-path="url(#p7b09bf6c5f-3)"
+       d="m -1,105.7967 9.917449,-0.0229 44.944677,-2.20504 15.043763,2.08321 328.823871,-0.65044 v 0"
+       style="fill:none;stroke:#ff7f0e;stroke-width:0.7;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:2.59, 1.12;stroke-dashoffset:0"
+       id="path897" />
+  </g>
+  <g
+     id="line2d_817"
+     style="stroke-linecap:butt;stroke-linejoin:round">
+    <path
+       clip-path="url(#p7b09bf6c5f-3)"
+       d="m -1,21.539289 9.917449,-0.01976 44.944677,-2.349402 15.043763,2.251421 222.852931,-0.427264 105.97094,-0.260873 v 0"
+       style="fill:none;stroke:#ff7f0e;stroke-width:0.7;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:2.59, 1.12;stroke-dashoffset:0"
+       id="path899" />
+  </g>
+  <path
+     clip-path="url(#p7b09bf6c5f-3)"
+     d="m -1,63.739389 9.917449,-0.02119 44.944677,-2.27154 15.043763,2.1552 141.971711,-0.257985 132.59675,-0.332287 54.25541,-0.119301 v 0"
+     style="fill:none;stroke:#ff7f0e;stroke-width:0.7;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:2.59, 1.12;stroke-dashoffset:0"
+     id="path898" />
+</svg>
