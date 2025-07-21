@@ -1,3 +1,7 @@
+---
+author: Lea Schimak (Lead TA), Courtney Crawford, Joel Ong, Meng Sun
+---
+
 # Lab 2: Calculating Mode Frequencies
 
 ## Learning Goals
