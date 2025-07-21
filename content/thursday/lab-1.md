@@ -60,7 +60,7 @@ You are now ready to start the run!
 
 **Task 2.3**: Compile and run the provided work directory.
 
-This directory evolves a star from the start of the RGB bump upto the end of the RGB bump. Confirm that you can compile and run it. Two default PGPLOT windows (Hertzsprung-Russell Diagram and temparature-density profille) should appear. 
+This directory evolves a star from the start of the RGB bump upto the end of the RGB bump. Confirm that you can compile and run it. Two default PGPLOT windows (Hertzsprung-Russell Diagram and temperature-density profille) should appear. 
 
 <details>
 <summary>Answer 2.3</summary>

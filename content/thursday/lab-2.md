@@ -38,12 +38,12 @@ where the integral is over the region with $N^2 > 0$, i.e. the radiative region.
 
 To illustrate more intuitively the physics probed by the period spacing, we will show that its variations are linked to the size of the radiative region in a star. As such, the period spacing can also be used as a proxy size of the helium core in some cases ([Montalbán et al. 2013](https://ui.adsabs.harvard.edu/abs/2013ApJ...766..118M/abstract)).
 
-Measured values of $\Delta \Pi_{\ell}$ for stars observed by the *Kepler* telescope range between 250 and 340 s ([Mosser et al. 2012](https://ui.adsabs.harvard.edu/abs/2012A%26A...540A.143M/abstract), [2014](https://ui.adsabs.harvard.edu/abs/2014A%26A...572L...5M/abstract), [Vrard et al. 2016](https://ui.adsabs.harvard.edu/abs/2016A%26A...588A..87V/abstract)), which is on average larger than the values infered from standard stellar models ([Constantino et al. 2015](https://ui.adsabs.harvard.edu/abs/2015MNRAS.452..123C/abstract)). In order to explain measured values of the period spacing, several mechanisms have been proposed over the last decades:
+Measured values of $\Delta \Pi_{\ell}$ for stars observed by the *Kepler* telescope range between 250 and 340 s ([Mosser et al. 2012](https://ui.adsabs.harvard.edu/abs/2012A%26A...540A.143M/abstract), [2014](https://ui.adsabs.harvard.edu/abs/2014A%26A...572L...5M/abstract), [Vrard et al. 2016](https://ui.adsabs.harvard.edu/abs/2016A%26A...588A..87V/abstract)), which is on average larger than the values inferred from standard stellar models ([Constantino et al. 2015](https://ui.adsabs.harvard.edu/abs/2015MNRAS.452..123C/abstract)). In order to explain measured values of the period spacing, several mechanisms have been proposed over the last decades:
 1. Overshooting and penetrative convection.
 2. Semiconvection (Schwarzschild & Härm 1969, [Castelani et al. 1971b](https://link.springer.com/article/10.1007/BF00649680)).
 3. Maximal overshoot ([Constantino et al. 2015](https://ui.adsabs.harvard.edu/abs/2015MNRAS.452..123C/abstract)).
 
-These different mixing mechanisms will impact the structure of near core region as it is illustrated in Fig. 2. The value of the period spacing infered for these differents models will then be different as we will see in this lab.
+These different mixing mechanisms will impact the structure of near core region as it is illustrated in Fig. 2. The value of the period spacing inferred for these different models will then be different as we will see in this lab.
 
 ![mesa output](/thursday/Fig3_Noll2024.png "Fig. 2: Properties around the core of 1 M, solar-metallicity models computed with the Maximal overshoot (blue, solid), overmixing (pink, dashed), penetrative convection (green, dotted) and semiconvection (yellow, dash-dotted) core boundary mixing schemes. Panel a: Radiative and adiabatic gradients. Panel b: Actual temperature gradients. Panel c: Brunt-Väisälä frequency profile. Panel d: Helium composition profile. Figure from Noll et al. (2024)")
 
@@ -389,7 +389,7 @@ Your `pgstar` window is now ready, it should like the example in Fig. 3.
 ![mesa output](/thursday/example_pgplot_lab2.png "Fig. 3: Screenshot of a pgstar window")
 
 ## Section 4: Convective Boundary Mixing
-Now, you are ready to focus on the physics of the problem! Convective boundary mixing refers to any mixing due to convective motions, happening just outside a convective region, in the adjascent stably stratified radiative region.
+Now, you are ready to focus on the physics of the problem! Convective boundary mixing refers to any mixing due to convective motions, happening just outside a convective region, in the adjacent stably stratified radiative region.
 In this section, we will implement different scheme to model the PM region. The comparison between their impact on the period spacing, and size of the helium core, will be done in Section 5.
 
 ### Overshooting
@@ -594,7 +594,7 @@ Then, run the model with
 ```
 
 >[!TIP]
-> As you have modified the  ``run_star_extras.f90`` file, do not forget to ``./mk`` beofre running the model!
+> As you have modified the  ``run_star_extras.f90`` file, do not forget to ``./mk`` before running the model!
 
 Do you observe any difference with the previous case ?
 

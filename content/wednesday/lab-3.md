@@ -67,7 +67,7 @@ The orbital separation is $\sim 41.1 \, {\rm R}_\odot$ after 2 years of CE evolu
 
 
 ## Task 3. Change the companion mass
-Run the same setup but vary the mass of the companion star. What happens if you increase the mass of the companion star? What happens if you decrease it? How does this affect the orbital separation? **What could be the physical reson for this behavior?** We have tested the cases for $ 0.5\,\mathrm{M}_\odot \leq M_2 \leq 2.0\,\mathrm{M}_\odot$. Depending on the companion mass, you might need to adjust the stopping criterion in the `inlist_CE` file.
+Run the same setup but vary the mass of the companion star. What happens if you increase the mass of the companion star? What happens if you decrease it? How does this affect the orbital separation? **What could be the physical reason for this behavior?** We have tested the cases for $ 0.5\,\mathrm{M}_\odot \leq M_2 \leq 2.0\,\mathrm{M}_\odot$. Depending on the companion mass, you might need to adjust the stopping criterion in the `inlist_CE` file.
 
 {{< details title="Hint (companion mass)" closed="true" >}}
 Have a close look at the `inlist_CE` file. Try to spot the `x_ctrl` variable that corresponds to the companion mass.
